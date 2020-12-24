@@ -18,7 +18,5 @@ your portfolio and expected hourly rate at [info@ruppell.io](mailto:info@ruppell
 
 #### 🔗 Other Links
 
-- [Website](http://ruppell.io)
-- [Facebook](https://www.facebook.com/ruppell.io)
-- [Instagram](https://www.instagram.com/ruppell_limited)
-- [GitHub](https://github.com/Ruppell)
+[Website](http://ruppell.io) - [Facebook](https://www.facebook.com/ruppell.io) - [Instagram](https://www.instagram.com/ruppell_limited) - [GitHub](https://github.com/Ruppell)
+
