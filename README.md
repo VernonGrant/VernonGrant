@@ -2,7 +2,7 @@
 
 ![Ruppell Limited Header Image](./assets/images/header.png "Ruppell Limited")
 
-I'm a South African 🇿🇦 software engineer currently based in Hong Kong 🇭🇰.
+A South African 🇿🇦 software engineer currently based in Hong Kong 🇭🇰.
 I'm also running a startup business named [Ruppell Limited](https://ruppell.io) that
 provides affordable but high quality development services to business around the world.
 
