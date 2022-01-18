@@ -1,26 +1,12 @@
-### Hi I'm Vernon 👋
-
 <img align="left" width="250" height="250" src="https://via.placeholder.com/250">
+
+# Hi I'm Vernon 👋
 
 Consectetur ipsa deleniti inventore sunt error? Porro ratione voluptatem
 voluptas ad sint Corrupti corrupti iusto facere est vero Nemo maiores nemo vel
 laudantium repudiandae quisquam autem? Cupiditate ad molestias eum.
 
-<div style="display: flex;">
-    <div>
-        Adipisicing saepe in unde sit eaque Eligendi voluptate iure qui alias
-        alias ipsum maxime Illo saepe dolores velit error iste!
-    </div>
-    <div>
-        Adipisicing saepe in unde sit eaque Eligendi voluptate iure qui alias
-        alias ipsum maxime Illo saepe dolores velit error iste!
-    </div>
-</div>
-
-<div style="width: 100%; height:10px; margin: 30px 0; background-color:black;"></div>
-
-<div style="width: 100%; height:10px; margin: 30px 0; background-color:black;">
-</div>
+---
 
 ![Ruppell Limited Header Image](./assets/images/header.png "Ruppell Limited")
 
