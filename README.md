@@ -27,7 +27,6 @@ view. Most importantly, I love programming! [Contact Me](https://linktr.ee/verno
     <span><img alt="Bash" width="52" height="52" src="./assets/images/bash-original.svg"></span>
     <span><img alt="Git" width="52" height="52" src="./assets/images/git-original.svg"></span>
     <span><img alt="Jenkins" width="52" height="52" src="./assets/images/jenkins-original.svg"></span>
-    <span><img alt="Vim" width="52" height="52" src="./assets/images/vim-original.svg"></span>
 </p>
 
 <p align="left">
@@ -43,8 +42,7 @@ view. Most importantly, I love programming! [Contact Me](https://linktr.ee/verno
     <small>Linux</small> -
     <small>Bash</small> -
     <small>GIT</small> -
-    <small>Jenkins</small> -
-    <small>Vim</small>
+    <small>Jenkins</small>
 </p>
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
