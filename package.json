@@ -1,0 +1,19 @@
+{
+  "name": "vernon_grant",
+  "version": "1.0.0",
+  "description": "My personal GitHub resume",
+  "main": "index.js",
+  "scripts": {
+      "serve": "markserv ./README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VernonGrant/VernonGrant.git"
+  },
+  "author": "Vernon Grant <vernon@ruppell.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VernonGrant/VernonGrant/issues"
+  },
+  "homepage": "https://github.com/VernonGrant/VernonGrant#readme"
+}

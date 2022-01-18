@@ -1,5 +1,21 @@
 ### Hi I'm Vernon 👋
 
+<div style="display: flex;">
+    <div>
+        Adipisicing saepe in unde sit eaque Eligendi voluptate iure qui alias
+        alias ipsum maxime Illo saepe dolores velit error iste!
+    </div>
+    <div>
+        Adipisicing saepe in unde sit eaque Eligendi voluptate iure qui alias
+        alias ipsum maxime Illo saepe dolores velit error iste!
+    </div>
+</div>
+
+<div style="width: 100%; height:10px; margin: 30px 0; background-color:black;"></div>
+
+<div style="width: 100%; height:10px; margin: 30px 0; background-color:black;">
+</div>
+
 ![Ruppell Limited Header Image](./assets/images/header.png "Ruppell Limited")
 
 A South African 🇿🇦 software engineer currently based in Hong Kong 🇭🇰.
