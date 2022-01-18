@@ -1,4 +1,4 @@
-<img align="left" width="240" height="240" src="https://via.placeholder.com/240">
+<img align="left" width="240" height="240" src="./assets/images/profile.jpg">
 
 # Vernon Grant 🤝
 
