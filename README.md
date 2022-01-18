@@ -5,9 +5,24 @@
 I'm a South African web developer currently based in Hong Kong. I'm a fast
 learner and enjoy solving complex problems in simple ways. I also have a clear
 perspective on what's important from a technological and business point of
-view. Most importantly, I love programming!
+view. Most importantly, I love programming! [Contact Me](https://linktr.ee/vernongrant)
 
 <img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge">
+
+<p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
+
+### Skills & Specialties
+
+<p align="left">
+    <span>
+        <img width="70" height="70" src="./assets/images/javascript-original.svg">
+        <strong>JavaScript</strong>
+    </span>
+    <span>
+        <img width="70" height="70" src="./assets/images/typescript-original.svg">
+        <strong>JavaScript</strong>
+    </span>
+</p>
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
 
