@@ -1,5 +1,11 @@
 ### Hi I'm Vernon 👋
 
+<img align="left" width="250" height="250" src="https://via.placeholder.com/250">
+
+Consectetur ipsa deleniti inventore sunt error? Porro ratione voluptatem
+voluptas ad sint Corrupti corrupti iusto facere est vero Nemo maiores nemo vel
+laudantium repudiandae quisquam autem? Cupiditate ad molestias eum.
+
 <div style="display: flex;">
     <div>
         Adipisicing saepe in unde sit eaque Eligendi voluptate iure qui alias
