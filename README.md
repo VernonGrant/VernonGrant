@@ -1,14 +1,14 @@
-<img align="left" width="250" height="250" src="https://via.placeholder.com/250">
+<img align="left" width="240" height="240" src="https://via.placeholder.com/240">
 
-# Hi I'm Vernon 👋
+# Vernon Grant
 
-Consectetur ipsa deleniti inventore sunt error? Porro ratione voluptatem
-voluptas ad sint Corrupti corrupti iusto facere est vero Nemo maiores nemo vel
-laudantium repudiandae quisquam autem? Cupiditate ad molestias eum.
+A South African 🇿🇦 software engineer currently based in Hong Kong 🇭🇰.
+I'm also running a startup business named [Ruppell Limited](https://ruppell.io) that
+provides affordable but high quality development services to business around the world.
 
----
-
-![Ruppell Limited Header Image](./assets/images/header.png "Ruppell Limited")
+<p align="center">
+    <img width="1000" height="10" src="https://via.placeholder.com/1000x5">
+</p>
 
 A South African 🇿🇦 software engineer currently based in Hong Kong 🇭🇰.
 I'm also running a startup business named [Ruppell Limited](https://ruppell.io) that
