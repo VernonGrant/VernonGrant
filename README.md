@@ -79,4 +79,4 @@ view. Most importantly, I love programming! [Contact Me](https://linktr.ee/verno
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
 
-### References
+### References & Projects
