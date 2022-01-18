@@ -2,10 +2,10 @@
 
 # Vernon Grant 🤝
 
-Dolor quasi quisquam qui repellat perspiciatis ad Minus quis eaque beatae
-labore enim! Reprehenderit adipisci dignissimos voluptates natus iusto.
-Voluptates delectus porro quam voluptas magni Eaque quod perspiciatis quas
-corporis! [Contact Me](https://linktr.ee/vernongrant)
+I'm a South African web developer currently based in Hong Kong. I'm a fast
+learner and enjoy solving complex problems in simple ways. I also have a clear
+perspective on what's important from a technological and business point of
+view. Most importantly, I love programming!
 
 <img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge">
 
