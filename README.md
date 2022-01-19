@@ -5,7 +5,7 @@ learner and enjoy solving complex problems in simple ways. I also have a clear
 perspective on what's important from a technological and business point of
 view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.io)
 
-<img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge">
+<!-- <img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge"> -->
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
 
