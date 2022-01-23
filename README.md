@@ -3,7 +3,7 @@
 I'm a South African web developer currently based in Hong Kong. I'm a fast
 learner and enjoy solving complex problems in simple ways. I also have a clear
 perspective on what's important from a technological and business point of
-view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.io) | [Download PDF](./assets/vernon-grant.pdf)
+view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.io) | [Download PDF](https://github.com/VernonGrant/VernonGrant/raw/main/assets/vernon-grant.pdf)
 
 <!-- <img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge"> -->
 
