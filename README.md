@@ -7,7 +7,7 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 
 <!-- <img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge"> -->
 
-<p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
+<p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
 ### Skills & Competencies
 
@@ -43,7 +43,7 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
     <small>Jenkins</small>
 </p>
 
-<p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
+<p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
 ### Employment History
 
@@ -75,7 +75,7 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 - Helped ensure that the venue and production work was up to the required quality standards.
 - Helped update some of the company's website using online CMS systems such as Drupal, Joomla and WordPress.
 
-<p align="center"><img width="1000" height="10" src="./assets/images/binary-line.jpg"></p>
+<p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
 ### Recent Projects
 
