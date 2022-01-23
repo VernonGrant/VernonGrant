@@ -51,27 +51,27 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 
 - Assisting customers with website maintenance and updates.
 - Created a live sharing application using JavaScript for brand events in Hong Kong.
-- Created a WordPress plugin to help with character conversions and encoding issues.
+- Developed a WordPress plugin for customers based in China that resolves
+  character conversions and encoding issues.
 - Designed and developed more than 20 production websites.
 - Created mobile applications for Android and IOS using Google's Flutter framework.
 
 ##### Seedland International Limited | 2013 - 2018 | Web Developer
 
-- Revamped one of the company's legacy online store platforms by migrating it
-  to WordPress and WooCommerce.
-- Developed and maintained a WordPress plugin that allows WooCommerce customers to purchase digital books.
-- Created a custom CMS system, using the PHP framework Symfony.
-- Assisted in converting legacy flash based websites to HTML and JavaScript.
+- Revamped and migrated a legacy e-commerce platform to WordPress and WooCommerce.
+- Developed a WordPress plugin that allowed WooCommerce customers the option to
+  purchase subscriptions for digital books.
+- Created a custom CMS system using the Symfony (PHP framework).
+- Assisted in converting legacy flash based websites to HTML5 and JavaScript.
 - Helped ensure website quality and functionality across browsers and devices.
 - Created a verity of website designs using HTML, CSS and JavaScript.
-- Helped solve firewall and Chinese encoding issues.
 
 ##### Trinity International Limited | 2010 - 2013 | General Admin
 
 - Prepared watch magazines for monthly distribution.
-- Managed confidential and sensitive client information for company owner.
+- Managed confidential and sensitive client information for the company's owner.
 - Assisted in packing and preparing press releases for local and international media.
-- Assisted during public relations events for large brands such as Hublot, Blancpain, TAG Heuer and more.
+- Assisted during public relation's events for large brands such as Hublot, Blancpain, TAG Heuer and more.
 - Helped ensure that the venue and production work was up to the required quality standards.
 - Helped update some of the company's website using online CMS systems such as Drupal, Joomla and WordPress.
 
@@ -80,12 +80,12 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 ### Recent Projects
 
 ##### Ruppell Limited | Flask, Python, JavaScript | [View](https://ruppell.io/en-hk/)
-- Designed and development of business website.
+- Designed and developed the business website.
 - Used PJAX and JavaScript to emulate single page application behaviour.
 
 ##### Art And Piece | WordPress | [View](https://artandpiece.com/)
 - Theme development and design.
-- Developed a plugin, that allows customers to purchase, manage and read digital magazines.
+- Developed a plugin that allows customers to purchase, manage and read digital magazines.
 - Developed a plugin that provides more control over WooCommerce shipping costs.
 - Deployed and managing production virtual server.
 
