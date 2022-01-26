@@ -70,8 +70,7 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 
 - Prepared watch magazines for monthly distribution.
 - Managed confidential and sensitive client information for the company's owner.
-- Assisted in packing and preparing press releases for local and international media.
-- Assisted during public relation's events for large brands such as Hublot, Blancpain, TAG Heuer and more.
+- Assisted the marketing team to organise public relation events for luxury brands such as Hublot, Blancpain, TAG Heuer and more.
 - Helped ensure that the venue and production work was up to the required quality standards.
 - Helped update some of the company's website using online CMS systems such as Drupal, Joomla and WordPress.
 
