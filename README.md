@@ -1,11 +1,9 @@
-# Vernon Grant 🤝
+# Vernon Grant
 
 I'm a South African web developer currently based in Hong Kong. I'm a fast
 learner and enjoy solving complex problems in simple ways. I also have a clear
 perspective on what's important from a technological and business point of
 view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.io)
-
-<!-- <img width="300" height="30" src="https://www.codewars.com/users/VernonGrant/badges/large" title="Codewars Profile Badge"> -->
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
@@ -22,9 +20,10 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
     <span><img alt="Docker" width="45" height="45" src="./assets/images/docker-original.svg"></span>
     <span><img alt="Webpack" width="45" height="45" src="./assets/images/webpack-original.svg"></span>
     <span><img alt="Linux" width="45" height="45" src="./assets/images/linux-original.svg"></span>
+    <span><img alt="C" width="45" height="45" src="./assets/images/c-original.svg"></span>
+    <span><img alt="OpenGL" width="45" height="45" src="./assets/images/opengl-original.svg"></span>
     <span><img alt="Bash" width="45" height="45" src="./assets/images/bash-original.svg"></span>
     <span><img alt="Git" width="45" height="45" src="./assets/images/git-original.svg"></span>
-    <span><img alt="Jenkins" width="45" height="45" src="./assets/images/jenkins-original.svg"></span>
 </p>
 
 <p align="left">
@@ -38,9 +37,10 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
     <small>Docker</small> -
     <small>Webpack</small> -
     <small>Linux</small> -
+    <small>C</small> -
+    <small>OpenGl</small> -
     <small>Bash</small> -
-    <small>GIT</small> -
-    <small>Jenkins</small>
+    <small>GIT</small>
 </p>
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
@@ -50,9 +50,7 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 ##### Ruppell Limited | *2018 - present* | Director and Web Developer
 
 - Assisting customers with website maintenance and updates.
-- Created a live sharing application using JavaScript for brand events in Hong Kong.
-- Developed a WordPress plugin for customers based in China that resolves
-  character conversions and encoding issues.
+- Created a live sharing application for brand events in Hong Kong.
 - Designed and developed more than 20 production websites.
 - Created mobile applications for Android and IOS using Google's Flutter framework.
 
@@ -78,24 +76,23 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 
 ### Recent Projects
 
-##### Ruppell Limited | *Flask, Python, JavaScript* | [View](https://ruppell.io/en-hk/)
-- Designed and developed the business website.
-- Used PJAX and JavaScript to emulate single page application behaviour.
+##### Sidekick | *Elisp, Emacs* | [View](https://github.com/VernonGrant/sidekick.el)
+Sidekick is an Emacs package that provides information about a symbol inside a single window.
 
-##### Art And Piece | *WordPress* | [View](https://artandpiece.com/)
+##### Papimi | *WordPress, PHP* | [View](https://www.papimi.hk/zh-hk/home/)
+- WordPress theme development and design.
+- Developed a series of Gutenberg blocks.
+
+##### Art And Piece | *WordPress, PHP* | [View](https://artandpiece.com/)
 - Theme development and design.
 - Developed a plugin that allows customers to purchase, manage and read digital magazines.
 - Developed a plugin that provides more control over WooCommerce shipping costs.
 - Deployed and managing production virtual server.
 
-#####  Emacsify | *JavaScript, VSCode* | [View](https://marketplace.visualstudio.com/items?itemName=RuppellLimited.emacsify)
-- Developed a region selection feature, similar to Emacs.
-- Added the option for negative commands, this allows for left and right text manipulation.
+##### Ruppell Limited | *Flask, Python, JavaScript* | [View](https://ruppell.io/en-hk/)
+- Designed and developed using Python and Flask.
+- Used PJAX and JavaScript to emulate single page application behaviour.
 
 ##### PayFast Gateway | *PHP* | Confidential
 - I helped a local Cape Town restaurant chain develop a PayFast gateway interface for [TastyIgniter](https://tastyigniter.com/).
 - Setup of production server's database, cron jobs and other required modules.
-
-##### Seedland | *WordPress, JavaScript* | [View](https://www.seedland.hk/en-hk/home/)
-- Migrated website from Symfony to WordPress.
-- Developed a series of Gutenberg blocks based on the customers requirements.
