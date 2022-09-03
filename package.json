@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/VernonGrant/VernonGrant#readme",
   "devDependencies": {
-    "md-to-pdf": "^5.0.2"
+      "md-to-pdf": "^5.0.2",
+      "markserv": "^1.17.4"
   }
 }
