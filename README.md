@@ -76,7 +76,10 @@ view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.i
 
 ### Recent Projects
 
-##### Sidekick | *Elisp, Emacs* | [View](https://github.com/VernonGrant/sidekick.el)
+##### Abbreviate.el | *Elisp, Emacs* | [View](https://github.com/VernonGrant/abbreviate.el)
+Abbreviates the word at point, using a predefined list of common programming abbreviations.
+
+##### Sidekick.el | *Elisp, Emacs* | [View](https://github.com/VernonGrant/sidekick.el)
 Sidekick is an Emacs package that provides information about a symbol inside a single window.
 
 ##### Papimi | *WordPress, PHP* | [View](https://www.papimi.hk/zh-hk/home/)
