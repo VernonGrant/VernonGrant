@@ -4,8 +4,11 @@ module.exports = {
     stylesheet: ['https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css'],
     css: `
       .page-break { page-break-after: always; }
+      .markdown-body a { color: #0070a8; font-weight: bold; }
       .markdown-body { font-size: 13px; }
       .markdown-body pre > code { white-space: pre-wrap; }
+      .markdown-body hr { height: 1px; }
+      .markdown-body h6 { margin-top: -10px; }
     `,
     body_class: 'markdown-body',
     marked_options: {

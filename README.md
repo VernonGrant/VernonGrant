@@ -1,101 +1,129 @@
-# Vernon Grant
+<p>
+  <img style="float: left; padding-right: 20px; padding-bottom: 20px;" width="220" height="220" src="./assets/images/profile.jpg"/>
 
-I'm a South African web developer currently based in Hong Kong. I'm a fast
-learner and enjoy solving complex problems in simple ways. I also have a clear
-perspective on what's important from a technological and business point of
-view. Most importantly, I love programming! [Contact Me](mailto:vernon@ruppell.io)
+<h1>Vernon Grant</h1>
 
-<p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
+I'm a South African 🇿🇦 developer currently based in Hong Kong 🇭🇰. I'm a fast
+learner and enjoy solving problems. I have a clear perspective on what's
+important from a technological and business point of view. Most importantly, I'm
+self-motivated, dependable and really enjoy coming up with maintainable and
+stable solutions.
 
-### Skills & Competencies
+<hr/>
 
-<p align="left">
-    <span><img alt="Javascript" width="45" height="45" src="./assets/images/javascript-original.svg"></span>
-    <span><img alt="Typescript" width="45" height="45" src="./assets/images/typescript-original.svg"></span>
-    <span><img alt="Css3" width="45" height="45" src="./assets/images/css3-plain.svg"></span>
-    <span><img alt="Html5" width="45" height="45" src="./assets/images/html5-plain.svg"></span>
-    <span><img alt="Node" width="45" height="45" src="./assets/images/nodejs-original.svg"></span>
-    <span><img alt="Php" width="45" height="45" src="./assets/images/php-original.svg"></span>
-    <span><img alt="Wordpress" width="45" height="45" src="./assets/images/wordpress-plain.svg"></span>
-    <span><img alt="Docker" width="45" height="45" src="./assets/images/docker-original.svg"></span>
-    <span><img alt="Webpack" width="45" height="45" src="./assets/images/webpack-original.svg"></span>
-    <span><img alt="Linux" width="45" height="45" src="./assets/images/linux-original.svg"></span>
-    <span><img alt="C" width="45" height="45" src="./assets/images/c-original.svg"></span>
-    <span><img alt="OpenGL" width="45" height="45" src="./assets/images/opengl-original.svg"></span>
-    <span><img alt="Bash" width="45" height="45" src="./assets/images/bash-original.svg"></span>
-    <span><img alt="Git" width="45" height="45" src="./assets/images/git-original.svg"></span>
-</p>
+<a href="https://github.com/VernonGrant"><img style="margin: 0 8px;" alt="GitHub" width="14" height="14" src="./assets/images/github.svg">GitHub</a> 
+<a href="https://twitter.com/Vernon_GR"><img style="margin: 0 8px;" alt="Twitter" width="14" height="14" src="./assets/images/twitter.svg">Twitter</a>
+<a href="tel:+85291847474"><img style="margin: 0 8px;" alt="Email" width="14" height="14" src="./assets/images/phone-solid.svg">Mobile</a>
+<a href="mailto:vernon@ruppell.io"><img style="margin: 0 8px;" alt="Email" width="14" height="14" src="./assets/images/envelope-solid.svg">Email</a>
+<a href="https://vernon-grant.com"><img style="margin: 0 8px;" alt="Blog" width="14" height="14" src="./assets/images/pen-solid.svg">Blog</a>
 
-<p align="left">
-    <small>JavaScript</small> -
-    <small>TypeScript</small> -
-    <small>CSS3</small> -
-    <small>HTML5</small> -
-    <small>NodeJS</small> -
-    <small>PHP</small> -
-    <small>WordPress</small> -
-    <small>Docker</small> -
-    <small>Webpack</small> -
-    <small>Linux</small> -
-    <small>C</small> -
-    <small>OpenGl</small> -
-    <small>Bash</small> -
-    <small>GIT</small>
 </p>
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
-### Employment History
+## Employment History:
 
-##### Ruppell Limited | *2018 - present* | Director and Web Developer
+### Ruppell Limited - Director & Developer
+###### *2018 - 2022*
 
-- Assisting customers with website maintenance and updates.
-- Created a live sharing application for brand events in Hong Kong.
+- Created a series of live interactive application for events in Hong Kong.
 - Designed and developed more than 20 production websites.
-- Created mobile applications for Android and IOS using Google's Flutter framework.
+- Created mobile applications for Android and IOS using Google's Flutter
+  framework.
+- Assisted customers with website maintenance and updates.
 
-##### Seedland International Limited | *2013 - 2018* | Web Developer
+### Seedland International Limited - Web Developer
+###### *2013 - 2018*
 
-- Revamped and migrated a legacy e-commerce platform to WordPress and WooCommerce.
-- Developed a WordPress plugin that allowed WooCommerce customers the option to
-  purchase subscriptions for digital books.
-- Created a custom CMS system using the Symfony (PHP framework).
-- Assisted in converting legacy flash based websites to HTML5 and JavaScript.
-- Helped ensure website quality and functionality across browsers and devices.
+- Revamped and migrated a Java based e-commerce platform to WordPress and
+  WooCommerce.
+- Developed a WooCommerce plugin that gave customers the option to
+  purchase subscription based products.
+- Created a custom CMS system using the Symfony PHP framework.
+- Assisted in converting a legacy flash based websites to HTML5 and JavaScript.
 - Created a verity of website designs using HTML, CSS and JavaScript.
 
-##### Trinity International Limited | *2010 - 2013* | General Admin
+### Trinity International Limited - General Admin
+###### *2010 - 2013*
 
 - Prepared watch magazines for monthly distribution.
-- Managed confidential and sensitive client information for the company's owner.
-- Assisted the marketing team to organise public relation events for luxury brands such as Hublot, Blancpain, TAG Heuer and more.
-- Helped ensure that the venue and production work was up to the required quality standards.
-- Helped update some of the company's website using online CMS systems such as Drupal, Joomla and WordPress.
+- Managed confidential and sensitive client information for the company's
+  co-owner.
+- Assisted the marketing team in the organization of events for luxury brands
+  such as Hublot, Blancpain, TAG Heuer and more.
+- Helped ensure that the venue and production work was up to the required
+  quality standards.
+- Helped update some of the company's website using online CMS systems such as
+  Drupal, Joomla and WordPress.
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
-### Recent Projects
+## Recent Projects:
 
-##### Abbreviate.el | *Elisp, Emacs* | [View](https://github.com/VernonGrant/abbreviate.el)
-Abbreviates the word at point, using a predefined list of common programming abbreviations.
+### [JSN.c](https://github.com/VernonGrant/jsn.c)
 
-##### Sidekick.el | *Elisp, Emacs* | [View](https://github.com/VernonGrant/sidekick.el)
-Sidekick is an Emacs package that provides information about a symbol inside a single window.
+###### *C, JSON*
 
-##### Papimi | *WordPress, PHP* | [View](https://www.papimi.hk/zh-hk/home/)
-- WordPress theme development and design.
-- Developed a series of Gutenberg blocks.
+A pure C utility that's intended to be used for parsing, generating and
+manipulating JSON configuration files.
 
-##### Art And Piece | *WordPress, PHP* | [View](https://artandpiece.com/)
-- Theme development and design.
-- Developed a plugin that allows customers to purchase, manage and read digital magazines.
-- Developed a plugin that provides more control over WooCommerce shipping costs.
-- Deployed and managing production virtual server.
+---
 
-##### Ruppell Limited | *Flask, Python, JavaScript* | [View](https://ruppell.io/en-hk/)
-- Designed and developed using Python and Flask.
-- Used PJAX and JavaScript to emulate single page application behaviour.
+### [GNU C Language Manual](https://github.com/VernonGrant/gnu-c-language-manual)
+###### *C, Shell, TEXInfo*
 
-##### PayFast Gateway | *PHP* | Confidential
-- I helped a local Cape Town restaurant chain develop a PayFast gateway interface for [TastyIgniter](https://tastyigniter.com/).
-- Setup of production server's database, cron jobs and other required modules.
+Developed a series of custom C utilities and shell scripts to convert Richard
+Stallman's new *GNU C Language Intro and Reference Manual* to Markdown. I also
+contributed to the manual by communicating directly with Richard, pointing out
+any mistakes or issues I've found.
+
+---
+
+### [Sidekick.el](https://github.com/VernonGrant/sidekick.el)
+###### *Emacs Lisp*
+
+Sidekick is an Emacs package that provides information about a symbol inside a
+single window. Currently only uses RipGrep to find matching symbols, but LSP
+support is being worked on.
+
+---
+
+### [Abbreviate.el](https://github.com/VernonGrant/abbreviate.el)
+###### *Emacs Lisp*
+
+Abbreviates the word at point, using a predefined list of common programming
+abbreviations.
+
+---
+
+### [Art And Piece](https://artandpiece.com/)
+###### *PHP, JavaScript, WordPress*
+
+Developed a series of WordPress plugins that builds upon WooCommerce features.
+Allowing customers to buy and read digital magazines online. Also developed and
+designed a custom WordPress theme.
+
+---
+
+### [Papimi](https://www.papimi.hk/zh-hk/home/)
+###### *PHP, JavaScript, WordPress*
+
+Developed and designed a custom WordPress theme that makes use of the new
+Gutenberg editor to construct pages using tailored blocks.
+
+---
+
+### [Ruppell Limited](https://ruppell.io/en-hk/)
+###### *Flask, Python, JavaScript*
+
+Developed and designed my business website using Python and Flask. Also made use
+of PJAX to emulate single page application behaviour.
+
+---
+
+### PayFast Gateway
+###### *PHP, JavaScript*
+
+Developed a PayFast payment gateway for
+[TastyIgniter](https://tastyigniter.com/). This gateway was used by a restaurant
+chain in Cape Town during the pandemic.
