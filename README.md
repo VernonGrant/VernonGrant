@@ -1,12 +1,13 @@
-# Vernon Grant 👋🏻
+# Vernon Grant
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
-Software engineer, GNU Emacs / Linux hobbyist. Proud South African 🇿🇦
+I'm a **Freelance Web Developer**, interested in all things software
+development. I host the **Developer Tips Podcast** 🎙️, that provides software
+developers with tips and tricks to help them be more effective. Where I share
+all the valuable things I learn. I'm a proud South African  🇿🇦 currently
+based in Southeast Asia.
 
-
-[Email](mailto:vernon@ruppell.io) | [Blog](https://vernon-grant.com) |
-[Twiter](https://twitter.com/Vernon_GR) |
-[Reddit](https://www.reddit.com/user/VernonGrant)
+[Podcast](https://developer-tips.buzzsprout.com) | [Twitter](https://twitter.com/Vernon_GR) | [Email](mailto:vernon@ruppell.io) | [Blog](https://vernon-grant.com)
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
