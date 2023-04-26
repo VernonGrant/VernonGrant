@@ -2,7 +2,7 @@
 
 <p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
 
-**Freelance web developer** 👨🏻‍💻, passionate about old school programming and
+**Web developer** 👨🏻‍💻, passionate about old school programming and
 tools. Host of the Discovering Emacs podcast🎙️and a proud South African 🇿🇦
 currently based in Southeast Asia.
 
