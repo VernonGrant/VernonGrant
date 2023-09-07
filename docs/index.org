@@ -1,5 +1,0 @@
-#+TITLE: Vernon Grant
-#+SETUPFILE: ./setup.org
-
-- Discovering-Emacs
-  - [[file:Discovering-Emacs/testing.org][This is just a testing piece]]
