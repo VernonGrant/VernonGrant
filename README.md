@@ -1,12 +1,5 @@
-# Vernon Grant 🤓
+# Vernon Grant
 
-I'm **South African** currently living in Hong Kong. I'm a freelance Web
-developer and a **GNU Linux, Emacs and C hobbyist**. My current goal is to help
-develop and maintain Emacs packages, during my free time. [Contact Me](mailto:vernon@ruppell.io) |
-[Buy me a coffee](https://github.com/VernonGrant/sidekick.el)
+**Software Developer** 👨🏻‍💻, passionate about old school programming and tools. Proud South African 🇿🇦
 
-<p align="center"><img width="1000" height="10" src="./assets/images/binary-separator.png"></p>
-
-## Recent Projects
-
-- Sidekick.el | *Emacs Lisp* | [View](https://github.com/VernonGrant/sidekick.el)
+[Twitter](https://twitter.com/Vernon_GR) | [Email](mailto:vernon@ruppell.io) | [Blog](https://vernon-grant.com) | [Discovering Emacs](https://www.discovering-emacs.com)

@@ -28,8 +28,7 @@
     --color-white-fainted:   #ededed;
 }
 
-body
-{
+body {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 1rem;
     text-align: left;
@@ -67,8 +66,7 @@ a:visited {
     color: var(--color-blue);
 }
 
-img, a img
-{
+img, a img {
     text-decoration:none;
     border-style:none;
 }
@@ -152,40 +150,12 @@ td, th {
     vertical-align: top;
 }
 
-/* pre, code.pre { */
-/*     margin-top: 1em; */
-/*     margin-bottom: 1em; */
-/*     display:block; */
-/* } */
-
-/* code { */
-/*     /\* font-family:"Bitstream Vera Sans mono",Courier,monospace; *\/ */
-/*     /\* font-size:10pt; *\/ */
-/*     /\* line-height:1.6em; *\/ */
-/* } */
-
-/* li pre, li code.pre */
-/* { */
-/*     margin-top:1em; */
-/*     margin-bottom:1em; */
-/*     padding:0.3em; */
-/*     display:block; */
-/* } */
-
-/* p pre */
-/* { */
-/*     margin:0px; */
-/*     padding:0px; */
-/* } */
-
-div.backlinks
-{
+div.backlinks {
     clear:both;
     text-align:right;
 }
 
-.backlinks a
-{
+.backlinks a {
     text-align:right;
     color: var(--color-foreground);
     font-family:sans-serif;
@@ -194,22 +164,19 @@ div.backlinks
 }
 
 
-div.leftColumn
-{
+div.leftColumn {
     width:48%;
     float:left;
 }
 
-div.rightColumn
-{
+div.rightColumn {
     width:48%;
     float:right;
 }
 
 /* footer */
 
-div#postamble
-{
+div#postamble {
     clear:both;
     padding-top:0.6em;
     padding-bottom:1em;
@@ -217,16 +184,14 @@ div#postamble
     border-top:1px solid var(--color-foreground);
 }
 
-#postamble p
-{
+#postamble p {
     width:100%;
     text-align:center;
     font-size: 0.8rem;
     color: var(--color-foreground);
 }
 
-#postamble p.date
-{
+#postamble p.date {
     width:40%;
     padding-left:2ex;
     float:left;
@@ -234,8 +199,8 @@ div#postamble
     font-size: 0.8rem;
     color: var(--color-foreground);
 }
-#postamble p.author
-{
+
+#postamble p.author {
     clear:both;
     width:40%;
     padding-right:2ex;
