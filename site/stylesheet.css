@@ -1,0 +1,357 @@
+/************************************************/
+/* Theme: Default Emacs                        */
+/* Description: Original highlight.js style    */
+/* Author: (c) Vernon Grant <vernon@ruppell.io> */
+/************************************************/
+
+:root {
+    /* Colors */
+    --color-background:      #ffffff;
+    --color-foreground:      #000000;
+    --color-cursor:          #000000;
+    --color-selection:       #eedc82;
+    --color-black:           #5C5F77;
+    --color-black-muted:     #6C6F85;
+    --color-red:             #b3303a;
+    --color-red-fainted:     #b22222;
+    --color-green:           #228b22;
+    --color-green-fainted:   #61756c;
+    --color-yellow:          #a45f22;
+    --color-yellow-fainted:  #76502a;
+    --color-blue:            #001faf;
+    --color-blue-fainted:    #483d8b;
+    --color-magenta:         #721045;
+    --color-magenta-fainted: #8f4499;
+    --color-cyan:            #1f6fbf;
+    --color-cyan-fainted:    #3f7a80;
+    --color-white:           #ffffff;
+    --color-white-fainted:   #ededed;
+}
+
+body
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.5;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight:bold;
+    color: var(--color-foreground);
+    text-align:left;
+}
+
+div {
+    text-align:left;
+}
+
+a {
+    text-decoration:none;
+    cursor:pointer;
+    color: var(--color-blue);
+    font-style:italic;
+}
+
+a:hover {
+    text-decoration:underline;
+    cursor:pointer;
+    color: var(--color-blue);
+}
+
+a:visited {
+    text-decoration:none;
+    cursor:pointer;
+    color: var(--color-blue);
+}
+
+img, a img
+{
+    text-decoration:none;
+    border-style:none;
+}
+
+
+#title {
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+#table-of-contents > h2 {
+    font-size: 1rem;
+}
+
+#text-table-of-contents > ul {
+    list-style-type: none;
+    margin-left: 1ex;
+}
+
+#text-table-of-contents > ul ul {
+    list-style-type: none;
+    margin-left: 1ex;
+}
+
+.outline-1{margin-bottom:2.5em;}
+.outline-2{margin-bottom:2em;margin-left:0.5em}
+.outline-3{margin-bottom:1.5em;margin-left:1em}
+.outline-4{margin-bottom:1.5em;margin-left:1.5em}
+
+ul {
+    padding-left:0px;
+    margin-left:2em;
+}
+
+li {
+    margin-right:5ex;
+}
+
+dt {
+    font-weight:bold;
+}
+
+dd {
+    margin-left:3em;
+}
+
+.todo {
+    color: var(--color-red);
+}
+
+.done {
+    color: var(--color-green);
+}
+
+.timestamp {
+    color: var(--color-white-fainted);
+}
+
+.timestamp-kwd {
+    color: CadetBlue;
+}
+
+.tag {
+    font-size:9pt;
+    font-weight:normal;
+    font-style:italic;
+    color: var(--color-red);
+}
+
+table {
+    border-collapse: collapse;
+    border-bottom:1px solid var(--color-foreground);
+}
+
+th {
+    white-space:nowrap;
+}
+
+td, th {
+    vertical-align: top;
+}
+
+/* pre, code.pre { */
+/*     margin-top: 1em; */
+/*     margin-bottom: 1em; */
+/*     display:block; */
+/* } */
+
+/* code { */
+/*     /\* font-family:"Bitstream Vera Sans mono",Courier,monospace; *\/ */
+/*     /\* font-size:10pt; *\/ */
+/*     /\* line-height:1.6em; *\/ */
+/* } */
+
+/* li pre, li code.pre */
+/* { */
+/*     margin-top:1em; */
+/*     margin-bottom:1em; */
+/*     padding:0.3em; */
+/*     display:block; */
+/* } */
+
+/* p pre */
+/* { */
+/*     margin:0px; */
+/*     padding:0px; */
+/* } */
+
+div.backlinks
+{
+    clear:both;
+    text-align:right;
+}
+
+.backlinks a
+{
+    text-align:right;
+    color: var(--color-foreground);
+    font-family:sans-serif;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+
+div.leftColumn
+{
+    width:48%;
+    float:left;
+}
+
+div.rightColumn
+{
+    width:48%;
+    float:right;
+}
+
+/* footer */
+
+div#postamble
+{
+    clear:both;
+    padding-top:0.6em;
+    padding-bottom:1em;
+    margin-top: 3rem;
+    border-top:1px solid var(--color-foreground);
+}
+
+#postamble p
+{
+    width:100%;
+    text-align:center;
+    font-size: 0.8rem;
+    color: var(--color-foreground);
+}
+
+#postamble p.date
+{
+    width:40%;
+    padding-left:2ex;
+    float:left;
+    text-align:left;
+    font-size: 0.8rem;
+    color: var(--color-foreground);
+}
+#postamble p.author
+{
+    clear:both;
+    width:40%;
+    padding-right:2ex;
+    float:right;
+    font-size: 0.8rem;
+    color: var(--color-foreground);
+    text-align:right;
+    white-space:nowrap;
+}
+
+/****************/
+/* Highlight JS */
+/****************/
+
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+code.hljs {
+    padding: 3px 5px;
+}
+
+.hljs {
+    background: var(--color-background);
+    color: var(--color-foreground);
+}
+
+.hljs-subst {}
+
+.hljs-formula,
+.hljs-attr,
+.hljs-property,
+.hljs-tag,
+.hljs-punctuation,
+.hljs-params {
+    color: var(--color-foreground);
+}
+
+.hljs-comment {
+    color: var(--color-red-fainted);
+}
+
+.hljs-tag .hljs-name,
+.hljs-tag .hljs-attr {
+    color: var(--color-foreground);
+}
+
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta .hljs-keyword,
+.hljs-doctag,
+.hljs-name {
+    color: var(--color-blue);
+    font-weight: bold;
+}
+
+.hljs-string {
+    color: var(--color-red);
+}
+.hljs-number {
+    color: var(--color-foreground);
+}
+
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+    color: var(--color-foreground);
+}
+
+.hljs-variable,
+.hljs-title,
+.hljs-section {
+    color: var(--color-foreground);
+}
+
+.hljs-symbol,
+.hljs-regexp {
+    color: var(--color-yellow);
+}
+
+.hljs-template-variable,
+.hljs-selector-attr,
+.hljs-operator,
+.hljs-selector-pseudo {
+    color: var(--color-foreground);
+}
+
+.hljs-link {
+    color: var(--color-blue);
+}
+
+.hljs-literal {
+    color: var(--color-green);
+}
+
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+    color: var(--color-blue-fainted);
+}
+
+.hljs-meta {
+    color: var(--color-cyan);
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
+}
