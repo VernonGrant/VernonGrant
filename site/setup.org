@@ -19,7 +19,7 @@
 #+HTML_DOCTYPE: xhtml-strict
 #+HTML_HEAD: <link rel="stylesheet" href="https://vernongrant.github.io/VernonGrant/stylesheet.css">
 #+HTML_HEAD_EXTRA: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script><script>hljs.configure({cssSelector: 'pre', languageDetectRe: /src-([a-zA-Z]+)/ });hljs.highlightAll();</script>
-#+HTML_LINK_HOME: https://github.com/cch1/http.async.client
-#+HTML_LINK_UP: ../index.html
+#+HTML_LINK_HOME: https://vernongrant.github.io/VernonGrant/index.html
+#+HTML_LINK_UP: https://vernongrant.github.io/VernonGrant/index.html
 #+HTML_MATHJAX:
 #+LATEX_HEADER:
