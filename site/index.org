@@ -1,4 +1,4 @@
-#+TITLE: Vernon Grant
+#+TITLE: Programming, Emacs and More | Vernon Grant
 #+SETUPFILE: ./setup.org
 
 - Discovering-Emacs
