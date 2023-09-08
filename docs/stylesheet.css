@@ -226,7 +226,7 @@ div.rightColumn {
 
 .header-buttons {
     position: fixed;
-    width: 100px;
+    width: 100%;
     top: 0;
     left: 0;
     background-color: var(--color-selection);
@@ -241,6 +241,7 @@ div.rightColumn {
 .header-buttons .btn-home {
     position: fixed;
     right: 0;
+    top: 0;
 }
 
 /****************/
