@@ -52,6 +52,12 @@ blockquote {
     padding: 5px 20px;
     border: 1px solid var(--color-white-fainted);
     font-style: italic;
+    border-radius: 3px;
+}
+
+code {
+    border: 1px solid var(--color-white-fainted);
+    border-radius: 3px;
 }
 
 a {
@@ -216,10 +222,6 @@ div#postamble {
     color: var(--color-foreground);
     text-align:right;
     white-space:nowrap;
-}
-
-code {
-    border: 1px solid var(--color-white-fainted);
 }
 
 /****************/
