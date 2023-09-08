@@ -234,9 +234,13 @@ div.rightColumn {
 }
 
 .header-buttons .btn {
+    padding: 5px 20px;
+    font-style: normal;
+}
+
+.header-buttons .btn-home {
     position: fixed;
     right: 0;
-    padding: 5px 20px;
 }
 
 /****************/
