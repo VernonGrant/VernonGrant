@@ -216,10 +216,8 @@ div.rightColumn {
 /* Home Button */
 /***************/
 
-.btn-home {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+.btn {
+
 }
 
 /******************/
@@ -228,8 +226,17 @@ div.rightColumn {
 
 .header-buttons {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    background-color: var(--color-selection);
+    padding: 5px 0;
+}
+
+.header-buttons .btn {
+    position: fixed;
+    right: 0;
+    padding: 5px 20px;
 }
 
 /****************/
