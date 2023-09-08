@@ -201,7 +201,7 @@ div.rightColumn {
     padding-top: 0.6em;
     padding-bottom: 1em;
     margin-top: 3rem;
-    border-top:1px solid var(--color-foreground);
+    border-top: 5px solid var(--color-foreground);
 }
 
 #postamble p,
