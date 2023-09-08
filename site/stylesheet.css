@@ -86,6 +86,9 @@ img, a img {
     border-style:none;
 }
 
+.title {
+    margin-bottom: 3rem;
+}
 
 #title {
     text-align: center;
@@ -193,8 +196,8 @@ div.rightColumn {
 
 #postamble {
     display: flex;
-    flex-basis: 33%;
     flex-wrap: wrap;
+    justify-content: space-between;
     padding-top: 0.6em;
     padding-bottom: 1em;
     margin-top: 3rem;
