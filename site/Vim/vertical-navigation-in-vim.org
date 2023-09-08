@@ -1,0 +1,84 @@
+#+TITLE: Vertical navigation in Vim
+#+SUBTITLE: Effectively navigate code in a vertical direction can aid your pursuit of becoming more productive
+#+DESCRIPTION: Knowing how to effectively navigate code in a vertical direction can aid your pursuit of becoming more productive. Like most things, Vim provides us with an abundance of different ways to transverse our files vertically, and today we will be sharing some of our favorite ways to vertically navigate code inside of Vim.
+#+KEYWORDS: Vim, Navigation, Key Bindings
+#+SETUPFILE: ./../setup.org
+
+Knowing how to effectively navigate code in a vertical direction can aid your pursuit of becoming more productive. Like most things, Vim provides us with an abundance of different ways to transverse our files vertically, and today we will be sharing some of our favorite ways to vertically navigate code inside of Vim.
+
+** Scrolling the window
+
+A common habit is to just hold down the j or k keys in order to scroll the active window, up or down. But there's a much faster and better way to move through a file, and that's by making use of the default key bindings ~ctrl-u~ and ~ctrl-d~. As you might have guessed, the u stand for up, and the d stands for down.
+
+One interesting advantage of using these bindings, instead of holding down ~j~ or ~k~ is that we get to move multiple lines at a time, and we can actually define how many lines we would like to move each time ~ctrl-u~ or ~ctrl-d~ is pressed, by setting the scroll option. By default, it will jump down half a screen.
+
+#+BEGIN_SRC vim
+set scroll=10 " Default, half a screen.
+#+END_SRC
+
+** Relative line numbers
+
+Using relative line number can be a great way to accomplish vertical motions efficiently. You can set the relativenumber option inside your .vimrc to convert traditional line numbers to relative ones. Line numbers are relative to the current cursor line.
+
+#+BEGIN_SRC vim
+set relativenumber
+#+END_SRC
+
+With relative line numbers enabled, you can prefix all vertical motions, such as j or k with a count. This gives you the power to jump a certain amount of lines without having to manually calculate it yourself.
+
+For example, let's say I want to move the cursor 10 lines up. I know the point of interest is 10 lines above, because of the relative line numbers. I can then simply just type ~10k~ and the cursor will jump up 10 lines. This provides us with a lot of flexibility when motioning through the file.
+
+** Making use of marks
+
+Marks can be used to tie a cursor position, to a certain key on your keyboard, usually alphabetical letters are used. Not only does it store the location of the cursor, it can also remember the file when using uppercase letters for marks, making it extremely useful when working on multiple files.
+
+Marks can make it easy to vertically navigate a file, as we can bookmark multiple working locations and quickly jump between them. We can set a new mark in normal mode by typing m followed by any alphabetical letter ~{a-zA-Z}~. We can jump to a specific mark in two different ways:
+
+The first method is with a backtick ~`~ followed by the mark's corresponding letter. This will place the cursor at the exact line and column that was originally marked.
+
+The second method is with a single quote ~'~ followed by the mark's corresponding letter. This will place the cursor at the first non-blank character of the line that was marked.
+
+Here's a quick example, let say we need to take a look at multiple function implementations at the bottom of our file, while working on some other function near the top. In this situation we have to jump vertically between 3 different locations. We can set the following marks:
+
+- ~mq~ For the top position.
+- ~ma~ For the first function implementation at the bottom of the file.
+- ~mz~ For the second function implementation at the bottom of the file.
+
+With our marks already set, we can jump between our 3 different locations using ~'q~, ~'a~, ~'z~. There's additional ways we can jump between our defined marks, such as with ~['~ , which will jump to the mark before the cursor and ~]'~ which will jump the next mark below the cursor.
+
+For more information about using marks, please see the vim's help section by typing.
+
+~:help mark-motions~
+
+** Location lists
+
+A location list can be constructed that contains lines that matches a certain pattern. We can use any of the default location list grep commands to search the current file for a specific pattern, resulting in a neatly formatted list that we can use to vertically jump around the current file.
+
+#+BEGIN_SRC shell
+" Example of a location list for the pattern 'function'.
+/blocks.php|23 col 1-9|  function register_block_type( $name, $args = array() ) {
+/blocks.php|36 col 1-9|  function unregister_block_type( $name ) {
+/blocks.php|48 col 1-9|  function remove_block_asset_path_prefix( $asset_handle_or_path ) {
+/blocks.php|69 col 1-9|  function generate_block_asset_handle( $block_name, $field_name ) {
+/blocks.php|101 col 1-9| function register_block_script_handle( $metadata, $field_name ) {
+/blocks.php|156 col 1-9| function register_block_style_handle( $metadata, $field_name ) {
+#+END_SRC
+
+For example: if we were inside a file that contained many different functions. It would be a great convenience if we could have a birds-eye view of all the functions inside of the file and jump between them. This can be done using the following grep command.
+
+- ~" lw~ = Opens the location list.
+- ~" %~  = The current file.
+
+~:lvimgrep /pattern/ % | lw~
+
+After running the command, the location list will be populated with all the lines containing the pattern. If it was Python file for example, we would search for the word def to get the locations for each function in the file.
+
+This gives us a handy tool that we can use to navigate the current file and gives us a great deal of contrast about the file we are working on.
+
+** Common vertical motions
+
+Before ending, here's some more general ways to motion or scroll vertically using some of the well-known Vim bindings.
+
+- ~H~, ~M~, ~L~ can be used to move the cursor to the top, middle or bottom of the current window. H stands for home, M stands for middle and L stands for last.
+- ~zt~, ~zz~, ~zb~ can be used to scroll the current line to the top, middle or bottom of the window, leaving the cursor in the same column.
+- ~gg~, ~G~ can be used to move the cursor to the start and end of a file. These commands are considered jumps, so you can return to your previous position using ctrl-o.

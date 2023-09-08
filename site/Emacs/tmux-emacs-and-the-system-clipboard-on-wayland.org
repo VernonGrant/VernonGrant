@@ -1,0 +1,45 @@
+#+TITLE: Tmux, Emacs and The System Clipboard on Wayland
+#+SUBTITLE: Getting the system clipboard to work between Tmux, Emacs and Wayland
+#+DESCRIPTION: Getting the system clipboard to work between Tmux, Emacs and Wayland.
+#+KEYWORDS: Tmux, Emacs, Wayland, Clipboard
+#+SETUPFILE: ./../setup.org
+
+It took me some time to copy and past between my Tmux sessions and the operating system, running a terminal Emacs instance on Wayland. I tried a few different Emacs packages such as Clipetty and Xclip but couldn't get either working. Luckily I found a solution.
+
+** Install WL-Clipboard
+
+[[https://github.com/bugaevc/wl-clipboard][WL-Clipboard]] (Wayland Clipboard) project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste, that lets you easily copy data between the clipboard and Unix pipes, sockets, files and so on. We will bind these command-line utilities to Emacs's cut and past functions.
+
+#+BEGIN_SRC shell
+  # Fedora
+  sudo dnf install wl-clipboard
+
+  # Ubuntu
+  sudo apt-get -y install wl-clipboard
+#+END_SRC
+
+** Add the following to your Emacs configuration file
+
+After adding the following to your Emacs initialization file, restart your terminal and Tmux sessions. Now yanking and killing things in Emacs will automatically use the system clipboard across all Tmux sessions.
+
+#+BEGIN_SRC lisp
+  ;; credit: yorickvP on Github
+  (when (string= (getenv "XDG_SESSION_TYPE") "wayland")
+    (setq wl-copy-process nil)
+
+    (defun wl-copy (text)
+      (setq wl-copy-process (make-process :name "wl-copy"
+                                          :buffer nil
+                                          :command '("wl-copy" "-f" "-n")
+                                          :connection-type 'pipe))
+      (process-send-string wl-copy-process text)
+      (process-send-eof wl-copy-process))
+
+    (defun wl-paste ()
+      (if (and wl-copy-process (process-live-p wl-copy-process))
+          nil ; should return nil if we're the current paste owner
+          (shell-command-to-string "wl-paste -n | tr -d \r")))
+
+    (setq interprogram-cut-function 'wl-copy)
+    (setq interprogram-paste-function 'wl-paste))
+#+END_SRC

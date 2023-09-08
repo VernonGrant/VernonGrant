@@ -6,10 +6,10 @@
 <!-- 2023-09-08 Fri 19:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vernon Grant</title>
+<title>Tmux, Emacs and The System Clipboard on Wayland</title>
 <meta name="author" content="Vernon Grant" />
-<meta name="description" content="Welcome to my personal blog where I cover a variety of programming related topics" />
-<meta name="keywords" content="Emacs, Programming, Coding" />
+<meta name="description" content="Getting the system clipboard to work between Tmux, Emacs and Wayland." />
+<meta name="keywords" content="Tmux, Emacs, Wayland, Clipboard" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -220,28 +220,72 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Vernon Grant
+<h1 class="title">Tmux, Emacs and The System Clipboard on Wayland
 <br />
-<span class="subtitle">Welcome to my personal blog where I cover a variety of programming related topics</span>
+<span class="subtitle">Getting the system clipboard to work between Tmux, Emacs and Wayland</span>
 </h1>
-<ul class="org-ul">
-<li>C
-<ul class="org-ul">
-<li><a href="C/structure-padding-and-alignment.html">Structure padding and alignment</a></li>
-</ul></li>
-<li>Emacs
-<ul class="org-ul">
-<li><a href="Emacs/tmux-emacs-and-the-system-clipboard-on-wayland.html">Tmux, Emacs and The System Clipboard on Wayland</a></li>
-</ul></li>
-<li>Linux
-<ul class="org-ul">
-<li><a href="Linux/linux-groups-explained.html">Linux Groups Explained</a></li>
-</ul></li>
-<li>Vim
-<ul class="org-ul">
-<li><a href="Vim/vertical-navigation-in-vim.html">Vertical navigation in Vim</a></li>
-</ul></li>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc7263ae">Install WL-Clipboard</a></li>
+<li><a href="#orgb3e0e9c">Add the following to your Emacs configuration file</a></li>
 </ul>
+</div>
+</div>
+<p>
+It took me some time to copy and past between my Tmux sessions and the operating system, running a terminal Emacs instance on Wayland. I tried a few different Emacs packages such as Clipetty and Xclip but couldn't get either working. Luckily I found a solution.
+</p>
+
+<div id="outline-container-orgc7263ae" class="outline-2">
+<h2 id="orgc7263ae">Install WL-Clipboard</h2>
+<div class="outline-text-2" id="text-orgc7263ae">
+<p>
+<a href="https://github.com/bugaevc/wl-clipboard">WL-Clipboard</a> (Wayland Clipboard) project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste, that lets you easily copy data between the clipboard and Unix pipes, sockets, files and so on. We will bind these command-line utilities to Emacs's cut and past functions.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># Fedora
+sudo dnf install wl-clipboard
+
+# Ubuntu
+sudo apt-get -y install wl-clipboard
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb3e0e9c" class="outline-2">
+<h2 id="orgb3e0e9c">Add the following to your Emacs configuration file</h2>
+<div class="outline-text-2" id="text-orgb3e0e9c">
+<p>
+After adding the following to your Emacs initialization file, restart your terminal and Tmux sessions. Now yanking and killing things in Emacs will automatically use the system clipboard across all Tmux sessions.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">;; credit: yorickvP on Github
+(when (string= (getenv "XDG_SESSION_TYPE") "wayland")
+  (setq wl-copy-process nil)
+
+  (defun wl-copy (text)
+    (setq wl-copy-process (make-process :name "wl-copy"
+                                        :buffer nil
+                                        :command '("wl-copy" "-f" "-n")
+                                        :connection-type 'pipe))
+    (process-send-string wl-copy-process text)
+    (process-send-eof wl-copy-process))
+
+  (defun wl-paste ()
+    (if (and wl-copy-process (process-live-p wl-copy-process))
+        nil ; should return nil if we're the current paste owner
+        (shell-command-to-string "wl-paste -n | tr -d \r")))
+
+  (setq interprogram-cut-function 'wl-copy)
+  (setq interprogram-paste-function 'wl-paste))
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant</p>

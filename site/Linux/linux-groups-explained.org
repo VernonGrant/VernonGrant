@@ -1,0 +1,141 @@
+#+TITLE: Linux Groups Explained
+#+SUBTITLE: Linux was designed to handle concurrent users
+#+DESCRIPTION: Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work.
+#+KEYWORDS: Linux, system admin, users, groups
+#+SETUPFILE: ./../setup.org
+
+Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work, and how we can use them in particular situations. We'll also briefly discuss the relationship between groups and file permissions and how we might limit their privileges. In addition we'll be covering some of the technicalities, such as creating new groups and adding users to them. But, we'll mainly focus on improving our understanding of groups in general.
+
+** The purpose of groups
+
+Linux was designed to handle concurrent users. If multiple users can make use of a single system, then there must be a way for users to collaborate, and this is where groups come in to play. Groups gives us the power to determine what privileges a set of users has over specific resources. Allowing multiple users to securely operate on the same files based on clearly defined boundaries and limitations.
+
+A Linux system has different types of users such as, super/root users, normal users and system users (usually used for background processes). But fundamentally they are all the same, aside from the influence they possess. In essence, groups determine the authority a user has over certain system resources, being it a running system process or a normal user account trying to make file changes.
+
+** How we manage groups in Linux
+
+In Linux each group is uniquely identified by a ~GID~, just as the users are identified by a ~UID~. When a user is created they are automatically given a primary group, usually this group is named the same as their login/username. A Linux user can have only one primary group and zero or more secondary groups. When we discuss the management of groups in the next few sections, we are talking about secondary groups.
+
+** Creating and removing groups
+
+In order to create a new group we must have superuser privileges, we can of course use sudo to achieve this on most Linux distributions. The command we need to use is called ~groupadd~. We can add a new group by running the following:
+
+#+BEGIN_SRC shell
+  # developers is being the groups name.
+  sudo groupadd developers
+#+END_SRC
+
+To remove a group we can use the ~groupdel~ command like so:
+
+#+BEGIN_SRC shell
+  sudo groupdel developers
+#+END_SRC
+
+All groups are added to the group file, located at ~/etc/group~, so we can check if newly added groups has successfully been created by performing a quick grep search. Obviously, this is not needed but it's useful to know where the group data is stored, especially when dealing with other common debugging situations. Nevertheless, you can check it by running the following:
+
+#+BEGIN_SRC shell
+  # add the new group
+  sudo groupadd developers
+
+  # check if the group has been added
+  cat /etc/group | grep developers
+#+END_SRC
+
+** Adding, removing or moving a user between groups
+
+To add a users to a group we'll need root privileges, we can add a user to a group by using the usermod command.
+
+#+BEGIN_SRC shell
+  # jhon is the username
+  # developers is the group
+  sudo usermod -aG developers jhon
+#+END_SRC
+
+When we called the command we passed in two arguments, lower case ~a~ and uppercase ~G~. The uppercase ~G~ stands for groups and the lowercase ~a~ forces the command to append the user to the given group without removing them from all other secondary groups.
+
+This might seem strange at first, but when you think of things from a administrative perspective, this actually makes a lot of sense. It allows us to assign a user to specific groups and at the same time exclude them from others. Essentially allowing us to move them across groups. Here's an example of adding a user to specific secondary groups:
+
+#+BEGIN_SRC shell
+  sudo usermod -G developers,managers,websites jhon
+#+END_SRC
+
+** Listing a users groups
+
+When managing user groups it's useful to check what groups a specific user belongs to. We can achieve this in a verity of ways, but I recommend using the id command. This command prints the user and group IDs for a particular user. We can use the command as follows:
+
+#+BEGIN_SRC shell
+  # $USER is your username
+  id $USER
+
+  # result:
+  uid=1000(vernon) gid=1000(vernon) groups=1000(vernon),10(wheel),1002(kings)
+#+END_SRC
+
+** The relationship between groups and file permissions
+
+Before heading into a practical example of using groups. It's important to briefly mention file permissions. Without a good understanding of file permissions it would be very difficult for anyone to make any meaningful use of groups. Groups are one of the 3 main aspects of a file's permissions.
+
+In Linux each file has permissions set for the *owner, group and world*.
+
+When we set a file's permission using ~chmod~, we get to define the privileges a group has in terms of reading, writing and executing a file. As we might already know, a directory in Linux is just a file, but the permissions of standard files and directories do in fact differ. And it's important to understand these core differences in order to make effective use of groups.
+
+Here's a brief comparison between file and directory permissions.
+
+- *Files:*
+  - READ: Read the contents of a file.
+  - WRITE: Change the contents of a file.
+  - EXECUTE: Run the file as a program.
+
+- *Directories:*
+  - READ: List files and sub-directories.
+  - WRITE : Create or remove files or sub-directories.
+  - EXECUTE: Allows the traversal of the directory.
+
+** Setting up a directory for user collaboration
+
+Let's imagine that on our Linux system there's 3 developers Jhon, Erric and Dan. Jhon want's to create a folder named Projects in his home directory, that both Erric and Dan can also access and work in. Jhon will setup the folder and it's permissions like so:
+
+#+BEGIN_SRC shell
+  # create the directory
+  mkdir Projects
+
+  # Jhon set's the permission of the new folder to: drwxrwx---
+  # Only the directory owner and groups can access it.
+  # Notice the 's' for the setgid bit.
+  chmod u+rwx,g+rws,o-rwx ./Projects/
+#+END_SRC
+
+The ~setgid~ bit makes executables run under group privileges. We won't be covering special permission here, but feel free to do some more research if needed.
+
+Jhon also needs to make sure that the Erric and Dan can access his home directory. He decides to give the world read and execute permission on his home folder.
+
+#+BEGIN_SRC python :results output
+  # Jhon gives the world read and execution access to his home directory
+  chmod u+rwx,g-rwx,o+rx ~/
+#+END_SRC
+
+Next he creates a new group called ~developers~ and adds himself, Erric and Dan to it.
+
+#+BEGIN_SRC shell
+  # adds new group
+  sudo groupadd developers
+
+  # adds users to the new group
+  sudo usermod -aG developers jhon
+  sudo usermod -aG developers erric
+  sudo usermod -aG developers dan
+#+END_SRC
+
+Finally, Jhon just needs to change the group of the Projects directory. He does this using the chown command.
+
+#+BEGIN_SRC shell
+  chown jhon:developers ~/Projects
+#+END_SRC
+
+Everything is now done and Erric and Dan can now freely read, write and execute files and sub-directories inside the Projects folder.
+
+*Also please note, sometimes group changes does not take immediate effect and a user might need to first log out and back in.* Be sure to use the ~id~ command to check a users groups when facing permission issues.
+
+** Conclusion
+
+I hope that the following helped you better understand the idea behind groups and how to make use of them in Linux. I'll also like to encourage people new to the world of Linux to take a look at related topics, such as special file permissions or groups used by background processes.

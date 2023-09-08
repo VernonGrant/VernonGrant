@@ -1,5 +1,14 @@
-#+TITLE: Programming, Emacs and More | Vernon Grant
+#+TITLE: Vernon Grant
+#+SUBTITLE: Welcome to my personal blog where I cover a variety of programming related topics
+#+DESCRIPTION: Welcome to my personal blog where I cover a variety of programming related topics 
+#+KEYWORDS: Emacs, Programming, Coding
 #+SETUPFILE: ./setup.org
 
-- Discovering-Emacs
-  - [[file:Discovering-Emacs/testing.org][This is just a testing piece]]
+- C
+  - [[file:C/structure-padding-and-alignment.org][Structure padding and alignment]]
+- Emacs
+  - [[file:Emacs/tmux-emacs-and-the-system-clipboard-on-wayland.org][Tmux, Emacs and The System Clipboard on Wayland]]
+- Linux
+  - [[file:Linux/linux-groups-explained.org][Linux Groups Explained]]
+- Vim
+  - [[file:Vim/vertical-navigation-in-vim.org][Vertical navigation in Vim]]

@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-09-08 Fri 19:17 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux Groups Explained</title>
+<meta name="author" content="Vernon Grant" />
+<meta name="description" content="Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work." />
+<meta name="keywords" content="Linux, system admin, users, groups" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="icon" href="https://vernongrant.github.io/VernonGrant/cropped-favicon-32x32.png" sizes="32x32" /><link rel="icon" href="https://vernongrant.github.io/VernonGrant/cropped-favicon-192x192.png" sizes="192x192" /><link rel="apple-touch-icon" href="https://vernongrant.github.io/VernonGrant/cropped-favicon-180x180.png" /><link rel="stylesheet" href="https://vernongrant.github.io/VernonGrant/stylesheet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/lisp.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/vim.min.js"></script><script>hljs.configure({cssSelector: 'pre', languageDetectRe: /src-([a-zA-Z]+)/ });hljs.highlightAll();</script><script src="https://vernongrant.github.io/VernonGrant/scripts.js"></script>
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Linux Groups Explained
+<br />
+<span class="subtitle">Linux was designed to handle concurrent users</span>
+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org97ab82a">The purpose of groups</a></li>
+<li><a href="#orgbfc967b">How we manage groups in Linux</a></li>
+<li><a href="#orgafd6e9e">Creating and removing groups</a></li>
+<li><a href="#org5a84c2a">Adding, removing or moving a user between groups</a></li>
+<li><a href="#orge4e111f">Listing a users groups</a></li>
+<li><a href="#org02b6c26">The relationship between groups and file permissions</a></li>
+<li><a href="#orgc524ab8">Setting up a directory for user collaboration</a></li>
+<li><a href="#orgdde1eec">Conclusion</a></li>
+</ul>
+</div>
+</div>
+<p>
+Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work, and how we can use them in particular situations. We'll also briefly discuss the relationship between groups and file permissions and how we might limit their privileges. In addition we'll be covering some of the technicalities, such as creating new groups and adding users to them. But, we'll mainly focus on improving our understanding of groups in general.
+</p>
+
+<div id="outline-container-org97ab82a" class="outline-2">
+<h2 id="org97ab82a">The purpose of groups</h2>
+<div class="outline-text-2" id="text-org97ab82a">
+<p>
+Linux was designed to handle concurrent users. If multiple users can make use of a single system, then there must be a way for users to collaborate, and this is where groups come in to play. Groups gives us the power to determine what privileges a set of users has over specific resources. Allowing multiple users to securely operate on the same files based on clearly defined boundaries and limitations.
+</p>
+
+<p>
+A Linux system has different types of users such as, super/root users, normal users and system users (usually used for background processes). But fundamentally they are all the same, aside from the influence they possess. In essence, groups determine the authority a user has over certain system resources, being it a running system process or a normal user account trying to make file changes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbfc967b" class="outline-2">
+<h2 id="orgbfc967b">How we manage groups in Linux</h2>
+<div class="outline-text-2" id="text-orgbfc967b">
+<p>
+In Linux each group is uniquely identified by a <code>GID</code>, just as the users are identified by a <code>UID</code>. When a user is created they are automatically given a primary group, usually this group is named the same as their login/username. A Linux user can have only one primary group and zero or more secondary groups. When we discuss the management of groups in the next few sections, we are talking about secondary groups.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgafd6e9e" class="outline-2">
+<h2 id="orgafd6e9e">Creating and removing groups</h2>
+<div class="outline-text-2" id="text-orgafd6e9e">
+<p>
+In order to create a new group we must have superuser privileges, we can of course use sudo to achieve this on most Linux distributions. The command we need to use is called <code>groupadd</code>. We can add a new group by running the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># developers is being the groups name.
+sudo groupadd developers
+</pre>
+</div>
+
+<p>
+To remove a group we can use the <code>groupdel</code> command like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">sudo groupdel developers
+</pre>
+</div>
+
+<p>
+All groups are added to the group file, located at <code>/etc/group</code>, so we can check if newly added groups has successfully been created by performing a quick grep search. Obviously, this is not needed but it's useful to know where the group data is stored, especially when dealing with other common debugging situations. Nevertheless, you can check it by running the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># add the new group
+sudo groupadd developers
+
+# check if the group has been added
+cat /etc/group | grep developers
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a84c2a" class="outline-2">
+<h2 id="org5a84c2a">Adding, removing or moving a user between groups</h2>
+<div class="outline-text-2" id="text-org5a84c2a">
+<p>
+To add a users to a group we'll need root privileges, we can add a user to a group by using the usermod command.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># jhon is the username
+# developers is the group
+sudo usermod -aG developers jhon
+</pre>
+</div>
+
+<p>
+When we called the command we passed in two arguments, lower case <code>a</code> and uppercase <code>G</code>. The uppercase <code>G</code> stands for groups and the lowercase <code>a</code> forces the command to append the user to the given group without removing them from all other secondary groups.
+</p>
+
+<p>
+This might seem strange at first, but when you think of things from a administrative perspective, this actually makes a lot of sense. It allows us to assign a user to specific groups and at the same time exclude them from others. Essentially allowing us to move them across groups. Here's an example of adding a user to specific secondary groups:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">sudo usermod -G developers,managers,websites jhon
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4e111f" class="outline-2">
+<h2 id="orge4e111f">Listing a users groups</h2>
+<div class="outline-text-2" id="text-orge4e111f">
+<p>
+When managing user groups it's useful to check what groups a specific user belongs to. We can achieve this in a verity of ways, but I recommend using the id command. This command prints the user and group IDs for a particular user. We can use the command as follows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># $USER is your username
+id $USER
+
+# result:
+uid=1000(vernon) gid=1000(vernon) groups=1000(vernon),10(wheel),1002(kings)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org02b6c26" class="outline-2">
+<h2 id="org02b6c26">The relationship between groups and file permissions</h2>
+<div class="outline-text-2" id="text-org02b6c26">
+<p>
+Before heading into a practical example of using groups. It's important to briefly mention file permissions. Without a good understanding of file permissions it would be very difficult for anyone to make any meaningful use of groups. Groups are one of the 3 main aspects of a file's permissions.
+</p>
+
+<p>
+In Linux each file has permissions set for the <b>owner, group and world</b>.
+</p>
+
+<p>
+When we set a file's permission using <code>chmod</code>, we get to define the privileges a group has in terms of reading, writing and executing a file. As we might already know, a directory in Linux is just a file, but the permissions of standard files and directories do in fact differ. And it's important to understand these core differences in order to make effective use of groups.
+</p>
+
+<p>
+Here's a brief comparison between file and directory permissions.
+</p>
+
+<ul class="org-ul">
+<li><b>Files:</b>
+<ul class="org-ul">
+<li>READ: Read the contents of a file.</li>
+<li>WRITE: Change the contents of a file.</li>
+<li>EXECUTE: Run the file as a program.</li>
+</ul></li>
+
+<li><b>Directories:</b>
+<ul class="org-ul">
+<li>READ: List files and sub-directories.</li>
+<li>WRITE : Create or remove files or sub-directories.</li>
+<li>EXECUTE: Allows the traversal of the directory.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc524ab8" class="outline-2">
+<h2 id="orgc524ab8">Setting up a directory for user collaboration</h2>
+<div class="outline-text-2" id="text-orgc524ab8">
+<p>
+Let's imagine that on our Linux system there's 3 developers Jhon, Erric and Dan. Jhon want's to create a folder named Projects in his home directory, that both Erric and Dan can also access and work in. Jhon will setup the folder and it's permissions like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># create the directory
+mkdir Projects
+
+# Jhon set's the permission of the new folder to: drwxrwx---
+# Only the directory owner and groups can access it.
+# Notice the 's' for the setgid bit.
+chmod u+rwx,g+rws,o-rwx ./Projects/
+</pre>
+</div>
+
+<p>
+The <code>setgid</code> bit makes executables run under group privileges. We won't be covering special permission here, but feel free to do some more research if needed.
+</p>
+
+<p>
+Jhon also needs to make sure that the Erric and Dan can access his home directory. He decides to give the world read and execute permission on his home folder.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"># Jhon gives the world read and execution access to his home directory
+chmod u+rwx,g-rwx,o+rx ~/
+</pre>
+</div>
+
+<p>
+Next he creates a new group called <code>developers</code> and adds himself, Erric and Dan to it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"># adds new group
+sudo groupadd developers
+
+# adds users to the new group
+sudo usermod -aG developers jhon
+sudo usermod -aG developers erric
+sudo usermod -aG developers dan
+</pre>
+</div>
+
+<p>
+Finally, Jhon just needs to change the group of the Projects directory. He does this using the chown command.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">chown jhon:developers ~/Projects
+</pre>
+</div>
+
+<p>
+Everything is now done and Erric and Dan can now freely read, write and execute files and sub-directories inside the Projects folder.
+</p>
+
+<p>
+<b>Also please note, sometimes group changes does not take immediate effect and a user might need to first log out and back in.</b> Be sure to use the <code>id</code> command to check a users groups when facing permission issues.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdde1eec" class="outline-2">
+<h2 id="orgdde1eec">Conclusion</h2>
+<div class="outline-text-2" id="text-orgdde1eec">
+<p>
+I hope that the following helped you better understand the idea behind groups and how to make use of them in Linux. I'll also like to encourage people new to the world of Linux to take a look at related topics, such as special file permissions or groups used by background processes.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Vernon Grant</p>
+<p class="date">Created: 2023-09-08 Fri 19:17</p>
+<p class="creator">Emacs 29.1 (Org mode 9.6.6)</p>
+</div>
+</body>
+</html>

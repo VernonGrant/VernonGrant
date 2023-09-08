@@ -5,11 +5,10 @@
 #+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
 #+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
 #+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
+#+OPTIONS: num:nil
 #+CREATOR: Emacs 29.1 (Org mode 9.6.6)
-#+DESCRIPTION:
 #+EXCLUDE_TAGS: noexport
 #+SELECT_TAGS: export
-#+KEYWORDS:
 #+LANGUAGE: en
 #+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
 #+OPTIONS: html-preamble:t html-scripts:t html-style:t
@@ -17,8 +16,6 @@
 #+HTML_CONTAINER: div
 #+HTML_DOCTYPE: xhtml-strict
 #+HTML_HEAD: <link rel="icon" href="https://vernongrant.github.io/VernonGrant/cropped-favicon-32x32.png" sizes="32x32" /><link rel="icon" href="https://vernongrant.github.io/VernonGrant/cropped-favicon-192x192.png" sizes="192x192" /><link rel="apple-touch-icon" href="https://vernongrant.github.io/VernonGrant/cropped-favicon-180x180.png" /><link rel="stylesheet" href="https://vernongrant.github.io/VernonGrant/stylesheet.css">
-#+HTML_HEAD_EXTRA: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script><script>hljs.configure({cssSelector: 'pre', languageDetectRe: /src-([a-zA-Z]+)/ });hljs.highlightAll();</script>
-#+HTML_LINK_HOME: https://vernongrant.github.io/VernonGrant/index.html
-#+HTML_LINK_UP: https://vernongrant.github.io/VernonGrant/index.html
+#+HTML_HEAD_EXTRA: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/lisp.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/vim.min.js"></script><script>hljs.configure({cssSelector: 'pre', languageDetectRe: /src-([a-zA-Z]+)/ });hljs.highlightAll();</script><script src="https://vernongrant.github.io/VernonGrant/scripts.js"></script>
 #+HTML_MATHJAX:
 #+LATEX_HEADER:

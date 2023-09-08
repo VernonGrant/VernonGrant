@@ -6,10 +6,10 @@
 <!-- 2023-09-08 Fri 19:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vernon Grant</title>
+<title>Structure Padding and Alignment</title>
 <meta name="author" content="Vernon Grant" />
-<meta name="description" content="Welcome to my personal blog where I cover a variety of programming related topics" />
-<meta name="keywords" content="Emacs, Programming, Coding" />
+<meta name="description" content="The order in which you place a structure’s member’s effects, its size and memory layout. The essence of why this is the case, relates to the concept of memory alignment and the compiler’s mission to make memory access as efficient as possible." />
+<meta name="keywords" content="C, Structures, Data Padding, Memory Alignment" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -220,28 +220,156 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Vernon Grant
+<h1 class="title">Structure Padding and Alignment
 <br />
-<span class="subtitle">Welcome to my personal blog where I cover a variety of programming related topics</span>
+<span class="subtitle">The order in which you place a structure’s member’s effects, its size and memory layout</span>
 </h1>
+<p>
+The essence of why this is the case, relates to the concept of memory alignment and the compiler's mission to make memory access as efficient as possible. The way in which the compiler chooses to make memory access more efficient, greatly depends on the architecture that's being used.
+</p>
+
+<p>
+Let's take a look at a couple examples:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">// I might assume that the total size is 8 bytes, but that will be false.
+struct example {
+  char a;  // 1 byte
+  short b; // 2 bytes
+  char c;  // 1 byte
+  int d;   // 4 bytes
+};
+
+// Outputs: The size of structure example is: 12 bytes.
+printf("The size of structure example is: %lu bytes.\n", sizeof(struct example));
+</pre>
+</div>
+
+<p>
+Based on the output, you can see that this structure has an additional 4 bytes. That should be unexpected, if you're unfamiliar with memory alignment. Now let's make a small adjustment by moving member <code>b</code> below member <code>c</code> and recheck the output.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">struct example {
+  char a; // 1 byte
+  char c; // 1 byte
+  short b; // 2 bytes
+  int d; // 4 bytes
+};
+
+// Outputs: The size of structure example is: 8 bytes.
+printf("The size of structure example is: %lu bytes.\n", sizeof(struct example));
+</pre>
+</div>
+
+<p>
+The structure's size is now 4 bytes less. As you can see, the way in which you order a structures members can have a dramatic effect on memory usage, especially if your dealing with thousands of instances.
+</p>
+
+<p>
+Truthfully speaking, it's not all that important for you to understand exactly how the compiler is going to align your structure in memory, especially as a beginner. As you can always just perform manual checks to find the most optimal ordering for your use case. Also, the alignment of a structure's member's depends heavily on the platform. So manually optimizing a structure, won't generalize to all platforms.
+</p>
+
+<p>
+Knowing exactly how the compiler chooses to align a structure members can be difficult to determine without a deep understanding of the architecture your using. But I think the following quote from The Lost Art of Structure Packing, can help you build an intuition for most cases.
+</p>
+
+<blockquote>
+<p>
+Each type except char has an alignment requirement; chars can start on any byte address, but 2-byte shorts must start on an even address, 4-byte ints or floats must start on an address divisible by 4, and 8-byte longs or doubles must start on an address divisible by 8. The jargon for this is that basic C types on a vanilla ISA (Instruction Set Architectures) are self-aligned. Pointers, whether 32-bit (4-byte) or 64-bit (8-byte) are self-aligned too. &#x2013; Eric S. Raymond
+</p>
+</blockquote>
+
+<p>
+To better understand the above statement, let's look at the memory layout of the above two examples, and break down the memory alignment checks.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">// 12 byte struct layout.
+struct example {
+  char a; // 1 byte
+  short b; // 2 bytes
+  char c; // 1 byte
+  int d; // 4 bytes
+};
+
+// Addresses +0 +1 +2 +3
+// -------------------------------------------
+// 7156 0x41 0x7f 0x64 0x00 A?d?
+// 7160 0x41 0xe0 0xff 0xff A???
+// 7164 0x64 0x00 0x00 0x00 d???
+
+struct example test = {'A', 100, 'A', 100};
+// 0x41, [0x64,0x00], 0x41, [0x64,0x00,0x00,0x00]
+</pre>
+</div>
+
 <ul class="org-ul">
-<li>C
+<li><code>test.a</code> is stored at address: <code>7156</code>.</li>
+<li><code>test.b</code>, (short) is stored at address: <code>7158</code>.
 <ul class="org-ul">
-<li><a href="C/structure-padding-and-alignment.html">Structure padding and alignment</a></li>
+<li><code>7157 % sizeof(short)</code> is non-zero, a 2-byte short must start on an even address.</li>
 </ul></li>
-<li>Emacs
+<li><code>test.c</code>, (char) is stored at address: <code>7160</code>.</li>
+<li><code>test.d</code>, (int) is stored at address: <code>7164</code>.
 <ul class="org-ul">
-<li><a href="Emacs/tmux-emacs-and-the-system-clipboard-on-wayland.html">Tmux, Emacs and The System Clipboard on Wayland</a></li>
-</ul></li>
-<li>Linux
-<ul class="org-ul">
-<li><a href="Linux/linux-groups-explained.html">Linux Groups Explained</a></li>
-</ul></li>
-<li>Vim
-<ul class="org-ul">
-<li><a href="Vim/vertical-navigation-in-vim.html">Vertical navigation in Vim</a></li>
+<li><code>7161 % sizeof(int)</code> is non-zero. A 4-byte int must start on an address divisible by 4.</li>
+<li><code>7162 % sizeof(int)</code> is non-zero. A 4-byte int must start on an address divisible by 4.</li>
+<li><code>7163 % sizeof(int)</code> is non-zero. A 4-byte int must start on an address divisible by 4.</li>
 </ul></li>
 </ul>
+
+<p>
+So basically the 4-bytes that were skipped in favor of memory alignment is referred to as padding.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">// 8 byte struct layout.
+struct example {
+  char a; // 1 byte
+  char c; // 1 byte
+  short b; // 2 bytes
+  int d; // 4 bytes
+};
+
+// Addresses +0 +1 +2 +3
+// --------------------------------------------
+// 7156 0x41 0x41 0x64 0x00 AAd?
+// 7160 0x64 0x00 0x00 0x00 d???
+
+struct example test = {'A', 'A', 100, 100};
+// 0x41, 0x41, [0x64,0x00],[0x64,0x00,0x00,0x00]
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>test.a</code> is stored at address: <code>7156</code>.</li>
+<li><code>test.c</code>, (char) is stored at address: <code>7157</code>.</li>
+<li><code>test.b</code>, (short) is stored at address: <code>7158</code>.</li>
+<li><code>test.d</code>, (int) is stored at address: <code>7160</code>.
+<ul class="org-ul">
+<li><code>7159 % sizeof(int)</code> is non-zero. A 4-byte int must start on an address divisible by 4.</li>
+</ul></li>
+</ul>
+
+<p>
+The theory of memory alignment in most ISA can also be put this way:
+</p>
+
+<blockquote>
+<p>
+Unaligned memory accesses occur when you try to read N bytes of data starting from an address that is not evenly divisible by N <code>(i.e. addr % N != 0)</code>. For example, reading 4 bytes of data from address <code>0x10004</code> is fine, but reading 4 bytes of data from address <code>0x10005</code> would be an unaligned memory access.
+</p>
+</blockquote>
+
+<p>
+Before closing this topic, it's also interesting to think of an array of structures. In C, array's items are placed side by side, allowing us to access items by size offsets, as an array can only contain items of the same type.
+</p>
+
+<p>
+Looking at the previous memory layouts, it's clear that both our structures can be placed side by side and all their individual members will still be aligned correctly.
+</p>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant</p>
