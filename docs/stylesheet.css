@@ -36,6 +36,7 @@ body {
     line-height: 1.5;
     color: var(--color-foreground);
     background-color: var(--color-background);
+    padding: 20px;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -190,39 +191,22 @@ div.rightColumn {
 
 /* footer */
 
-div#postamble {
-    clear:both;
-    padding-top:0.6em;
-    padding-bottom:1em;
+#postamble {
+    display: flex;
+    flex-basis: 33%;
+    flex-wrap: wrap;
+    padding-top: 0.6em;
+    padding-bottom: 1em;
     margin-top: 3rem;
     border-top:1px solid var(--color-foreground);
 }
 
-#postamble p {
-    width:100%;
+#postamble p,
+#postamble p.date,
+#postamble p.author {
     text-align:center;
     font-size: 0.8rem;
     color: var(--color-foreground);
-}
-
-#postamble p.date {
-    width:40%;
-    padding-left:2ex;
-    float:left;
-    text-align:left;
-    font-size: 0.8rem;
-    color: var(--color-foreground);
-}
-
-#postamble p.author {
-    clear:both;
-    width:40%;
-    padding-right:2ex;
-    float:right;
-    font-size: 0.8rem;
-    color: var(--color-foreground);
-    text-align:right;
-    white-space:nowrap;
 }
 
 /****************/
