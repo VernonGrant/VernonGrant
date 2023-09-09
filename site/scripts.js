@@ -17,7 +17,7 @@ window.onload = function () {
     // Create and add home button.
     const homeButton = createButton(
         "Home",
-        "https://vernongrant.github.io/Vernon Grant/",
+        "https://www.vernon-grant.com",
         "_self"
     );
     homeButton.classList.add("btn-home");
