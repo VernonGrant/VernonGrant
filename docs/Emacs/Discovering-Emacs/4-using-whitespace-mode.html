@@ -6,10 +6,10 @@
 <!-- 2023-09-09 Sat 07:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Linux Groups Explained</title>
+<title>4 - Using Whitespace Mode</title>
 <meta name="author" content="Vernon Grant" />
-<meta name="description" content="Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work." />
-<meta name="keywords" content="Linux, system admin, users, groups" />
+<meta name="description" content="Today, we're taking a look at Emacs's whitespace mode and discussing how we can simplify its configuration to make it more applicable for most use cases." />
+<meta name="keywords" content="Emacs, Whitespace Mode" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -220,243 +220,256 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Linux Groups Explained
+<h1 class="title">4 - Using Whitespace Mode
 <br />
-<span class="subtitle">Linux was designed to handle concurrent users</span>
+<span class="subtitle">Emacs has by far the most comprehensive whitespace rendering capabilities, that I've come across in any text editor</span>
 </h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org97ab82a">The purpose of groups</a></li>
-<li><a href="#orgbfc967b">How we manage groups in Linux</a></li>
-<li><a href="#orgafd6e9e">Creating and removing groups</a></li>
-<li><a href="#org5a84c2a">Adding, removing or moving a user between groups</a></li>
-<li><a href="#orge4e111f">Listing a users groups</a></li>
-<li><a href="#org02b6c26">The relationship between groups and file permissions</a></li>
-<li><a href="#orgc524ab8">Setting up a directory for user collaboration</a></li>
-<li><a href="#orgdde1eec">Conclusion</a></li>
+<li><a href="#org4215f85">Introduction</a></li>
+<li><a href="#org1b4c855">Specifying a whitespace style</a></li>
+<li><a href="#orgb2a6a90">Dealing with whitespace coloring issues</a></li>
+<li><a href="#org2b15d02">Specifying what symbols should represent whitespace</a></li>
+<li><a href="#orgdb64c85">Enabling whitespace mode globally</a></li>
+<li><a href="#org0c858e1">Making use of cleanup actions</a></li>
+<li><a href="#org58682c7">Conclusion</a></li>
 </ul>
 </div>
 </div>
 <p>
-Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work, and how we can use them in particular situations. We'll also briefly discuss the relationship between groups and file permissions and how we might limit their privileges. In addition we'll be covering some of the technicalities, such as creating new groups and adding users to them. But, we'll mainly focus on improving our understanding of groups in general.
-</p>
-
-<div id="outline-container-org97ab82a" class="outline-2">
-<h2 id="org97ab82a">The purpose of groups</h2>
-<div class="outline-text-2" id="text-org97ab82a">
-<p>
-Linux was designed to handle concurrent users. If multiple users can make use of a single system, then there must be a way for users to collaborate, and this is where groups come in to play. Groups gives us the power to determine what privileges a set of users has over specific resources. Allowing multiple users to securely operate on the same files based on clearly defined boundaries and limitations.
+<a href="https://www.discovering-emacs.com/2134279/12444688-4-using-whitespace-mode">Listen To Episode</a> | <a href="https://youtu.be/uViGjSqrLDw">YouTube Video</a>
 </p>
 
 <p>
-A Linux system has different types of users such as, super/root users, normal users and system users (usually used for background processes). But fundamentally they are all the same, aside from the influence they possess. In essence, groups determine the authority a user has over certain system resources, being it a running system process or a normal user account trying to make file changes.
+Today, we're taking a look at Emacs's <code>whitespace-mode</code> and discussing
+how we can simplify its configuration to make it more applicable for
+most use cases.
+</p>
+
+<div id="outline-container-org4215f85" class="outline-2">
+<h2 id="org4215f85">Introduction</h2>
+<div class="outline-text-2" id="text-org4215f85">
+<p>
+Emacs has by far the most comprehensive whitespace rendering
+capabilities, that I've come across in any text editor. It has the
+basics that you would expect, such as rendering spaces, tabs and line
+breaks. But it also offers much more, it provides whitespace reports,
+performs cleanup operations and gives us fine grained control of what
+types of whitespace to render depending on the context. For example, we
+can highlight spaces that are in front of tabs, long lines, big
+indentations and much more.
+</p>
+
+<p>
+But unfortunately, with Emacs's whitespace mode being so feature rich,
+it can be misunderstood by new users, coming from other text editors. As
+by default, enabling <code>whitespace-mode</code> will render a wide array of
+whitespace criteria, that at first sight seems strange and confusing.
+And the end result is usually (even in my personal experience), to just
+keep whitespace mode disabled. When in reality I would much rather have
+whitespace visible at all times.
+</p>
+
+<p>
+And that's the goal for today's episode, to make <code>whitespace-mode</code> more
+applicable to new Emacs users and for general use cases.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbfc967b" class="outline-2">
-<h2 id="orgbfc967b">How we manage groups in Linux</h2>
-<div class="outline-text-2" id="text-orgbfc967b">
+<div id="outline-container-org1b4c855" class="outline-2">
+<h2 id="org1b4c855">Specifying a whitespace style</h2>
+<div class="outline-text-2" id="text-org1b4c855">
 <p>
-In Linux each group is uniquely identified by a <code>GID</code>, just as the users are identified by a <code>UID</code>. When a user is created they are automatically given a primary group, usually this group is named the same as their login/username. A Linux user can have only one primary group and zero or more secondary groups. When we discuss the management of groups in the next few sections, we are talking about secondary groups.
+We can define what types of whitespace should be shown, by specifying
+the whitespace style. We do this by modifying the configuration option
+<code>whitespace-style</code>. It takes a list, consisting of the types of
+whitespace that you would like visualize. There's a large number of
+types available, but our goal here is to just show the bare minimum. If
+you want to see all the available options, you can press <code>C-h v</code> and
+type in <code>whitespace-style</code>.
 </p>
-</div>
-</div>
 
-<div id="outline-container-orgafd6e9e" class="outline-2">
-<h2 id="orgafd6e9e">Creating and removing groups</h2>
-<div class="outline-text-2" id="text-orgafd6e9e">
 <p>
-In order to create a new group we must have superuser privileges, we can of course use sudo to achieve this on most Linux distributions. The command we need to use is called <code>groupadd</code>. We can add a new group by running the following:
+So to keep things simple I recommend you set the whitespace style
+configuration list to include the following:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"># developers is being the groups name.
-sudo groupadd developers
+<pre class="src src-lisp">;; Define the whitespace style.
+(setq-default whitespace-style
+              '(face spaces empty tabs newline trailing space-mark tab-mark newline-mark))
 </pre>
 </div>
 
 <p>
-To remove a group we can use the <code>groupdel</code> command like so:
+With just this configuration change, the behavior of Emacs's whitespace
+mode will become much more familiar, in regards to how other text
+editors visualize whitespace.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2a6a90" class="outline-2">
+<h2 id="orgb2a6a90">Dealing with whitespace coloring issues</h2>
+<div class="outline-text-2" id="text-orgb2a6a90">
+<p>
+Seeing as whitespace mode is so seldomly used, most themes don't define
+proper whitespace coloring. Generally speaking, you want whitespace to
+appear in a faded manner, to be visible, but not distracting. To help
+you with potential theming issues, I included some Emacs lisp code that
+you can place inside of your configuration file to help easily adjust
+the whitespace color by certain percentage.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell">sudo groupdel developers
-</pre>
-</div>
-
-<p>
-All groups are added to the group file, located at <code>/etc/group</code>, so we can check if newly added groups has successfully been created by performing a quick grep search. Obviously, this is not needed but it's useful to know where the group data is stored, especially when dealing with other common debugging situations. Nevertheless, you can check it by running the following:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell"># add the new group
-sudo groupadd developers
-
-# check if the group has been added
-cat /etc/group | grep developers
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org5a84c2a" class="outline-2">
-<h2 id="org5a84c2a">Adding, removing or moving a user between groups</h2>
-<div class="outline-text-2" id="text-org5a84c2a">
-<p>
-To add a users to a group we'll need root privileges, we can add a user to a group by using the usermod command.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell"># jhon is the username
-# developers is the group
-sudo usermod -aG developers jhon
-</pre>
-</div>
-
-<p>
-When we called the command we passed in two arguments, lower case <code>a</code> and uppercase <code>G</code>. The uppercase <code>G</code> stands for groups and the lowercase <code>a</code> forces the command to append the user to the given group without removing them from all other secondary groups.
-</p>
-
-<p>
-This might seem strange at first, but when you think of things from a administrative perspective, this actually makes a lot of sense. It allows us to assign a user to specific groups and at the same time exclude them from others. Essentially allowing us to move them across groups. Here's an example of adding a user to specific secondary groups:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">sudo usermod -G developers,managers,websites jhon
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge4e111f" class="outline-2">
-<h2 id="orge4e111f">Listing a users groups</h2>
-<div class="outline-text-2" id="text-orge4e111f">
-<p>
-When managing user groups it's useful to check what groups a specific user belongs to. We can achieve this in a verity of ways, but I recommend using the id command. This command prints the user and group IDs for a particular user. We can use the command as follows:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell"># $USER is your username
-id $USER
-
-# result:
-uid=1000(vernon) gid=1000(vernon) groups=1000(vernon),10(wheel),1002(kings)
+<pre class="src src-lisp">;; Whitespace color corrections.
+(require 'color)
+(let* ((ws-lighten 30) ;; Amount in percentage to lighten up black.
+       (ws-color (color-lighten-name "#000000" ws-lighten)))
+  (custom-set-faces
+   `(whitespace-newline                ((t (:foreground ,ws-color))))
+   `(whitespace-missing-newline-at-eof ((t (:foreground ,ws-color))))
+   `(whitespace-space                  ((t (:foreground ,ws-color))))
+   `(whitespace-space-after-tab        ((t (:foreground ,ws-color))))
+   `(whitespace-space-before-tab       ((t (:foreground ,ws-color))))
+   `(whitespace-tab                    ((t (:foreground ,ws-color))))
+   `(whitespace-trailing               ((t (:foreground ,ws-color))))))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org02b6c26" class="outline-2">
-<h2 id="org02b6c26">The relationship between groups and file permissions</h2>
-<div class="outline-text-2" id="text-org02b6c26">
+<div id="outline-container-org2b15d02" class="outline-2">
+<h2 id="org2b15d02">Specifying what symbols should represent whitespace</h2>
+<div class="outline-text-2" id="text-org2b15d02">
 <p>
-Before heading into a practical example of using groups. It's important to briefly mention file permissions. Without a good understanding of file permissions it would be very difficult for anyone to make any meaningful use of groups. Groups are one of the 3 main aspects of a file's permissions.
+There's a configuration option named <code>whitespace-display-mappings</code>, that
+you can use to specify what Unicode character should be use to visualize
+a specific whitespace. It takes a two dimensional list, where each inner
+list consists of a <code>kind</code>, which can be either <code>tab-mark</code>, <code>space-mark</code>
+and <code>newline-mark</code>. After which you specify the character you want to
+replace, and lastly, you specify a <code>vector</code> that holds the characters to
+use for the replacement purpose. You can specify multiple vectors to act
+as fallbacks, in case a Unicode symbol isn't available.
 </p>
 
 <p>
-In Linux each file has permissions set for the <b>owner, group and world</b>.
+I'll share my configuration as an example in show notes.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">;; Make these characters represent whitespace.
+(setq-default whitespace-display-mappings
+      '(
+        ;; space -&gt; · else .
+        (space-mark 32 [183] [46])
+        ;; new line -&gt; ¬ else $
+        (newline-mark ?\n [172 ?\n] [36 ?\n])
+        ;; carriage return (Windows) -&gt; ¶ else #
+        (newline-mark ?\r [182] [35])
+        ;; tabs -&gt; » else &gt;
+        (tab-mark ?\t [187 ?\t] [62 ?\t])))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb64c85" class="outline-2">
+<h2 id="orgdb64c85">Enabling whitespace mode globally</h2>
+<div class="outline-text-2" id="text-orgdb64c85">
+<p>
+We can enable whitespace mode globally by calling
+<code>global-whitespace-mode</code>. The downside of this is that whitespace will
+be rendered inside of every Emacs buffer and this is really not
+necessary. For example, I don't want whitespace to be rendered inside
+<code>shell</code>, <code>occur</code> or <code>ibuffer</code> windows.
 </p>
 
 <p>
-When we set a file's permission using <code>chmod</code>, we get to define the privileges a group has in terms of reading, writing and executing a file. As we might already know, a directory in Linux is just a file, but the permissions of standard files and directories do in fact differ. And it's important to understand these core differences in order to make effective use of groups.
+Luckily there's an option available to control which modes should enable
+whitespace mode when <code>global-whitespace-mode</code> is enabled. And it's aptly
+named, <code>whitespace-global-modes</code>. This option takes a list of major mode
+symbol names, that when matched, will enable <code>whitespace-mode</code>. We can
+also negate the list, by prefixing it with <code>not</code>, causing global
+whitespace mode to be disabled for the listed major mode symbols. And
+that's the way I configure it myself.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">;; Don't enable whitespace for.
+(setq-default whitespace-global-modes
+              '(not shell-mode
+                    help-mode
+                    magit-mode
+                    magit-diff-mode
+                    ibuffer-mode
+                    dired-mode
+                    occur-mode))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0c858e1" class="outline-2">
+<h2 id="org0c858e1">Making use of cleanup actions</h2>
+<div class="outline-text-2" id="text-org0c858e1">
+<p>
+One benefit of having whitespace mode enabled globally, is that we can
+take advantage of the whitespace actions feature. This features allows
+us to automatically run a series of actions after a buffer is written.
 </p>
 
 <p>
-Here's a brief comparison between file and directory permissions.
+Today we're only really interested in the cleanup actions. These cleanup
+actions will perform different operations based on the defined
+whitespace style. For our defined whitespace style the following actions
+will be formed on cleanup.
 </p>
 
 <ul class="org-ul">
-<li><b>Files:</b>
-<ul class="org-ul">
-<li>READ: Read the contents of a file.</li>
-<li>WRITE: Change the contents of a file.</li>
-<li>EXECUTE: Run the file as a program.</li>
-</ul></li>
-
-<li><b>Directories:</b>
-<ul class="org-ul">
-<li>READ: List files and sub-directories.</li>
-<li>WRITE : Create or remove files or sub-directories.</li>
-<li>EXECUTE: Allows the traversal of the directory.</li>
-</ul></li>
+<li>It will remove all empty lines at beginning and/or end of the buffer.</li>
+<li>It will remove all trailing tabs and spaces.</li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-orgc524ab8" class="outline-2">
-<h2 id="orgc524ab8">Setting up a directory for user collaboration</h2>
-<div class="outline-text-2" id="text-orgc524ab8">
-<p>
-Let's imagine that on our Linux system there's 3 developers Jhon, Erric and Dan. Jhon want's to create a folder named Projects in his home directory, that both Erric and Dan can also access and work in. Jhon will setup the folder and it's permissions like so:
-</p>
 
 <div class="org-src-container">
-<pre class="src src-shell"># create the directory
-mkdir Projects
-
-# Jhon set's the permission of the new folder to: drwxrwx---
-# Only the directory owner and groups can access it.
-# Notice the 's' for the setgid bit.
-chmod u+rwx,g+rws,o-rwx ./Projects/
+<pre class="src src-lisp">;; Set whitespace actions.
+(setq-default whitespace-action
+              '(cleanup auto-cleanup))
 </pre>
 </div>
 
 <p>
-The <code>setgid</code> bit makes executables run under group privileges. We won't be covering special permission here, but feel free to do some more research if needed.
-</p>
-
-<p>
-Jhon also needs to make sure that the Erric and Dan can access his home directory. He decides to give the world read and execute permission on his home folder.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-python"># Jhon gives the world read and execution access to his home directory
-chmod u+rwx,g-rwx,o+rx =/
-</pre>
-</div>
-
-<p>
-Next he creates a new group called <code>developers</code> and adds himself, Erric and Dan to it.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell"># adds new group
-sudo groupadd developers
-
-# adds users to the new group
-sudo usermod -aG developers jhon
-sudo usermod -aG developers erric
-sudo usermod -aG developers dan
-</pre>
-</div>
-
-<p>
-Finally, Jhon just needs to change the group of the Projects directory. He does this using the chown command.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">chown jhon:developers =/Projects
-</pre>
-</div>
-
-<p>
-Everything is now done and Erric and Dan can now freely read, write and execute files and sub-directories inside the Projects folder.
-</p>
-
-<p>
-<b>Also please note, sometimes group changes does not take immediate effect and a user might need to first log out and back in.</b> Be sure to use the <code>id</code> command to check a users groups when facing permission issues.
+If you want to seen all the available cleanup operations, in relation to
+different <code>whitespace-style</code> options. You can press <code>C-h f</code> and type in
+<code>whitespace-cleanup</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdde1eec" class="outline-2">
-<h2 id="orgdde1eec">Conclusion</h2>
-<div class="outline-text-2" id="text-orgdde1eec">
+<div id="outline-container-org58682c7" class="outline-2">
+<h2 id="org58682c7">Conclusion</h2>
+<div class="outline-text-2" id="text-org58682c7">
 <p>
-I hope that the following helped you better understand the idea behind groups and how to make use of them in Linux. I'll also like to encourage people new to the world of Linux to take a look at related topics, such as special file permissions or groups used by background processes.
+Emacs's whitespace mode has a great degree of flexibility and power. If
+gives you control over what types whitespace should be given attention,
+how they should be visualized and cleaned. If you have been avoiding
+whitespace mode in Emacs, I hope this episode might encourage you to
+give it a try.
+</p>
+
+<p>
+And as always you can find a link to the episodes detailed show notes in
+the description of this episode. And if you have some suggestions,
+corrections or need help, please feel free to open up a new discussion
+in the discussions section of the podcast's repository.
+</p>
+
+<p>
+Thanks for listing and stay tuned for the next episode of
+<a href="https://www.discovering-emacs.com">Discovering Emacs</a>.
 </p>
 </div>
 </div>

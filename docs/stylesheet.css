@@ -33,7 +33,7 @@ body {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 1rem;
     text-align: left;
-    line-height: 1.5;
+    line-height: 1.65;
     color: var(--color-foreground);
     background-color: var(--color-background);
     padding: 20px;
@@ -101,15 +101,8 @@ img, a img {
     font-size: 1rem;
 }
 
-#text-table-of-contents > ul {
-    list-style-type: none;
-    margin-left: 1ex;
-}
-
-#text-table-of-contents > ul ul {
-    list-style-type: none;
-    margin-left: 1ex;
-}
+#text-table-of-contents > ul {}
+#text-table-of-contents > ul ul {}
 
 .outline-1{margin-bottom:2.5em;}
 .outline-2{margin-bottom:2em;margin-left:0.5em}

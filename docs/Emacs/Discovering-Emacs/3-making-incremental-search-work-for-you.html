@@ -6,10 +6,10 @@
 <!-- 2023-09-09 Sat 07:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tmux, Emacs and The System Clipboard on Wayland</title>
+<title>3 - Making Incremental Search Work for You</title>
 <meta name="author" content="Vernon Grant" />
-<meta name="description" content="Getting the system clipboard to work between Tmux, Emacs and Wayland." />
-<meta name="keywords" content="Tmux, Emacs, Wayland, Clipboard" />
+<meta name="description" content="Today I'm going to share some of the ways I utilize Emacs's incremental search, during my workflow. In addition I'll be sharing some configuration recommendations that you might also find useful." />
+<meta name="keywords" content="Emacs, Incremental Search" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -220,70 +220,225 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Tmux, Emacs and The System Clipboard on Wayland
+<h1 class="title">3 - Making Incremental Search Work for You
 <br />
-<span class="subtitle">Getting the system clipboard to work between Tmux, Emacs and Wayland</span>
+<span class="subtitle">Here's some ways I utilize Emacs's incremental search, during my workflow</span>
 </h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc7263ae">Install WL-Clipboard</a></li>
-<li><a href="#orgb3e0e9c">Add the following to your Emacs configuration file</a></li>
+<li><a href="#orgb83b50c">Displaying the number of matches in the Minibuffer</a></li>
+<li><a href="#orged55f66">Making use of the search rings</a></li>
+<li><a href="#org0a42186">Using its yanking capabilities</a></li>
+<li><a href="#org0bf2917">Performing quick query replacements</a></li>
+<li><a href="#org2570d67">Jumping to first and last match</a></li>
+<li><a href="#org96b6f69">Triggering occur form incremental search</a></li>
+<li><a href="#orgf2fec68">Conclusion</a></li>
 </ul>
 </div>
 </div>
 <p>
-It took me some time to copy and past between my Tmux sessions and the operating system, running a terminal Emacs instance on Wayland. I tried a few different Emacs packages such as Clipetty and Xclip but couldn't get either working. Luckily I found a solution.
+<a href="https://www.discovering-emacs.com/2134279/12359134-3-making-incremental-search-work-for-you">Listen To Episode</a> | <a href="https://youtu.be/9CdbfZXsrqg">YouTube Video</a>
 </p>
 
-<div id="outline-container-orgc7263ae" class="outline-2">
-<h2 id="orgc7263ae">Install WL-Clipboard</h2>
-<div class="outline-text-2" id="text-orgc7263ae">
 <p>
-<a href="https://github.com/bugaevc/wl-clipboard">WL-Clipboard</a> (Wayland Clipboard) project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste, that lets you easily copy data between the clipboard and Unix pipes, sockets, files and so on. We will bind these command-line utilities to Emacs's cut and past functions.
+Today I'm going to share some of the ways I utilize Emacs's incremental
+search, during my workflow. In addition I'll be sharing some
+configuration recommendations that you might also find useful.
+</p>
+
+<div id="outline-container-orgb83b50c" class="outline-2">
+<h2 id="orgb83b50c">Displaying the number of matches in the Minibuffer</h2>
+<div class="outline-text-2" id="text-orgb83b50c">
+<p>
+By default incremental search does not provide any indication of the
+total number of matches that where found for current search term. It
+also doesn't show us how many more matches we can navigate forward or
+backward before wrapping would occur.
+</p>
+
+<p>
+Luckily, there's a configuration option that solves both of these
+issues. Setting the option <code>isearch-lazy-count</code> to a non nil value, will
+provide an indicator in the minibuffer that shows the total number of
+matches found, and how many more lies ahead or behind the current match.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"># Fedora
-sudo dnf install wl-clipboard
+<pre class="src src-lisp">(setq-default isearch-lazy-count t)
+</pre>
+</div>
 
-# Ubuntu
-sudo apt-get -y install wl-clipboard
+<p>
+Having the minibuffer display the total number of matching terms, helps
+me a lot in terms of awareness. Knowing exactly how many matches where
+found and how far along I am, is a great convenience and helps with my
+intuition when navigating through a file's source code.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged55f66" class="outline-2">
+<h2 id="orged55f66">Making use of the search rings</h2>
+<div class="outline-text-2" id="text-orged55f66">
+<p>
+Incremental search does also have a search ring. The search ring is
+basically just a list that contains your previous search terms. Having
+the option to bring back some of your previous searches is major time
+saver and I find myself using it all the time.
+</p>
+
+<p>
+The way in which you navigate the search ring, is by simplify pressing
+<code>M-p</code>, to advance and <code>M-n</code> to retreat. My typical use case will be to
+activate incremental search by pressing <code>C-s</code> and then immediately
+hitting <code>M-n</code> repeatedly, until I find the previous search term I'm
+looking for.
+</p>
+
+<p>
+Please also be aware that there's actually two search rings, one for
+regular searches and another for regular expression searches. By
+default, both of these will store a maximum of 16 search terms. You can
+how ever customize the size of these rings by using the following two
+configuration options:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(defcustom search-ring-max 26)
+(defcustom regexp-search-ring-max 26)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb3e0e9c" class="outline-2">
-<h2 id="orgb3e0e9c">Add the following to your Emacs configuration file</h2>
-<div class="outline-text-2" id="text-orgb3e0e9c">
+<div id="outline-container-org0a42186" class="outline-2">
+<h2 id="org0a42186">Using its yanking capabilities</h2>
+<div class="outline-text-2" id="text-org0a42186">
 <p>
-After adding the following to your Emacs initialization file, restart your terminal and Tmux sessions. Now yanking and killing things in Emacs will automatically use the system clipboard across all Tmux sessions.
+Incremental search has the ability to yank things into the current
+search string. This is by far one of the features I use the most, and
+not just for searching purposes. The most common yanking option is to
+make use of <code>C-w</code>, to pull the word that's in front of the cursor into
+the current search term.
+</p>
+
+<p>
+Let's go over a practical example: You place the cursor in front of two
+separate words that you would like to search for. First you activate
+incremental search by pressing <code>C-s</code> and then you press <code>C-w</code> and the
+search term will expand, so it includes the first word. Pressing <code>C-w</code> a
+second time will pull the next word into the search term. The
+incremental search now contains both words and so you can now continue
+jumping to other matches by pressing <code>C-s</code>.
+</p>
+
+<p>
+It's almost like the selection expansion feature you might find in other
+code editors. I find myself using this feature to quickly yank one or
+more words, so I can perform a quick search, do a query replacements or
+simply just do a basic yank.
+</p>
+
+<p>
+Here's some more yanking shortcuts you can use:
+</p>
+
+<ul class="org-ul">
+<li><code>C-M-y</code>, Can be used to yank one char at a time.</li>
+<li><code>C-M-z</code>, Can be used to yank up until a character. I sometimes use
+this inside of long strings to yank everything up until the ending
+quote.</li>
+<li><code>M-s C-e</code>: Can be used to yank the rest of the line.</li>
+</ul>
+
+<p>
+Emacs 27.1 added the option to make all standard movement keys
+automatically perform yanking operations when incremental search is
+active. I don't personally use this, but you try it out by setting
+<code>isearch-yank-on-move</code> to a non nil value.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">;; credit: yorickvP on Github
-(when (string= (getenv "XDG_SESSION_TYPE") "wayland")
-  (setq wl-copy-process nil)
-
-  (defun wl-copy (text)
-    (setq wl-copy-process (make-process :name "wl-copy"
-                                        :buffer nil
-                                        :command '("wl-copy" "-f" "-n")
-                                        :connection-type 'pipe))
-    (process-send-string wl-copy-process text)
-    (process-send-eof wl-copy-process))
-
-  (defun wl-paste ()
-    (if (and wl-copy-process (process-live-p wl-copy-process))
-        nil ; should return nil if we're the current paste owner
-        (shell-command-to-string "wl-paste -n | tr -d \r")))
-
-  (setq interprogram-cut-function 'wl-copy)
-  (setq interprogram-paste-function 'wl-paste))
+<pre class="src src-lisp">(setq-default isearch-yank-on-move t)
 </pre>
 </div>
+
+<p>
+One other set of key bindings worth mentioning here is <code>C-y</code> and <code>M-y</code>.
+They allow you to take an entry from the kill ring and append it to the
+current search term. So, if I wanted to search for something matching a
+previous kill, I can simplify activate incremental search and hit <code>C-y</code>.
+You can also use <code>M-y</code> to cycle through earlier kill ring entries.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0bf2917" class="outline-2">
+<h2 id="org0bf2917">Performing quick query replacements</h2>
+<div class="outline-text-2" id="text-org0bf2917">
+<p>
+This might be common knowledge but I think it's still worth mentioning
+that you can transition from incremental search to query replacement by
+typing <code>M-%</code>. And with the aforementioned yanking capabilities you can
+use incremental search as a convenient precursor to query replacement.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2570d67" class="outline-2">
+<h2 id="org2570d67">Jumping to first and last match</h2>
+<div class="outline-text-2" id="text-org2570d67">
+<p>
+Sometimes after starting a search you might want to navigate to the very
+first or last match. You can do this by pressing <code>M-s M-&lt;</code> to jump to
+the beginning and <code>M-s M-&gt;</code> to jump to the end.
+</p>
+
+<p>
+You can also set the option <code>isearch-allow-motion</code> to enable the
+standard vertical motion key bindings of <code>M-&lt;</code> (beginning-of-buffer),
+<code>M-&gt;</code> (end-of-buffer), <code>C-v</code> (scroll-up-command) and <code>M-v</code>
+(scroll-down-command).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org96b6f69" class="outline-2">
+<h2 id="org96b6f69">Triggering occur form incremental search</h2>
+<div class="outline-text-2" id="text-org96b6f69">
+<p>
+Another great way to make use of incremental search is by using it as a
+precursor to Occur. You can use the current search term as an regular
+expression for Occur by pressing <code>M-s o</code>. Use this if you need to make
+changes to some of the matches, by directly editing them inside of
+Occur.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf2fec68" class="outline-2">
+<h2 id="orgf2fec68">Conclusion</h2>
+<div class="outline-text-2" id="text-orgf2fec68">
+<p>
+Incremental search can be used for much more than just searching. It can
+be utilized to become a convenient little helper, and once mastered, it
+becomes a great precursor to many additional operations. Ultimately
+making things more intuitive and faster to perform.
+</p>
+
+<p>
+And as always you can find a link to the episodes detailed show notes in
+the description of this episode. And if you have some suggestions,
+corrections or need help, please feel free to open up a new discussion
+in the discussions section of the podcast's repository.
+</p>
+
+<p>
+Thanks for listing and stay tuned for the next episode of
+<a href="https://www.discovering-emacs.com">Discovering Emacs</a>.
+</p>
 </div>
 </div>
 </div>

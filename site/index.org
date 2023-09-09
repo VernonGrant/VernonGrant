@@ -8,7 +8,15 @@
   - [[file:C/structure-padding-and-alignment.org][Structure padding and alignment]]
 - Emacs
   - [[file:Emacs/tmux-emacs-and-the-system-clipboard-on-wayland.org][Tmux, Emacs and The System Clipboard on Wayland]]
+  - Discovering-Emacs
+    - [[file:Emacs/Discovering-Emacs/1-finding-files-recursively-using-locate.org][1 - Finding Files Recursively Using Locate]]
+    - [[file:Emacs/Discovering-Emacs/2-efficiency-with-the-mark-ring.org][2 - Efficiency With The Mark Ring]]
+    - [[file:Emacs/Discovering-Emacs/3-making-incremental-search-work-for-you.org][3 - Making Incremental Search Work for You]]
+    - [[file:Emacs/Discovering-Emacs/4-using-whitespace-mode.org][4 - Using Whitespace Mode]]
+    - [[file:Emacs/Discovering-Emacs/5-essential-movement-and-editing-shortcuts.org][5 - Essential Movement and Editing Shortcuts]]
 - Linux
   - [[file:Linux/linux-groups-explained.org][Linux Groups Explained]]
+- Software-Design
+  - [[file:Software-Design/how-to-write-good-code-comments.org][How To Write Good Code Comments]]
 - Vim
   - [[file:Vim/vertical-navigation-in-vim.org][Vertical navigation in Vim]]

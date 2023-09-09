@@ -14,24 +14,24 @@ A Linux system has different types of users such as, super/root users, normal us
 
 ** How we manage groups in Linux
 
-In Linux each group is uniquely identified by a ~GID~, just as the users are identified by a ~UID~. When a user is created they are automatically given a primary group, usually this group is named the same as their login/username. A Linux user can have only one primary group and zero or more secondary groups. When we discuss the management of groups in the next few sections, we are talking about secondary groups.
+In Linux each group is uniquely identified by a =GID=, just as the users are identified by a =UID=. When a user is created they are automatically given a primary group, usually this group is named the same as their login/username. A Linux user can have only one primary group and zero or more secondary groups. When we discuss the management of groups in the next few sections, we are talking about secondary groups.
 
 ** Creating and removing groups
 
-In order to create a new group we must have superuser privileges, we can of course use sudo to achieve this on most Linux distributions. The command we need to use is called ~groupadd~. We can add a new group by running the following:
+In order to create a new group we must have superuser privileges, we can of course use sudo to achieve this on most Linux distributions. The command we need to use is called =groupadd=. We can add a new group by running the following:
 
 #+BEGIN_SRC shell
   # developers is being the groups name.
   sudo groupadd developers
 #+END_SRC
 
-To remove a group we can use the ~groupdel~ command like so:
+To remove a group we can use the =groupdel= command like so:
 
 #+BEGIN_SRC shell
   sudo groupdel developers
 #+END_SRC
 
-All groups are added to the group file, located at ~/etc/group~, so we can check if newly added groups has successfully been created by performing a quick grep search. Obviously, this is not needed but it's useful to know where the group data is stored, especially when dealing with other common debugging situations. Nevertheless, you can check it by running the following:
+All groups are added to the group file, located at =/etc/group=, so we can check if newly added groups has successfully been created by performing a quick grep search. Obviously, this is not needed but it's useful to know where the group data is stored, especially when dealing with other common debugging situations. Nevertheless, you can check it by running the following:
 
 #+BEGIN_SRC shell
   # add the new group
@@ -51,7 +51,7 @@ To add a users to a group we'll need root privileges, we can add a user to a gro
   sudo usermod -aG developers jhon
 #+END_SRC
 
-When we called the command we passed in two arguments, lower case ~a~ and uppercase ~G~. The uppercase ~G~ stands for groups and the lowercase ~a~ forces the command to append the user to the given group without removing them from all other secondary groups.
+When we called the command we passed in two arguments, lower case =a= and uppercase =G=. The uppercase =G= stands for groups and the lowercase =a= forces the command to append the user to the given group without removing them from all other secondary groups.
 
 This might seem strange at first, but when you think of things from a administrative perspective, this actually makes a lot of sense. It allows us to assign a user to specific groups and at the same time exclude them from others. Essentially allowing us to move them across groups. Here's an example of adding a user to specific secondary groups:
 
@@ -77,7 +77,7 @@ Before heading into a practical example of using groups. It's important to brief
 
 In Linux each file has permissions set for the *owner, group and world*.
 
-When we set a file's permission using ~chmod~, we get to define the privileges a group has in terms of reading, writing and executing a file. As we might already know, a directory in Linux is just a file, but the permissions of standard files and directories do in fact differ. And it's important to understand these core differences in order to make effective use of groups.
+When we set a file's permission using =chmod=, we get to define the privileges a group has in terms of reading, writing and executing a file. As we might already know, a directory in Linux is just a file, but the permissions of standard files and directories do in fact differ. And it's important to understand these core differences in order to make effective use of groups.
 
 Here's a brief comparison between file and directory permissions.
 
@@ -105,16 +105,16 @@ Let's imagine that on our Linux system there's 3 developers Jhon, Erric and Dan.
   chmod u+rwx,g+rws,o-rwx ./Projects/
 #+END_SRC
 
-The ~setgid~ bit makes executables run under group privileges. We won't be covering special permission here, but feel free to do some more research if needed.
+The =setgid= bit makes executables run under group privileges. We won't be covering special permission here, but feel free to do some more research if needed.
 
 Jhon also needs to make sure that the Erric and Dan can access his home directory. He decides to give the world read and execute permission on his home folder.
 
 #+BEGIN_SRC python :results output
   # Jhon gives the world read and execution access to his home directory
-  chmod u+rwx,g-rwx,o+rx ~/
+  chmod u+rwx,g-rwx,o+rx =/
 #+END_SRC
 
-Next he creates a new group called ~developers~ and adds himself, Erric and Dan to it.
+Next he creates a new group called =developers= and adds himself, Erric and Dan to it.
 
 #+BEGIN_SRC shell
   # adds new group
@@ -129,12 +129,12 @@ Next he creates a new group called ~developers~ and adds himself, Erric and Dan 
 Finally, Jhon just needs to change the group of the Projects directory. He does this using the chown command.
 
 #+BEGIN_SRC shell
-  chown jhon:developers ~/Projects
+  chown jhon:developers =/Projects
 #+END_SRC
 
 Everything is now done and Erric and Dan can now freely read, write and execute files and sub-directories inside the Projects folder.
 
-*Also please note, sometimes group changes does not take immediate effect and a user might need to first log out and back in.* Be sure to use the ~id~ command to check a users groups when facing permission issues.
+*Also please note, sometimes group changes does not take immediate effect and a user might need to first log out and back in.* Be sure to use the =id= command to check a users groups when facing permission issues.
 
 ** Conclusion
 

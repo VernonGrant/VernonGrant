@@ -6,10 +6,10 @@
 <!-- 2023-09-09 Sat 07:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tmux, Emacs and The System Clipboard on Wayland</title>
+<title>How To Write Good Code Comments</title>
 <meta name="author" content="Vernon Grant" />
-<meta name="description" content="Getting the system clipboard to work between Tmux, Emacs and Wayland." />
-<meta name="keywords" content="Tmux, Emacs, Wayland, Clipboard" />
+<meta name="description" content="Today we will be taking a look into the comprehensive subject of code comments. Specifically uncovering the characteristics of what is considered, good or bad comments. In addition, we will discuss the two main types and the general rules that applies to each." />
+<meta name="keywords" content="Software Design, Comments" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -220,70 +220,179 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Tmux, Emacs and The System Clipboard on Wayland
+<h1 class="title">How To Write Good Code Comments
 <br />
-<span class="subtitle">Getting the system clipboard to work between Tmux, Emacs and Wayland</span>
+<span class="subtitle">Uncovering the characteristics of what is considered, good or bad comments</span>
 </h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc7263ae">Install WL-Clipboard</a></li>
-<li><a href="#orgb3e0e9c">Add the following to your Emacs configuration file</a></li>
+<li><a href="#orgbedb4ad">The overall idea behind comments</a></li>
+<li><a href="#org447bd14">The two main types of comments</a></li>
+<li><a href="#orge26af75">Interface comments</a></li>
+<li><a href="#org3cf86ed">Implementation comments</a></li>
+<li><a href="#org570cc14">The two main characteristics of bad comments</a>
+<ul>
+<li><a href="#org6ffe7a0">They repeat the code</a></li>
+<li><a href="#org866b975">They leave us with questions</a></li>
+</ul>
+</li>
+<li><a href="#orga561235">Conclusion</a></li>
 </ul>
 </div>
 </div>
 <p>
-It took me some time to copy and past between my Tmux sessions and the operating system, running a terminal Emacs instance on Wayland. I tried a few different Emacs packages such as Clipetty and Xclip but couldn't get either working. Luckily I found a solution.
+Today we will be taking a look into the comprehensive subject of code comments. Specifically uncovering the characteristics of what is considered, good or bad comments. In addition, we will discuss the two main types and the general rules that applies to each.
 </p>
 
-<div id="outline-container-orgc7263ae" class="outline-2">
-<h2 id="orgc7263ae">Install WL-Clipboard</h2>
-<div class="outline-text-2" id="text-orgc7263ae">
+<div id="outline-container-orgbedb4ad" class="outline-2">
+<h2 id="orgbedb4ad">The overall idea behind comments</h2>
+<div class="outline-text-2" id="text-orgbedb4ad">
 <p>
-<a href="https://github.com/bugaevc/wl-clipboard">WL-Clipboard</a> (Wayland Clipboard) project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste, that lets you easily copy data between the clipboard and Unix pipes, sockets, files and so on. We will bind these command-line utilities to Emacs's cut and past functions.
+Code comments should be considered an important tool that brings clarity to otherwise un-clear or abstract information. Comments gives the designer a chance to capture the thoughts and ideas that leaded to their decisions. They provide the users of a system with the information they need, to make use of a given interface.
+</p>
+
+<p>
+Comments also gives developers better intuition about certain implementations or an entire systems inner workings. Most importantly, comments makes the un-obvious, obvious. To take a quote from the great book, A Philosophy of Software Design by John Ousterhout.
+</p>
+
+<blockquote>
+<p>
+The overall idea behind comments is to capture information that was in the mind of the designer but couldn’t be represented in code.
+&#x2013; A Philosophy of Software Design
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org447bd14" class="outline-2">
+<h2 id="org447bd14">The two main types of comments</h2>
+<div class="outline-text-2" id="text-org447bd14">
+<p>
+There’s different types of comments, but for our purposes we’ll just be looking at interface and implementation comments. Each of these requires a slightly altered perspective to write properly. Depending on the type, our intentions needs to change as the essence of the information we need to reveal differs. Let’s take a look at them in more detail.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge26af75" class="outline-2">
+<h2 id="orge26af75">Interface comments</h2>
+<div class="outline-text-2" id="text-orge26af75">
+<p>
+By interface comments, we are not referring to the same interfaces that are used in the world of object oriented programming. Instead, function declarations such as the name and parameters, is an interface that will be used by some client. The comments associated with these declarations, are considered interface comments.
+</p>
+
+<p>
+These types of comments should provide enough information to the client, so that they can make use of the interface without needing to explore the encapsulated code. Most languages uses these types of comments to generate documentation with tools such as <a href="https://www.doxygen.nl/">Doxygen</a>, <a href="https://phpdox.net/">phpDox</a> and <a href="https://jsdoc.app/">jsdoc</a>, just to name a few.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3cf86ed" class="outline-2">
+<h2 id="org3cf86ed">Implementation comments</h2>
+<div class="outline-text-2" id="text-org3cf86ed">
+<p>
+Comments found in the body of a function, class or script is considered implementation comments. Generally, the goal of these comments is to explain at a higher level, what the code is trying to do or what the designers intentions where. This gives us a nice overview of the inner workings of code block and allows us to critique it’s actions.
+</p>
+
+<p>
+They can help point out bug workarounds, potential issues, or cryptic pieces of code. We usually write implementation comments when dealing with code of greater complexity, as simpler blocks of code rarely needs any additional clarification. They do however require some common sense to write well.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org570cc14" class="outline-2">
+<h2 id="org570cc14">The two main characteristics of bad comments</h2>
+<div class="outline-text-2" id="text-org570cc14">
+</div>
+<div id="outline-container-org6ffe7a0" class="outline-3">
+<h3 id="org6ffe7a0">They repeat the code</h3>
+<div class="outline-text-3" id="text-org6ffe7a0">
+<p>
+Comments that closely represents their related interface or implementation, for the most part, provides no real value. These types of comments basically just repeats the code itself, and does not give any additional information about the related interface or implementation.
+</p>
+
+<p>
+In the following example we have a PHP class named Currency that contains a list of currency codes.
+</p>
+
+<p>
+It has an opening comment that basically just repeats the class declaration and gives no further information. A better comment would have been something like: Holds all official <code>ISO 4217</code> currency codes as constants (e.g, Currency::USD).
+</p>
+
+<p>
+The revised comment provides us with the details we need to actually make use of the class. It reveals the currency code standards and how we might access them. Most importantly, we can use the class without having to look at the encapsulated code.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"># Fedora
-sudo dnf install wl-clipboard
-
-# Ubuntu
-sudo apt-get -y install wl-clipboard
+<pre class="src src-php">&lt;?php
+/**
+ * Class Currency.
+ */
+class Currency
+{
+    const AFN = '971';
+    const EUR = '978';
+    // ...
+}
+?&gt;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb3e0e9c" class="outline-2">
-<h2 id="orgb3e0e9c">Add the following to your Emacs configuration file</h2>
-<div class="outline-text-2" id="text-orgb3e0e9c">
+<div id="outline-container-org866b975" class="outline-3">
+<h3 id="org866b975">They leave us with questions</h3>
+<div class="outline-text-3" id="text-org866b975">
 <p>
-After adding the following to your Emacs initialization file, restart your terminal and Tmux sessions. Now yanking and killing things in Emacs will automatically use the system clipboard across all Tmux sessions.
+Comments can leave us with a lot questions. Forcing us to spend time exploring code bases or online forums looking for examples. The designer of the related code, never took the time to clarify things or believed these details to be obvious.
+</p>
+
+<p>
+As an example, we have a PHP function named fit<sub>image</sub> and it takes in 4 arguments, none of witch has been commented on. The 4 arguments are $image (int), $x (double), $y (double) and $optlist (string). The associated interface comment reads as follows: <b>Place an image or template on the page, subject to various options.</b>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp">;; credit: yorickvP on Github
-(when (string= (getenv "XDG_SESSION_TYPE") "wayland")
-  (setq wl-copy-process nil)
-
-  (defun wl-copy (text)
-    (setq wl-copy-process (make-process :name "wl-copy"
-                                        :buffer nil
-                                        :command '("wl-copy" "-f" "-n")
-                                        :connection-type 'pipe))
-    (process-send-string wl-copy-process text)
-    (process-send-eof wl-copy-process))
-
-  (defun wl-paste ()
-    (if (and wl-copy-process (process-live-p wl-copy-process))
-        nil ; should return nil if we're the current paste owner
-        (shell-command-to-string "wl-paste -n | tr -d \r")))
-
-  (setq interprogram-cut-function 'wl-copy)
-  (setq interprogram-paste-function 'wl-paste))
+<pre class="src src-php">&lt;?php
+/**
+ * Place an image
+ on the page, subject to various options.
+ *
+ * @param int $image
+ * @param double $x
+ * @param double $y
+ * @param string $optlist
+ */
+function fit_image($image, $x, $y, $optlist) {}
+?&gt;
 </pre>
 </div>
+
+<p>
+This comment leaves us with a lot of questions, such as:
+</p>
+
+<ul class="org-ul">
+<li>Why is the image argument an integer, do I need to preload the image?</li>
+<li>Where is the origin of <code>x</code> and <code>y</code>, top left, bottom left…?</li>
+<li>If <code>x</code> and <code>y</code> are doubles, then what unit type should I use to position my image, pixels?</li>
+<li>Where can I find the available string options for optlist, and how would I use multiple options, do I separate them with a special character?</li>
+<li>These are just some of the questions that came to mind. Comments should make critical details like these clear by answering the what, and why of things.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga561235" class="outline-2">
+<h2 id="orga561235">Conclusion</h2>
+<div class="outline-text-2" id="text-orga561235">
+<p>
+Interface comments provides clients with the information they need to make use of an interface. Implementation comments should try to explain what the code is doing, not how it’s doing it. But generally, all comments should attempt to make the things that are not obvious, clear.
+</p>
+
+<p>
+We as developers must recognize and appreciate the power of code comments and should take better care of writing them, for the benefits of ourselves and others. If you would like to learn more about writing good comments, you can take a look at the aforementioned book: <a href="https://www.amazon.com/dp/B09B8LFKQL/">A Philosophy of Software Design</a>
+</p>
 </div>
 </div>
 </div>

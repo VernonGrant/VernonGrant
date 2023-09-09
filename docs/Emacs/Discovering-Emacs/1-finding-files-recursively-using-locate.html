@@ -6,10 +6,10 @@
 <!-- 2023-09-09 Sat 07:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tmux, Emacs and The System Clipboard on Wayland</title>
+<title>1 - Finding Files Recursively Using Locate</title>
 <meta name="author" content="Vernon Grant" />
-<meta name="description" content="Getting the system clipboard to work between Tmux, Emacs and Wayland." />
-<meta name="keywords" content="Tmux, Emacs, Wayland, Clipboard" />
+<meta name="description" content="Locate is a program that searches for a specific pattern inside a database that contains pathnames." />
+<meta name="keywords" content="Emacs, Locate" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -220,70 +220,193 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Tmux, Emacs and The System Clipboard on Wayland
+<h1 class="title">1 - Finding Files Recursively Using Locate
 <br />
-<span class="subtitle">Getting the system clipboard to work between Tmux, Emacs and Wayland</span>
+<span class="subtitle">Locate is a program that searches for a specific pattern inside a database that contains pathnames</span>
 </h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc7263ae">Install WL-Clipboard</a></li>
-<li><a href="#orgb3e0e9c">Add the following to your Emacs configuration file</a></li>
+<li><a href="#org29c2da6">What is locate?</a></li>
+<li><a href="#org382537a">Using locate in combination with Emacs</a></li>
+<li><a href="#org748eeca">Using locate for individual projects</a></li>
+<li><a href="#org26c8b32">Conclusion</a></li>
 </ul>
 </div>
 </div>
 <p>
-It took me some time to copy and past between my Tmux sessions and the operating system, running a terminal Emacs instance on Wayland. I tried a few different Emacs packages such as Clipetty and Xclip but couldn't get either working. Luckily I found a solution.
+<a href="https://www.discovering-emacs.com/2134279/12265945-1-finding-files-recursively-using-locate">Listen To Episode</a> | <a href="https://youtu.be/Qz8O9XWKFwM">YouTube Video</a>
 </p>
 
-<div id="outline-container-orgc7263ae" class="outline-2">
-<h2 id="orgc7263ae">Install WL-Clipboard</h2>
-<div class="outline-text-2" id="text-orgc7263ae">
+<div id="outline-container-org29c2da6" class="outline-2">
+<h2 id="org29c2da6">What is locate?</h2>
+<div class="outline-text-2" id="text-org29c2da6">
 <p>
-<a href="https://github.com/bugaevc/wl-clipboard">WL-Clipboard</a> (Wayland Clipboard) project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste, that lets you easily copy data between the clipboard and Unix pipes, sockets, files and so on. We will bind these command-line utilities to Emacs's cut and past functions.
+Locate is a program that searches for a specific pattern inside a
+database that contains pathnames. The command used for updating the
+database is called <code>updatedb</code>.
+</p>
+
+<p>
+Once the database has been generated, you can use <code>locate</code> to find all
+matching file paths inside of the database. It does this almost
+instantly, making it a great choice to find files inside of unknown
+locations. All you need to do is run <code>locate pattern</code> to find matches.
+You can also make use of shell globbing and quoting characters to help
+narrow the results.
+</p>
+
+<p>
+On Linux you should be all set, but if your on a Mac, please conceder
+installing <code>findutils</code>, via brew, instead of trying to use the default
+<code>locate</code> and <code>updatedb</code> commands. The brew version of these commands
+will be prefixed with a <code>g</code>, so you'll need to run <code>glocate</code> and
+<code>gupdatedb</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org382537a" class="outline-2">
+<h2 id="org382537a">Using locate in combination with Emacs</h2>
+<div class="outline-text-2" id="text-org382537a">
+<p>
+Emacs already has a command named locate. When running this command you
+can pass it a string, and locate will then look through the database for
+all the matching paths, and lists all the results in an Emacs buffer.
+This buffer also features some additional functionality, but we won't be
+covering that today.
+</p>
+
+<p>
+This can obviously save you time when your looking for a file, but can't
+remember where it's located. But for most of my personal use cases, I'm
+more interested in finding files recursively inside a specific project's
+scope, and that's what we'll be discussing next.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org748eeca" class="outline-2">
+<h2 id="org748eeca">Using locate for individual projects</h2>
+<div class="outline-text-2" id="text-org748eeca">
+<p>
+There are many ways you can go about configuring locate in and outside
+of Emacs. The following is what I came up, but feel free to experiment
+and come up with better solutions.
+</p>
+
+<p>
+First, we don't really want to generate a database for our entire file
+system, so we can configure locate to generate a database just for the
+folder containing our projects. We will write a Emacs lisp function that
+calls <code>updatedb</code> with two arguments, <code>localpaths</code> that specifies the
+folder that contains all our projects, and <code>output</code> that specifies the
+location of our database file. In addition, we also need to create an
+environment variable that specifies the same database path, named
+<code>LOCATE_PATH</code>, we can do this inside of our dot Emacs configuration
+file.
+</p>
+
+<p>
+If your on macOS, you'll also need to set two additional Emacs option
+variables, for <code>locate-command</code> and <code>locate-update-command</code> as we need
+to take into account the <code>g</code> prefix.
+</p>
+
+<p>
+Next we will define two helper functions inside our dot Emacs
+configuration. The first function will help us update our locate
+database when needed. The second will help us automatically filter the
+results based on the projects root folder, this allows us to use locate
+for only project specific files.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"># Fedora
-sudo dnf install wl-clipboard
+<pre class="src src-lisp">;;;;;;;;;;;;;;;
+;; Functions ;;
+;;;;;;;;;;;;;;;
 
-# Ubuntu
-sudo apt-get -y install wl-clipboard
+(defun vg-get-the-project-path()
+  "Get a projects root directory if found.
+Try to find the .git folder or a .dirlocals.el file and base the projects
+root on that."
+  (let ((dirlocals-file (locate-dominating-file default-directory ".dir-locals.el"))
+        (git-folder (locate-dominating-file default-directory ".git")))
+    ;; Return git folder if found.
+    (when git-folder
+      git-folder)
+    ;; Return dirlocals path if found.
+    (when dirlocals-file
+      dirlocals-file)
+    ;; Can't find root, just return the default directory.
+    (expand-file-name default-directory)))
+
+;;;;;;;;;;;;
+;; Locate ;;
+;;;;;;;;;;;;
+
+;; We need to define this environment variable to specify the database to use.
+(setenv "LOCATE_PATH" "/Users/vernon/locate-database")
+
+;; The g-prefix is required for Mac, when installing findutils via brew.
+(setq-default locate-command "glocate")
+(setq-default locate-update-command "gupdatedb")
+
+(defun vg-locate-in-project-scope()
+  "Call locate with the current projects root path being the filter."
+  (interactive)
+  (let ((match (read-string "Locate: ")))
+    (locate-with-filter match (vg-get-the-project-path))))
+
+(defun vg-locate-update()
+  "Update the locate database."
+  (interactive)
+  (let (
+        ;; Define your projects folder path here.
+        (projects-folder-path "/Users/vernon/Devenv")
+        (locate-database-path (getenv "LOCATE_PATH")))
+    (message "Updating locate database...")
+    (shell-command     (mapconcat 'identity
+                                  (list
+                                   "gupdatedb"
+                                   (concat "--localpaths=" projects-folder-path)
+                                   (concat "--output=" locate-database-path))
+                                  " "))
+    (message "Database has been updated!")))
+
+;; Setting our custom bindings.
+(define-key global-map (kbd "C-c f") 'vg-locate-in-project-scope)
+(define-key global-map (kbd "C-c F") 'vg-locate-update)
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orgb3e0e9c" class="outline-2">
-<h2 id="orgb3e0e9c">Add the following to your Emacs configuration file</h2>
-<div class="outline-text-2" id="text-orgb3e0e9c">
 <p>
-After adding the following to your Emacs initialization file, restart your terminal and Tmux sessions. Now yanking and killing things in Emacs will automatically use the system clipboard across all Tmux sessions.
+A good set of key bindings for these functions will be <code>C-c f</code>, to
+recursively find files inside the current project. And <code>C-c F</code> to update
+the locate database.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-lisp">;; credit: yorickvP on Github
-(when (string= (getenv "XDG_SESSION_TYPE") "wayland")
-  (setq wl-copy-process nil)
-
-  (defun wl-copy (text)
-    (setq wl-copy-process (make-process :name "wl-copy"
-                                        :buffer nil
-                                        :command '("wl-copy" "-f" "-n")
-                                        :connection-type 'pipe))
-    (process-send-string wl-copy-process text)
-    (process-send-eof wl-copy-process))
-
-  (defun wl-paste ()
-    (if (and wl-copy-process (process-live-p wl-copy-process))
-        nil ; should return nil if we're the current paste owner
-        (shell-command-to-string "wl-paste -n | tr -d \r")))
-
-  (setq interprogram-cut-function 'wl-copy)
-  (setq interprogram-paste-function 'wl-paste))
-</pre>
+<p>
+Please note, you can find the code examples in the podcast repository,
+linked inside the show notes of this episode.
+</p>
 </div>
+</div>
+
+<div id="outline-container-org26c8b32" class="outline-2">
+<h2 id="org26c8b32">Conclusion</h2>
+<div class="outline-text-2" id="text-org26c8b32">
+<p>
+Although there are many great plugins that makes finding files
+recursively easy. Locate can be a valid solution for those who's main
+goal is to keep their Emacs configuration as minimal as possible.
+</p>
+
+<p>
+Thanks for listing and stay tuned for the next episode of
+<a href="https://www.discovering-emacs.com">Discovering Emacs</a>.
+</p>
 </div>
 </div>
 </div>
