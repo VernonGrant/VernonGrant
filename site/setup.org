@@ -1,5 +1,5 @@
 #+AUTHOR: Vernon Grant
-#+EMAIL: vernon@ruppell.io
+#+EMAIL: info@vernon-grant.com
 
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
@@ -10,7 +10,7 @@
 #+EXCLUDE_TAGS: noexport
 #+SELECT_TAGS: export
 #+LANGUAGE: en
-#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:t
 #+OPTIONS: html-preamble:t html-scripts:t html-style:t
 #+OPTIONS: html5-fancy:nil tex:t
 #+HTML_CONTAINER: div

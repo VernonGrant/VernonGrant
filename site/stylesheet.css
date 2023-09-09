@@ -1,7 +1,7 @@
 /************************************************/
 /* Theme: Default Emacs                        */
 /* Description: Original highlight.js style    */
-/* Author: (c) Vernon Grant <vernon@ruppell.io> */
+/* Author: (c) Vernon Grant <info@vernon-grant.com> */
 /************************************************/
 
 :root {
@@ -230,6 +230,8 @@ div.rightColumn {
 .header-buttons .btn {
     padding: 5px 20px;
     font-style: normal;
+    color: var(--color-foreground);
+    font-weight: bold;
 }
 
 .header-buttons .btn-home {

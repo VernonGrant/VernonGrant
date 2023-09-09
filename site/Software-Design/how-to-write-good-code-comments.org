@@ -41,7 +41,7 @@ Comments that closely represents their related interface or implementation, for 
 
 In the following example we have a PHP class named Currency that contains a list of currency codes.
 
-It has an opening comment that basically just repeats the class declaration and gives no further information. A better comment would have been something like: Holds all official ~ISO 4217~ currency codes as constants (e.g, Currency::USD).
+It has an opening comment that basically just repeats the class declaration and gives no further information. A better comment would have been something like: Holds all official =ISO 4217= currency codes as constants (e.g, Currency::USD).
 
 The revised comment provides us with the details we need to actually make use of the class. It reveals the currency code standards and how we might access them. Most importantly, we can use the class without having to look at the encapsulated code.
 
