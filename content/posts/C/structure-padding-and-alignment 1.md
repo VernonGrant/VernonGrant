@@ -7,7 +7,7 @@ tags: ["C Programming", "Memory Management", "Performance"]
 categories: ["C"]
 draft: false
 editPost:
-  URL: https://github.com/VernonGrant/VernonGran/content
+  URL: https://github.com/VernonGrant/VernonGrant/tree/hugo/content
   Text: Suggest Changes
   appendFilePath: true
 ---

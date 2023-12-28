@@ -7,7 +7,7 @@ tags: ["C Programming", "Memory Management", "Performance"]
 categories: ["C Programming"]
 draft: false
 editPost:
-  URL: "https://github.com/VernonGrant/VernonGran/content/"
+  URL: https://github.com/VernonGrant/VernonGrant/tree/hugo/content
   Text: "Suggest Changes" # edit text
   appendFilePath: true # to append file path to Edit link
 #canonicalURL: "https://canonical.url/to/page"
