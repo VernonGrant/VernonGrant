@@ -44,11 +44,11 @@ params:
   assets:
     # disableFingerprinting: true
     disableHLJS: true # Required to use custom theme
-    favicon: "./assets/images/cropped-favicon-32-32.png"
-    favicon16x16: "./assets/images/cropped-favicon-32-32.png"
-    favicon32x32: "./assets/images/cropped-favicon-32-32.png"
-    apple_touch_icon: "./assets/images/cropped-favicon-180-180.png"
-    safari_pinned_tab: "./assets/images/cropped-favicon-32-32.png"
+    favicon: "./images/cropped-favicon-32-32.png"
+    favicon16x16: "./images/cropped-favicon-32-32.png"
+    favicon32x32: "./images/cropped-favicon-32-32.png"
+    apple_touch_icon: "./images/cropped-favicon-180-180.png"
+    safari_pinned_tab: "./images/cropped-favicon-32-32.png"
 
   label:
     text: "Vernon Grant"
