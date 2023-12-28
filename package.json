@@ -4,8 +4,10 @@
   "description": "My personal GitHub resume",
   "main": "index.js",
   "scripts": {
-    "serve": "markserv ./README.md",
-    "build": "md-to-pdf --config-file=pdf-config.js ./README.md"
+    "hugo:build": "hugo",
+    "hugo:new-post": "hugo new content posts/example-post.md",
+    "hugo:serve": "hugo server",
+    "hugo:gen:chromastyles": "hugo gen chromastyles --style dracula > assets/css/extended/dracula.css"
   },
   "repository": {
     "type": "git",

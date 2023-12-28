@@ -1,0 +1,161 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/vernon/ProjectsP/vernon-grant/site/Go/understanding-slices-in-go.org
+
+
+
+* The difference between arrays and slices
+:PROPERTIES:
+:ARCHIVE_TIME: 2023-09-18 Mon 16:39
+:ARCHIVE_FILE: ~/ProjectsP/vernon-grant/site/Go/understanding-slices-in-go.org
+:ARCHIVE_CATEGORY: understanding-slices-in-go
+:END:
+
+Slices in go are dynamically resizable data structures. Just as most other data
+structures, slices are built on top of standard arrays. Arrays are fixed in
+terms of size, meaning when we define an array and give it a size, we can't
+later increase the arrays capacity to account for additional data. Our only
+option will be to allocate a new array, big enough to hold the additional data
+we'd like to store.
+
+In Go array are created like this:
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+      collection := [5]int{1,2,3,4,5}
+
+      fmt.Println(collection)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [1 2 3 4 5]
+#+END_SRC
+
+Slices on the other hand are created in a very similar way, it's almost
+identical. The only difference is that we don't specify a size.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+      collection := []int{1,2,3,4,5}
+
+      fmt.Println(collection)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [1 2 3 4 5]
+#+END_SRC
+
+Go gives us a convenient interface that we can use to construct slices freely
+and in an performant manner: =int[low:high:max]=. This convenient little
+interface can create confusion when constructing new slices, especially for
+beginners like me. And that's because a slice can be constructed from an
+existing array, this happens as soon as we use the previous interface on an
+array instance.
+
+When we do this, we are given a slice. But the important thing to note is, that
+the slice's underlying array is the array that was used to construct the
+slice. This is very important because any changes we make to the slice will be
+reflected in its underlying array.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+
+      // This is an array.
+      collection := [5]int{1,2,3,4,5}
+
+      // This is a slice, constructed from the above array. And this slice's
+      // underlying array is the above array.
+      chunk := collection[:2]
+
+      fmt.Println(collection)
+      fmt.Println(chunk)
+
+      for i := 0; i < 10; i++ {
+          chunk = append(chunk, i)
+      }
+
+      fmt.Println(collection)
+      fmt.Println(chunk)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [1 2 3 4 5]
+: [1 2 3]
+: [1 2 3 0 1]
+: [1 2 3 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19]
+#+END_SRC
+
+This brings us to another important point, slices are passed by reference and
+arrays are passed by copy. This has a few obvious implications, passing large
+arrays to a function can be slow. And care needs to be taken when passing around
+slices as this might result in side effects.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func replaceEvenNumbers(collection []int, replacement int) {
+      for i, v := range collection {
+          if (v % 2 == 0) {
+              collection[i] = replacement
+          }
+      }
+  }
+
+  func main()   {
+      collection := [5]int{1,2,3,4,5}
+      replaceEvenNumbers(collection[:], 0)
+      fmt.Println(collection)
+  }
+#+END_SRC
+
+#+RESULTS:
+: [1 0 3 0 5]
+
+aware of
+
+There's a few details one needs to be aware of. The first is that
+
+
+I'm sure you know that a standard array is not resizable,
+
+Slices in Go is a dynamically realizable data structure built as an abstraction on top of standard arrays. Meaning that slices are dynamically resizable
+
+The fundamental difference between an array and slice is that an array is fixed
+in size, where as a slice is dynamically sized. Aside from this, there's some
+important details to be aware of. Fist a slice is basically an abstraction
+
+The main difference between an Go array and slice is that arrays has fixed
+
+Hello this is some sort of paragraph.
+
+- Slices are passed by reference.
+- When you pass an array to a function it will be passed as a copy. (Large arrays, no side effects can be done inside the function)
+- Arrays are not dynamic in nature.
+- Creating a slice vs creating an array.
+- Slices can be very efficient when used correctly.
+- Making changes to a slice effects its under underlying array.
+
+#+BEGIN_SRC go
+    import "fmt"
+
+    func main() {
+      mySlice := []int{1}
+
+      myArray := [5]int{0,1,2,3,4}
+
+      fmt.Printf("%T", mySlice)
+      fmt.Println(mySlice)
+      fmt.Println(myArray)
+  }
+#+END_SRC
+
+#+RESULTS:
+: []int[1]
+: [0 1 2 3 4]

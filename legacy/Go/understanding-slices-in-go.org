@@ -1,0 +1,329 @@
+#+TITLE: Understanding slices in Go
+#+SUBTITLE: Slices in go are dynamically resizable data structures
+#+DESCRIPTION:
+#+KEYWORDS: Go, Slices, Arrays
+#+SETUPFILE: ./../setup.org
+
+** The difference between arrays and slices
+
+Slices in go are dynamically resizable data structures. Just as most other data
+structures, slices are built on top of standard arrays. Arrays are fixed in
+terms of size, meaning when we define an array and give it a size, we can't
+later increase the arrays capacity to account for additional data. Our only
+option will be to allocate a new array, big enough to hold the additional data
+we'd like to store.
+
+In Go array are created like this:
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+      collection := [5]int{1,2,3,4,5}
+
+      fmt.Println(collection)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [1 2 3 4 5]
+#+END_SRC
+
+Slices on the other hand are created in a very similar way, it's almost
+identical. *The only difference is that we don't specify a size*.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+      collection := []int{1,2,3,4,5}
+
+      fmt.Println(collection)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [1 2 3 4 5]
+#+END_SRC
+
+A slice has three key properties, a =pointer= that points to the underlying
+array, a =length= that specifies the current length of the slice and a
+=capacity=, that specifies the maximum size of the slice before a re-allocation
+is required.
+
+The following functions can be used to get some of these properties:
+
+- =len(yourSlice)= Get a slice's length.
+- =cap(yourSlice)= Get a slice's capacity.
+
+Go gives us a convenient interface we can use to construct slices freely and in
+an performant manner: =collection[low:high:max]=. This convenient little
+interface can create confusion when constructing new slices, especially for
+beginners like me. And that's because *a slice can be constructed from an
+existing array, this happens as soon as we use the previously mentioned
+interface on any array instance*.
+
+When we do this, we are given a slice. But the important thing to note is, that
+*the slice's initial underlying array is the array that was used to construct
+the slice*. This is very important because it means that any changes we make to
+the slice will reflect in the initial array as its now referenced as the slices
+underlying array.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+
+      // This is an array.
+      collection := [5]int{1,2,3,4,5}
+
+      // This is a slice, constructed from the above array. And this slice's
+      // underlying array is the above array.
+      chunk := collection[:2]
+
+      fmt.Println(collection)
+      fmt.Println(chunk)
+
+      for i := 0; i < 10; i++ {
+          chunk = append(chunk, i)
+      }
+
+      fmt.Println(collection)
+      fmt.Println(chunk)
+  }
+#+END_SRC
+
+#+BEGIN_SRC shell
+: [1 2 3 4 5]
+: [1 2 3]
+: [1 2 3 0 1]
+: [1 2 3 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19]
+#+END_SRC
+
+This brings us to another important point, *slices are passed by reference* and
+*arrays are passed by copy*. This has a few obvious implications, passing large
+arrays to a function can be slow. And care needs to be taken when passing around
+slices as this might result in unwanted side effects.
+
+What makes things even more confusing is that changes to a slice that was
+constructed from an array, also effects the array that was used during the slice
+creation. So in that sense *an array can be converted to a slice, passed to a
+function and the original array might also experience side effects*:
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func replaceEvenNumbers(chunk []int, replacement int) {
+      for i, v := range chunk {
+          if (v % 2 == 0) {
+              chunk[i] = replacement
+          }
+      }
+  }
+
+  func main()   {
+      // This is an array.
+      collection := [5]int{1,2,3,4,5}
+
+      // Convert our array into a slice, and call function.
+      replaceEvenNumbers(collection[:], 0)
+      fmt.Println(collection)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [1 0 3 0 5]
+#+END_SRC
+
+When constructing a slice from an array, the slices underlying array is linked
+(referenced) as the slices underlying array, as long as the slice's capacity
+remains the same. In other words, *as soon as the slice's capacity changes the
+reference to the original array that was used during its construction is lost*.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main()   {
+      // This is an array.
+      collection := [5]int{1,2,3,4,5}
+
+      // This is a slice, constructed from the above array. And this slice's
+      // underlying array is the above array.
+      chunk := collection[:]
+      fmt.Println(cap(chunk))
+
+      // Force the chunk to capacity to change.
+      chunk = append(chunk, 6)
+      fmt.Println(cap(chunk))
+
+      // Make a change to the slice's first entry.
+      chunk[0] = 100
+
+      fmt.Println(collection)
+      fmt.Println(chunk)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: 5
+: 10
+: [1 2 3 4 5]
+: [100 2 3 4 5 6]
+#+END_SRC
+
+As you can see the =collection= array remains unchanged, this makes sense as the
+slice had to allocate more memory to account for the additional entry. And
+therefor lost its reference the original array.
+
+** Keeping memory allocations in mind
+
+When adding entries to a slice we need to keep in mind memory allocation, for
+performance reasons. When inserting a single entry to the front of an existing
+slice, we can just simply create a new slice and append the old slice to it.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main() {
+      collection := []int{1,2,3,4,5}
+
+      // Construct a new slice and append the collection to it.
+      collection = append([]int{10}, collection...);
+      fmt.Println(collection)
+  }
+#+END_SRC
+#+BEGIN_SRC shell
+: [10 1 2 3 4 5]
+#+END_SRC
+
+Since we're only adding a single entry to the front of our slice, its not much
+of a concern in terms of performance as this might only account for a single
+memory allocation.
+
+However, when we need to add multiple entries to the front of a slice, we need
+to consider a different approach to limit the number of memory allocations. See
+the below performance differences between allocating a new correctly sized slice
+and continuously appending to the front of an existing slice:
+
+#+BEGIN_SRC go
+  import "fmt"
+  import "testing"
+
+  func continuouslyAllocated(b *testing.B) {
+      // You don't want to do something like this.
+      collection := []int{13, 24, 34, 44}
+      for i := 0; i < b.N; i++ {
+          collection = append([]int{i}, collection...)
+      }
+  }
+
+  func preAllocated(b *testing.B) {
+      collection := []int{13, 24, 34, 44}
+      combinedLength := len(collection) + b.N
+
+      // Allocate a new slice here, big enough to hold all entries.
+      newCollection := make([]int, combinedLength)
+
+      // Set the new collections values.
+      for i := len(collection); i < combinedLength; i++ {
+          newCollection[i] = i
+      }
+
+      // Copy over our old collections data into the new collection.
+      copy(newCollection, collection)
+  }
+
+  func main() {
+      continuesResult := testing.Benchmark(continuouslyAllocated)
+      fmt.Println("Slice continuously allocated:")
+      fmt.Println("Allocations: ", continuesResult.MemAllocs)
+      fmt.Println("Time: ", continuesResult.T)
+
+      fmt.Println()
+
+      preResult := testing.Benchmark(preAllocated)
+      fmt.Println("Slice pre-allocated:")
+      fmt.Println("Allocations: ", preResult.MemAllocs)
+      fmt.Println("Time: ", preResult.T)
+  }
+#+END_SRC
+
+#+BEGIN_SRC shell
+: Slice continuously allocated:
+: Allocations:  596749
+: Time:  20.259569667s
+:
+: Slice pre-allocated:
+: Allocations:  1
+: Time:  3.722680916s
+#+END_SRC
+
+As you can see memory allocations are expensive and should be considered at all
+times.
+
+** Inserting an entry into a slice
+
+Now let's look at some practical examples of inserting entries into a slice and
+things we'll need to keep in mind when doing so.
+
+*** Inserting an entry into the front of a slice
+
+We can insert an entry into the front of a slice by simply constructing a new
+slice and appending our current slice to it.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main() {
+      collection := []int{2,3,4,5,6}
+      collection = append([]int{1}, collection...)
+      fmt.Println(collection)
+  }
+#+END_SRC
+
+#+BEGIN_SRC shell
+: [1 2 3 4 5 6]
+#+END_SRC
+
+*** Inserting an entry onto the back
+
+Adding a new entry to the end of a slice is very simple:
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  func main() {
+      collection := []int{1,2,3,4,5}
+      collection = append(collection, 6)
+      fmt.Println(collection)
+  }
+#+END_SRC
+
+#+BEGIN_SRC shell
+: [1 2 3 4 5 6]
+#+END_SRC
+
+*** Inserting an entry at =index=
+
+When inserting an entry into some =index= all we need to do is split the slice
+into two new slices and append the new entry in between.
+
+#+BEGIN_SRC go
+  import "fmt"
+
+  const index = 1
+  const value = 3
+
+  func main() {}
+#+END_SRC
+
+#+RESULTS:
+: [1 2 4 5]
+
+#+BEGIN_SRC shell
+: [1 2 3 4 5 6]
+#+END_SRC
+
+** Deleting an entry from a slice
+
+*** Deleting the first entry
+*** Deleting the last entry
+*** Deleting an entry at =index=
+
+** Appending two or more slices

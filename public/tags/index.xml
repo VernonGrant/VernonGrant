@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Vernon Grant</title>
+    <link>https://vernon-grant.com/tags/</link>
+    <description>Recent content in Tags on Vernon Grant</description>
+    <image>
+      <title>Vernon Grant</title>
+      <url>https://vernon-grant.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://vernon-grant.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://vernon-grant.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C Programming</title>
+      <link>https://vernon-grant.com/tags/c-programming/</link>
+      <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://vernon-grant.com/tags/c-programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Memory Management</title>
+      <link>https://vernon-grant.com/tags/memory-management/</link>
+      <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://vernon-grant.com/tags/memory-management/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Performance</title>
+      <link>https://vernon-grant.com/tags/performance/</link>
+      <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://vernon-grant.com/tags/performance/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
