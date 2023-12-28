@@ -2,6 +2,7 @@ baseURL: "https://vernon-grant.com/"
 title: Vernon Grant
 paginate: 5
 theme: PaperMod
+publishDir: docs
 
 enableRobotsTXT: true
 buildDrafts: false
