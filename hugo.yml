@@ -136,11 +136,11 @@ menu:
       weight: 8
     - identifier: twitter
       name: Twitter
-      url: "https://vernon-grant.com/index.xml"
+      url: "https://twitter.com/Vernon_GR"
       weight: 9
     - identifier: github
       name: GitHub
-      url: "https://vernon-grant.com/index.xml"
+      url: "https://github.com/vernongrant"
       weight: 10
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
