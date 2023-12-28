@@ -10,7 +10,7 @@
       <link>https://vernon-grant.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>Thu, 28 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://vernon-grant.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -19,6 +19,176 @@
       <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://vernon-grant.com/posts/c/structure-padding-and-alignment-1/</guid>
       <description>The order in which you place a structure’s member’s effects, its size and memory layout</description>
+      <content:encoded><![CDATA[<p>The essence of why this is the case, relates to the concept of memory alignment and the compiler&rsquo;s mission to make memory access as efficient as possible. The way in which the compiler chooses to make memory access more efficient, greatly depends on the architecture that&rsquo;s being used.</p>
+<p>Let&rsquo;s take a look at a couple examples:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// I might assume that the total size is 8 bytes, but that will be false.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">example</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">short</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 2 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>  <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">d</span><span class="p">;</span>   <span class="c1">// 4 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Outputs: The size of structure example is: 12 bytes.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;The size of structure example is: %lu bytes.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">example</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Based on the output, you can see that this structure has an additional 4 bytes. That should be unexpected, if you&rsquo;re unfamiliar with memory alignment. Now let&rsquo;s make a small adjustment by moving member <code> b</code>  below member <code> c</code>  and recheck the output.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">example</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>  <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">short</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 2 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">d</span><span class="p">;</span>   <span class="c1">// 4 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Outputs: The size of structure example is: 8 bytes.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;The size of structure example is: %lu bytes.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">example</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The structure&rsquo;s size is now 4 bytes less. As you can see, the way in which you order a structures members can have a dramatic effect on memory usage, especially if your dealing with thousands of instances.</p>
+<p>Truthfully speaking, it&rsquo;s not all that important for you to understand exactly how the compiler is going to align your structure in memory, especially as a beginner. As you can always just perform manual checks to find the most optimal ordering for your use case. Also, the alignment of a structure&rsquo;s member&rsquo;s depends heavily on the platform. So manually optimizing a structure, won&rsquo;t generalize to all platforms.</p>
+<p>Knowing exactly how the compiler chooses to align a structure members can be difficult to determine without a deep understanding of the architecture your using. But I think the following quote from The Lost Art of Structure Packing, can help you build an intuition for most cases.</p>
+<blockquote>
+<p>Each type except char has an alignment requirement; chars can start on any byte address, but 2-byte shorts must start on an even address, 4-byte ints or floats must start on an address divisible by 4, and 8-byte longs or doubles must start on an address divisible by 8. The jargon for this is that basic C types on a vanilla ISA (Instruction Set Architectures) are self-aligned. Pointers, whether 32-bit (4-byte) or 64-bit (8-byte) are self-aligned too. &ndash; Eric S. Raymond</p>
+</blockquote>
+<p>To better understand the above statement, let&rsquo;s look at the memory layout of the above two examples, and break down the memory alignment checks.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 12 byte struct layout.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">example</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">short</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 2 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>  <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">d</span><span class="p">;</span>   <span class="c1">// 4 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Addresses +0 +1 +2 +3
+</span></span></span><span class="line"><span class="cl"><span class="c1">// -------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7156 0x41 0x7f 0x64 0x00 A?d?
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7160 0x41 0xe0 0xff 0xff A???
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7164 0x64 0x00 0x00 0x00 d???
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">example</span> <span class="n">test</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 0x41, [0x64,0x00], 0x41, [0x64,0x00,0x00,0x00]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code> test.a</code> is stored at address: <code> 7156</code>.</li>
+<li><code> test.b</code>, (short) is stored at address: <code> 7158</code>.
+<ul>
+<li><code> 7157 % sizeof(short)</code> is non-zero, a 2-byte short must start on an even address.</li>
+</ul>
+</li>
+<li><code> test.c</code>, (char) is stored at address: <code> 7160</code>.</li>
+<li><code> test.d</code>, (int) is stored at address: <code> 7164</code>. <em>(A 4-byte int must start on an address divisible by 4.)</em>
+<ul>
+<li><code> 7161 % sizeof(int)</code> is non-zero.</li>
+<li><code> 7162 % sizeof(int)</code> is non-zero.</li>
+<li><code> 7163 % sizeof(int)</code> is non-zero.</li>
+<li><code> 7164 % sizeof(int)</code> is zero, store the value here.</li>
+</ul>
+</li>
+</ul>
+<p>So basically <strong>the 4-bytes that were skipped in favor of memory alignment is referred to as padding</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 8 byte struct layout.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">example</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span> <span class="c1">// 1 byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">short</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 2 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">d</span><span class="p">;</span> <span class="c1">// 4 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Addresses +0 +1 +2 +3
+</span></span></span><span class="line"><span class="cl"><span class="c1">// --------------------------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7156 0x41 0x41 0x64 0x00 AAd?
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7160 0x64 0x00 0x00 0x00 d???
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">example</span> <span class="n">test</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 0x41, 0x41, [0x64,0x00],[0x64,0x00,0x00,0x00]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code> test.a</code> is stored at address: <code> 7156</code>.</li>
+<li><code> test.c</code>, (char) is stored at address: <code> 7157</code>.</li>
+<li><code> test.b</code>, (short) is stored at address: <code> 7158</code>.</li>
+<li><code> test.d</code>, (int) is stored at address: <code> 7160</code>. <em>(A 4-byte int must start on an address divisible by 4.)</em>
+<ul>
+<li><code> 7159 % sizeof(int)</code> is non-zero.</li>
+<li><code> 7160 % sizeof(int)</code> is zero, store the value here.</li>
+</ul>
+</li>
+</ul>
+<p>The theory of memory alignment in most <em>ISA</em> can also be put this way:</p>
+<blockquote>
+<p>Unaligned memory accesses occur when you try to read N bytes of data starting from an address that is not evenly divisible by N <code> (i.e. addr % N !=  0)</code> . For example, reading 4 bytes of data from address <code> 0x10004</code>  is fine, but reading 4 bytes of data from address <code> 0x10005</code>  would be an unaligned memory access.</p>
+</blockquote>
+<p>Before closing this topic, it&rsquo;s also interesting to think of an array of structures. In C, array&rsquo;s items are placed side by side, allowing us to access items by size offsets, as an array can only contain items of the same type.</p>
+<p>Looking at the previous memory layouts, it&rsquo;s clear that both our structures can be placed side by side and all their individual members will still be aligned correctly.</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

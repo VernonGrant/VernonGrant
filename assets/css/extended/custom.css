@@ -1,3 +1,15 @@
 .chroma {
     background-color: unset !important;
 }
+
+.share-buttons {
+    margin-top: 56px;
+}
+
+.post-header {
+    margin-bottom: 56px;
+}
+
+.post-header .breadcrumbs {
+    margin-bottom: 10px;
+}

@@ -9,6 +9,9 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
+rssLimit: -1
+languageCode: "en-us"
+
 googleAnalytics: G-5ZGQ67J7JD
 
 minify:
@@ -18,7 +21,7 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Vernon Grant
-  description: "ExampleSite description"
+  description: "Welcome to my personal blog where I cover a variety of programming related topics."
   keywords: [Programming, Blog, C, Game Development]
   author: "Vernon Grant"
   images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -26,12 +29,13 @@ params:
   defaultTheme: auto # dark, light
   disableThemeToggle: false
   ShowReadingTime: true
-  ShowShareButtons: false
+  ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: true
   ShowRssButtonInSectionTermList: true
+  ShowFullTextinRSS: true
   UseHugoToc: true
   disableSpecial1stPost: true
   disableScrollToTop: false
@@ -44,18 +48,17 @@ params:
   assets:
     # disableFingerprinting: true
     disableHLJS: true # Required to use custom theme
-    favicon: "./images/cropped-favicon-32-32.png"
-    favicon16x16: "./images/cropped-favicon-32-32.png"
-    favicon32x32: "./images/cropped-favicon-32-32.png"
-    apple_touch_icon: "./images/cropped-favicon-180-180.png"
-    safari_pinned_tab: "./images/cropped-favicon-32-32.png"
+    favicon: images/cropped-favicon-32x32.png
+    favicon16x16: images/cropped-favicon-32x32.png
+    favicon32x32: images/cropped-favicon-32x32.png
+    apple_touch_icon: images/cropped-favicon-192x192.png
+    safari_pinned_tab: images/cropped-favicon-32x32.png
 
   label:
     text: "Vernon Grant"
-    icon: /apple-touch-icon.png
-    iconHeight: 35
+    icon: images/cropped-favicon-180x180.png
+    iconHeight: 25
 
-  # profile-mode
   profileMode:
     enabled: false # needs to be explicitly set
     title: ExampleSite
@@ -72,9 +75,11 @@ params:
 
   homeInfoParams:
     Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+    Content: Welcome to my personal blog where I cover a variety of programming related topics.
 
   socialIcons:
+    - name: rss
+      url: "https://vernon-grant.com/index.xml"
     - name: github
       url: "https://github.com/vernongrant"
     - name: twitter
@@ -94,7 +99,7 @@ params:
     hiddenInSingle: true # hide on single page
 
   editPost:
-    URL: "https://github.com/<path_to_repo>/content"
+    URL: https://github.com/VernonGrant/VernonGrant/tree/hugo/content
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 

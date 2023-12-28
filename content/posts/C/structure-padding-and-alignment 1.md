@@ -6,10 +6,6 @@ weight: 1
 tags: ["C Programming", "Memory Management", "Performance"]
 categories: ["C"]
 draft: false
-editPost:
-  URL: https://github.com/VernonGrant/VernonGrant/tree/hugo/content
-  Text: Suggest Changes
-  appendFilePath: true
 ---
 The essence of why this is the case, relates to the concept of memory alignment and the compiler's mission to make memory access as efficient as possible. The way in which the compiler chooses to make memory access more efficient, greatly depends on the architecture that's being used.
 
@@ -71,17 +67,15 @@ struct example test = {'A', 100, 'A', 100};
 // 0x41, [0x64,0x00], 0x41, [0x64,0x00,0x00,0x00]
 ```
 
-- ` test.a` is stored at address: ` 7156` .
-- ` test.b`, (short) is stored at address: ` 7158` .
+- ` test.a` is stored at address: ` 7156`.
+- ` test.b`, (short) is stored at address: ` 7158`.
     - ` 7157 % sizeof(short)` is non-zero, a 2-byte short must start on an even address.
-- ` test.c`, (char) is stored at address: ` 7160` .
-- ` test.d`, (int) is stored at address: ` 7164` .
+- ` test.c`, (char) is stored at address: ` 7160`.
+- ` test.d`, (int) is stored at address: ` 7164`. _(A 4-byte int must start on an address divisible by 4.)_
     - ` 7161 % sizeof(int)` is non-zero. 
-      - A 4-byte int must start on an address divisible by 4.
-    - ` 7162 % sizeof(int)` is non-zero. 
-      - A 4-byte int must start on an address divisible by 4.
-    - ` 7163 % sizeof(int)` is non-zero. 
-      - A 4-byte int must start on an address divisible by 4.
+    - ` 7162 % sizeof(int)` is non-zero.
+    - ` 7163 % sizeof(int)` is non-zero.
+    - ` 7164 % sizeof(int)` is zero, store the value here.
 
 So basically **the 4-bytes that were skipped in favor of memory alignment is referred to as padding**.
 
@@ -103,12 +97,12 @@ struct example test = {'A', 'A', 100, 100};
 // 0x41, 0x41, [0x64,0x00],[0x64,0x00,0x00,0x00]
 ```
 
-- ` test.a` is stored at address: ` 7156` .
-- ` test.c`, (char) is stored at address: ` 7157` .
-- ` test.b`, (short) is stored at address: ` 7158` .
-- ` test.d`, (int) is stored at address: ` 7160` .
-    - ` 7159 % sizeof(int)` is non-zero. 
-      - A 4-byte int must start on an address divisible by 4.
+- ` test.a` is stored at address: ` 7156`.
+- ` test.c`, (char) is stored at address: ` 7157`.
+- ` test.b`, (short) is stored at address: ` 7158`.
+- ` test.d`, (int) is stored at address: ` 7160`. _(A 4-byte int must start on an address divisible by 4.)_
+    - ` 7159 % sizeof(int)` is non-zero.
+    - ` 7160 % sizeof(int)` is zero, store the value here.
 
 The theory of memory alignment in most *ISA* can also be put this way:
 
