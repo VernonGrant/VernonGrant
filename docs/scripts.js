@@ -12,6 +12,7 @@ window.onload = function () {
     const headerButtons = document.createElement("div");
     headerButtons.classList.add("header-buttons");
     headerButtons.appendChild(createButton("GitHub", "https://github.com/VernonGrant"));
+    headerButtons.appendChild(createButton("X", "https://x.com/Vernon_GR"));
 
     // Create and add home button.
     const homeButton = createButton(
