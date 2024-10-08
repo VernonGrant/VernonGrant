@@ -77,12 +77,9 @@
            (:atom\:link :rel "self" :type "application/rss+xml" :href "https://www.vernon-grant.com/rss.xml")
            (loop :for entry :in rss-entries :do (cl-who:htm
                                                  (:item
-                                                  (cl-who:str (format nil "<pubDate>~A</pubDate>" (format-timestring nil (now) :format '((:year 4) #\- (:month 2) #\- (:day 2) #\Space :short-weekday #\Space (:hour 2) #\: (:min 2) #\: (:sec 2) #\Space :GMT-OFFSET-OR-Z))))
                                                   (:title (cl-who:str (rss-entry-title entry)))
                                                   (:link (cl-who:str (rss-entry-link entry)))
                                                   (:description (cl-who:str (rss-entry-description entry)))
-                                                  (cl-who:str "<pubDate>Tue, 08 Oct 2024 12:01:39 +0000</pubDate>")
-                                                  (:content\:encoded (cl-who:str (rss-entry-content entry)))
-                                                  )
+                                                  (:content\:encoded (cl-who:str (rss-entry-content entry))))
                                                  )))))
   (force-output out-file))
