@@ -1,11 +1,11 @@
 #+TITLE: Vernon Grant
 #+SUBTITLE: Welcome to my personal blog where I cover a variety of programming related topics
-#+DESCRIPTION: Welcome to my personal blog where I cover a variety of programming related topics 
+#+DESCRIPTION: Welcome to my personal blog where I cover a variety of programming related topics
 #+KEYWORDS: Emacs, Programming, Coding
 #+SETUPFILE: ./setup.org
 
 - C
-  - [[file:C/structure-padding-and-alignment.org][Structure padding and alignment]]
+  - [[file:C/structure-padding-and-alignment.org][Structure Padding and Alignment]]
 - Emacs
   - [[file:Emacs/tmux-emacs-and-the-system-clipboard-on-wayland.org][Tmux, Emacs and The System Clipboard on Wayland]]
   - Discovering-Emacs
@@ -19,4 +19,4 @@
 - Software-Design
   - [[file:Software-Design/how-to-write-good-code-comments.org][How To Write Good Code Comments]]
 - Vim
-  - [[file:Vim/vertical-navigation-in-vim.org][Vertical navigation in Vim]]
+  - [[file:Vim/vertical-navigation-in-vim.org][Vertical Navigation in Vim]]

@@ -1,6 +1,9 @@
 (
  ;; Project Tasks
  (nil . ((vg-project-tasks . (
+                              ("Regen RSS" . (lambda()
+                                               (vg-multi-term-shell-command "./gen-rss.lisp" t)
+                                               ))
                               ("Open Site" . (lambda()
-                                               (vg-shell-command-in-project-root "open ./docs/index.html")
+                                               (vg-multi-term-shell-command "open ./docs/index.html" t)
                                                )))))))
