@@ -13,6 +13,7 @@ window.onload = function () {
     headerButtons.classList.add("header-buttons");
     headerButtons.appendChild(createButton("GitHub", "https://github.com/VernonGrant"));
     headerButtons.appendChild(createButton("X", "https://x.com/Vernon_GR"));
+    headerButtons.appendChild(createButton("RSS", "https://www.vernon-grant.com/rss.xml"));
 
     // Create and add home button.
     const homeButton = createButton(
