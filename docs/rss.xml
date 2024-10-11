@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?><rss xmlns:content='http://purl.org/rss/1.0/modules/content/' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:atom='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:wfw='http://wellformedweb.org/CommentAPI/' xmlns:sy='http://purl.org/rss/1.0/modules/syndication/' xmlns:slash='http://purl.org/rss/1.0/modules/slash/' version='2.0'><channel><title>Vernon Grant</title><link>https://www.vernon-grant.com</link><description>Welcome to my personal blog where I cover a variety of programming related topics</description><language>en-us</language><lastBuildDate>2024-10-09 Wed 18:40:32 +02:00</lastBuildDate><pubDate>2024-10-09 Wed 18:40:32 +02:00</pubDate><atom:link rel='self' type='application/rss+xml' href='https://www.vernon-grant.com/rss.xml'></atom:link><item><title>Structure Padding and Alignment</title><link>https://www.vernon-grant.com/C/structure-padding-and-alignment.html</link><pubDate>2023-09-09 Sat 09:34:00 +02:00</pubDate><description>The order in which you place a structure’s member’s effects, its size and memory layout. The essence of why this is the case, relates to the concept of memory alignment and the compiler’s mission to make memory access as efficient as possible.</description><content:encoded><![CDATA[ <div id='content' class='content'><h1 class='title'>Structure Padding and Alignment
+<?xml version='1.0' encoding='utf-8'?><rss xmlns:content='http://purl.org/rss/1.0/modules/content/' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:atom='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:wfw='http://wellformedweb.org/CommentAPI/' xmlns:sy='http://purl.org/rss/1.0/modules/syndication/' xmlns:slash='http://purl.org/rss/1.0/modules/slash/' version='2.0'><channel><title>Vernon Grant</title><link>https://www.vernon-grant.com</link><description>Welcome to my personal blog where I cover a variety of programming related topics</description><language>en-us</language><lastBuildDate>2024-10-11 Fri 13:53:41 +02:00</lastBuildDate><pubDate>2024-10-11 Fri 13:53:41 +02:00</pubDate><atom:link rel='self' type='application/rss+xml' href='https://www.vernon-grant.com/rss.xml'></atom:link><item><title>Structure Padding and Alignment</title><link>https://www.vernon-grant.com/C/structure-padding-and-alignment.html</link><pubDate>2023-09-09 Sat 09:34:00 +02:00</pubDate><description>The order in which you place a structure’s member’s effects, its size and memory layout. The essence of why this is the case, relates to the concept of memory alignment and the compiler’s mission to make memory access as efficient as possible.</description><content:encoded><![CDATA[ <div id='content' class='content'><h1 class='title'>Structure Padding and Alignment
 <br />
 <span class='subtitle'>The order in which you place a structure’s member’s effects, its size and memory layout</span></h1><p>
 The essence of why this is the case, relates to the concept of memory alignment and the compiler's mission to make memory access as efficient as possible. The way in which the compiler chooses to make memory access more efficient, greatly depends on the architecture that's being used.
@@ -101,7 +101,129 @@ Unaligned memory accesses occur when you try to read N bytes of data starting fr
 Before closing this topic, it's also interesting to think of an array of structures. In C, array's items are placed side by side, allowing us to access items by size offsets, as an array can only contain items of the same type.
 </p><p>
 Looking at the previous memory layouts, it's clear that both our structures can be placed side by side and all their individual members will still be aligned correctly.
-</p></div> ]]></content:encoded></item><item><title>1 - Finding Files Recursively Using Locate</title><link>https://www.vernon-grant.com/Emacs/Discovering-Emacs/1-finding-files-recursively-using-locate.html</link><pubDate>2023-09-09 Sat 09:24:00 +02:00</pubDate><description>Locate is a program that searches for a specific pattern inside a database that contains pathnames.</description><content:encoded><![CDATA[ <div id='content' class='content'><h1 class='title'>1 - Finding Files Recursively Using Locate
+</p></div> ]]></content:encoded></item><item><title>Searching for the one true Lisp</title><link>https://www.vernon-grant.com/Common-Lisp/searching-for-the-one-true-lisp.html</link><pubDate>2024-10-11 Fri 15:48:00 +02:00</pubDate><description>For the past few months I went on a little excursion through the world of lisp languages. My intention is to find that one language that I could invest my efforts into for the long run.</description><content:encoded><![CDATA[ <div id='content' class='content'><h1 class='title'>Searching for the one true Lisp
+<br />
+<span class='subtitle'>A few months ago I went on a little excursion through the world of lisp languages</span></h1><div id='table-of-contents' role='doc-toc'><h2>Table of Contents</h2><div id='text-table-of-contents' role='doc-toc'><ul><li><a href='#orgc2e68dc'>Why a lisp language?</a></li><li><a href='#orgf4bd6e5'>Guile Scheme</a></li><li><a href='#orgba7fae5'>Clojure</a></li><li><a href='#orgd91af7b'>Common Lisp</a></li></ul></div></div><p>
+For the past few months I went on a little excursion through the world of lisp
+languages. <b><b>My intention is to find that one language that I could invest my
+efforts into for the long run</b></b>. I want to specialize in this languages and use it
+for all the projects/products I'm going to develop through out the rest of my
+career.
+</p>
+
+<div id='outline-container-orgc2e68dc' class='outline-2'><h2 id='orgc2e68dc'>Why a lisp language?</h2><div class='outline-text-2' id='text-orgc2e68dc'><p>
+It's simple, <b><b>I find it much more enjoyable to work in</b></b>. There's something about
+s-expressions that just connects with my mind in a way that my day job languages
+can't. Maybe it's the simplicity of it all or the aesthetics of nicely written
+Lisp. Or maybe it's because I find it easier to read and understand.
+</p>
+
+<p>
+But, I think this comes down to the individual. Everyone is different, for me
+Lisp languages are easier to read and understand and I love the aesthetics of
+nicely formatted Lisp.
+</p></div></div><div id='outline-container-orgf4bd6e5' class='outline-2'><h2 id='orgf4bd6e5'>Guile Scheme</h2><div class='outline-text-2' id='text-orgf4bd6e5'><p>
+I started off with Guile Scheme and learned about the different scheme standards
+such as <code>R5RS</code>, <code>R6RS</code> and <code>R7RS</code>. Which is basically the same concept as C
+standards, where each standard introduces a new set of core language features.
+Another interesting thing about Scheme is <a href='https://srfi.schemers.org/'>SRFIs</a>, which is community driven
+language features. During my time with Guile Scheme I developed this simple
+<a href='https://github.com/VernonGrant/guile-markup'>markup generator</a> as a learning exercise.
+</p><p>
+I like Scheme and think <b><b>its simplicity is its greatest strength</b></b>. I also think
+Guile Scheme has the correct philosophy, to use Scheme as an extension language,
+that's a very good use case in my opinion. You can build large systems in Scheme,
+but I'm not sure I would.
+</p>
+</div>
+</div>
+
+<div id='outline-container-orgba7fae5' class='outline-2'><h2 id='orgba7fae5'>Clojure</h2><div class='outline-text-2' id='text-orgba7fae5'><p>
+After Scheme, I took a second look at Clojure. Clojure was the first functional
+language I used and at the time I found it challenging to learn. Grasping the
+concept of transformations over modifications was the shift I needed to enter
+the functional world. But after getting a bit more comfortable with the language
+its beauty became evident. <b><b>I've never used a language that made it so easy to
+write elegant code that you can't help but feel good about</b></b>. And the code I wrote
+left me with confidence. Clojure in this sense, is still unmatched.
+</p>
+
+<p>
+But for me <b><b>there's one issue</b></b>, Clojure in built on top of Java. I personally find
+this difficult to accept. First, I have no Java experience so when I started
+learning Clojure I struggled to understand the error messages. And when I wanted
+to understand the inner workings of certain language concepts I was greeted with
+Java interfaces.
+</p>
+
+<p>
+In a sense, if I wanted to go full Clojure I would also need to learn some Java.
+And to fully utilize Clojure during development, I would need a good grasp on
+the Java standard library. And so in reality I would need to live in the Java
+ecosystem. At the moment it's not something I'm willing to do.
+</p></div></div><div id='outline-container-orgd91af7b' class='outline-2'><h2 id='orgd91af7b'>Common Lisp</h2><div class='outline-text-2' id='text-orgd91af7b'><p>
+The entire reason I've been exploring so many different languages the past year
+was to find that one language I could invest my efforts into for the long run.
+And so Common Lisp is basically the language I was looking for.
+</p><p>
+Its is not perfect, some might say its bloated and difficult to learn. Others
+critique it for not being strictly functional. Some say its old and outdated.
+And I wished the development tooling was better in editors outside of Emacs.
+</p><p>
+This might all be true, but after using it, I don't care.
+</p><p><b><b>Its an absolute powerhouse of a language</b></b>. Its <b><b>stable</b></b>, you can write a
+piece of code today and run it 10 years later without issue. Its <b><b>fast</b></b>, like
+basically C level fast. It has <b><b>arbitrary precision arithmetic</b></b>, so no overflows.
+It has <b><b>zero churn</b></b>. And the language is packed with great utilities and a
+wonderful package ecosystem.
+</p>
+
+<p>
+It's true, there is a lot to learn and a great deal of effort is required to
+master it. But after using it for a few personal projects I believe its not only
+one of the best Lisp options available, but also one of the best general
+programming languages there is today.
+</p><p>
+And so I've landed on Common Lisp as the lisp language I will be investing in
+for the rest of my career. I will be writing a lot more about Common Lisp and
+how I'm using it to build my first SAAS product in the near future.
+</p><p>
+Before concluding, here's an example of generating the first 1000 Fibonacci
+numbers in Common Lisp, <b><b>look at that arbitrary precision arithmetic at play</b></b>:
+</p>
+
+<div class='org-src-container'><pre class='src src-lisp'>(defun fibonacci-seq-limit (lim &amp;optional (ls '()) (cnt 1))
+  (let ((next-fib (cond
+                  ((null ls) 1)
+                  ((null (second ls)) '2)
+                  (t (+ (first ls) (second ls))))))
+  (if (&lt;= cnt lim)
+      (fibonacci-seq-limit lim (cons next-fib ls) (+ cnt 1)) ls)))
+
+
+(fibonacci-seq-limit 1000)
+</pre></div><p>
+Results:
+</p><div class='org-src-container'><pre class='src src-text'>(70330367711422815821835254877183549770181269836358732742604905087154537118196933579742249494562611733487750449241765991088186363265450223647106012053374121273867339111198139373125598767690091902245245323403501
+ ...       
+ 573147844013817084101 354224848179261915075 218922995834555169026
+ 135301852344706746049 83621143489848422977 51680708854858323072
+ 31940434634990099905 19740274219868223167 12200160415121876738
+ 7540113804746346429 4660046610375530309 2880067194370816120
+ 1779979416004714189 1100087778366101931 679891637638612258 420196140727489673
+ 259695496911122585 160500643816367088 99194853094755497 61305790721611591
+ 37889062373143906 23416728348467685 14472334024676221 8944394323791464
+ 5527939700884757 3416454622906707 2111485077978050 1304969544928657
+ 806515533049393 498454011879264 308061521170129 190392490709135
+ 117669030460994 72723460248141 44945570212853 27777890035288 17167680177565
+ 10610209857723 6557470319842 4052739537881 2504730781961 1548008755920
+ 956722026041 591286729879 365435296162 225851433717 139583862445 86267571272
+ 53316291173 32951280099 20365011074 12586269025 7778742049 4807526976
+ 2971215073 1836311903 1134903170 701408733 433494437 267914296 165580141
+ 102334155 63245986 39088169 24157817 14930352 9227465 5702887 3524578 2178309
+ 1346269 832040 514229 317811 196418 121393 75025 46368 28657 17711 10946 6765
+ 4181 2584 1597 987 610 377 233 144 89 55 34 21 13 8 5 3 2 1)
+</pre></div></div></div></div> ]]></content:encoded></item><item><title>1 - Finding Files Recursively Using Locate</title><link>https://www.vernon-grant.com/Emacs/Discovering-Emacs/1-finding-files-recursively-using-locate.html</link><pubDate>2023-09-09 Sat 09:24:00 +02:00</pubDate><description>Locate is a program that searches for a specific pattern inside a database that contains pathnames.</description><content:encoded><![CDATA[ <div id='content' class='content'><h1 class='title'>1 - Finding Files Recursively Using Locate
 <br />
 <span class='subtitle'>Locate is a program that searches for a specific pattern inside a database that contains pathnames</span></h1><div id='table-of-contents' role='doc-toc'><h2>Table of Contents</h2><div id='text-table-of-contents' role='doc-toc'><ul><li><a href='#org29c2da6'>What is locate?</a></li><li><a href='#org382537a'>Using locate in combination with Emacs</a></li><li><a href='#org748eeca'>Using locate for individual projects</a></li><li><a href='#org26c8b32'>Conclusion</a></li></ul></div></div><p><a href='https://www.discovering-emacs.com/2134279/12265945-1-finding-files-recursively-using-locate'>Listen To Episode</a> | <a href='https://youtu.be/Qz8O9XWKFwM'>YouTube Video</a></p><div id='outline-container-org29c2da6' class='outline-2'><h2 id='org29c2da6'>What is locate?</h2><div class='outline-text-2' id='text-org29c2da6'><p>
 Locate is a program that searches for a specific pattern inside a

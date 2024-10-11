@@ -6,6 +6,8 @@
 
 - C
   - [[file:C/structure-padding-and-alignment.org][Structure Padding and Alignment]]
+- Common-Lisp
+  - [[file:Common-Lisp/searching-for-the-one-true-lisp.org][Searching for the one true lisp]]
 - Emacs
   - [[file:Emacs/tmux-emacs-and-the-system-clipboard-on-wayland.org][Tmux, Emacs and The System Clipboard on Wayland]]
   - Discovering-Emacs

@@ -4,19 +4,22 @@
 /* Author: (c) Vernon Grant <info@vernon-grant.com> */
 /************************************************/
 
+
 :root {
     /* Colors */
     --color-background:      #ffffff;
     --color-foreground:      #000000;
     --color-cursor:          #000000;
-    --color-selection:       #eedc82;
+    --color-primary:         #8b0000;
+    --color-secondary:       #a36969;
+    --color-selection:       #e2eeff;
     --color-black:           #5C5F77;
     --color-black-muted:     #6C6F85;
-    --color-red:             #b3303a;
-    --color-red-fainted:     #b22222;
+    --color-red:             #d33340;
+    --color-red-fainted:     #9b3f3f;
     --color-green:           #228b22;
     --color-green-fainted:   #61756c;
-    --color-yellow:          #a45f22;
+    --color-yellow:          #d38a33;
     --color-yellow-fainted:  #76502a;
     --color-blue:            #001faf;
     --color-blue-fainted:    #483d8b;
@@ -26,14 +29,15 @@
     --color-cyan-fainted:    #3f7a80;
     --color-white:           #ffffff;
     --color-white-fainted:   #ededed;
-    --color-border:          #e6e6e6;
+    --color-border:          #dddddd;
 }
 
 body {
-    font-family: Verdana, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 1rem;
-    text-align: left;
-    line-height: 1.65;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 1.25rem;
     color: var(--color-foreground);
     background-color: var(--color-background);
     padding: 20px;
@@ -41,7 +45,7 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
     font-weight:bold;
-    color: var(--color-foreground);
+    color: var(--color-primary);
     text-align:left;
 }
 
@@ -62,23 +66,27 @@ code {
     border-radius: 3px;
 }
 
+b {
+    font-weight: bolder;
+}
+
 a {
     text-decoration:none;
     cursor:pointer;
-    color: var(--color-blue);
+    color: var(--color-primary);
     font-style:italic;
 }
 
 a:hover {
     text-decoration:underline;
     cursor:pointer;
-    color: var(--color-blue);
+    color: var(--color-primary);
 }
 
 a:visited {
     text-decoration:none;
     cursor:pointer;
-    color: var(--color-blue);
+    color: var(--color-secondary);
 }
 
 img, a img {
@@ -105,7 +113,7 @@ img, a img {
 #text-table-of-contents > ul ul {}
 
 .outline-1{margin-bottom:2.5em;}
-.outline-2{margin-bottom:2em;margin-left:0.5em}
+.outline-2{margin-bottom:2em;}
 .outline-3{margin-bottom:1.5em;margin-left:1em}
 .outline-4{margin-bottom:1.5em;margin-left:1.5em}
 
@@ -223,14 +231,15 @@ div.rightColumn {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: var(--color-selection);
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--color-border);
     padding: 5px 0;
 }
 
 .header-buttons .btn {
     padding: 5px 20px;
     font-style: normal;
-    color: var(--color-foreground);
+    color: var(--color-primary);
     font-weight: bold;
 }
 
@@ -255,97 +264,207 @@ code.hljs {
 }
 
 .hljs {
-    background: var(--color-background);
-    color: var(--color-foreground);
+    color: #464646;
+    background: #ffffff;
+    font-size: 1rem;
 }
 
-.hljs-subst {}
+.hljs::selection,
+.hljs ::selection {
+    background-color: #b9b9b9;
+    color: #464646;
+}
 
+
+/* purposely do not highlight these things */
 .hljs-formula,
-.hljs-attr,
-.hljs-property,
-.hljs-tag,
-.hljs-punctuation,
-.hljs-params {
-    color: var(--color-foreground);
-}
+.hljs-params,
+.hljs-property
+{}
 
+/* base03 - #ababab -  Comments, Invisibles, Line Highlighting */
 .hljs-comment {
-    color: var(--color-red-fainted);
+    color: #ababab;
 }
 
-.hljs-tag .hljs-name,
-.hljs-tag .hljs-attr {
-    color: var(--color-foreground);
+/* base04 - #525252 -  Dark Foreground (Used for status bars) */
+.hljs-tag {
+    color: #525252;
 }
 
-.hljs-keyword,
-.hljs-attribute,
-.hljs-selector-tag,
-.hljs-meta .hljs-keyword,
-.hljs-doctag,
-.hljs-name {
-    color: var(--color-blue);
-    font-weight: bold;
+/* base05 - #464646 -  Default Foreground, Caret, Delimiters, Operators */
+.hljs-subst,
+.hljs-punctuation,
+.hljs-operator {
+    color: #464646;
 }
 
-.hljs-string {
-    color: var(--color-red);
-}
-.hljs-number {
-    color: var(--color-foreground);
+.hljs-operator {
+    opacity: 0.7;
 }
 
-.hljs-type,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-quote,
-.hljs-template-tag,
-.hljs-deletion {
-    color: var(--color-foreground);
-}
-
-.hljs-variable,
-.hljs-title,
-.hljs-section {
-    color: var(--color-foreground);
-}
-
-.hljs-symbol,
-.hljs-regexp {
-    color: var(--color-yellow);
-}
-
-.hljs-template-variable,
-.hljs-selector-attr,
-.hljs-operator,
-.hljs-selector-pseudo {
-    color: var(--color-foreground);
-}
-
-.hljs-link {
-    color: var(--color-blue);
-}
-
-.hljs-literal {
-    color: var(--color-green);
-}
-
-.hljs-built_in,
+/* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
 .hljs-bullet,
-.hljs-code,
-.hljs-addition {
-    color: var(--color-blue-fainted);
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-deletion {
+    color: var(--color-primary);
 }
 
-.hljs-meta {
-    color: var(--color-cyan);
+/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+.hljs-symbol,
+.hljs-number,
+.hljs-link,
+.hljs-attr,
+.hljs-variable.constant_,
+.hljs-literal {
+    color: #999999;
 }
 
-.hljs-emphasis {
-    font-style: italic;
+/* base0A - Classes, Markup Bold, Search Text Background */
+.hljs-title,
+.hljs-class .hljs-title,
+.hljs-title.class_
+{
+    color: #a0a0a0;
 }
 
 .hljs-strong {
+    font-weight:bold;
+    color: #a0a0a0;
+}
+
+/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
+.hljs-code,
+.hljs-addition,
+.hljs-title.class_.inherited__,
+.hljs-string {
+    color: #8e8e8e;
+}
+
+/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
+.hljs-built_in,
+.hljs-doctag, /* guessing */
+.hljs-quote,
+.hljs-keyword.hljs-atrule,
+.hljs-regexp {
+    color: #868686;
+}
+
+/* base0D - Functions, Methods, Attribute IDs, Headings */
+.hljs-function .hljs-title,
+.hljs-attribute,
+.ruby .hljs-property,
+.hljs-title.function_,
+.hljs-section {
+    color: #686868;
+}
+
+.hljs-type,
+.hljs-template-tag,
+.diff .hljs-meta,
+.hljs-keyword {
+    color: #868686;
+}
+.hljs-emphasis {
+    color: #747474;
+    font-style: italic;
+}
+
+/* base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+.hljs-meta,
+/*
+  prevent top level .keyword and .string scopes
+  from leaking into meta by accident
+*/
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string
+{
+    color: #5e5e5e;
+}
+
+.hljs-meta .hljs-keyword,
+/* for v10 compatible themes */
+.hljs-meta-keyword {
     font-weight: bold;
+}
+
+/*********/
+/* Fonts */
+/*********/
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.roboto-thin-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.roboto-light-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.roboto-regular-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.roboto-medium-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.roboto-bold-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.roboto-black-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
 }
