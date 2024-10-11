@@ -4,87 +4,43 @@
 #+KEYWORDS: Common Lisp, Guile, Clojure
 #+SETUPFILE: ./../setup.org
 
-For the past few months I went on a little excursion through the world of lisp
-languages. **My intention is to find that one language that I could invest my
-efforts into for the long run**. I want to specialize in this languages and use it
-for all the projects/products I'm going to develop through out the rest of my
-career.
+For the past few months I went on a little excursion through the world of lisp languages. *My intention is to find that one language that I could invest my efforts into for the long run*. I want to specialize in this languages and use it for all the projects/products I'm going to develop through out the rest of my career.
 
 ** Why a lisp language?
 
-It's simple, **I find it much more enjoyable to work in**. There's something about
-s-expressions that just connects with my mind in a way that my day job languages
-can't. Maybe it's the simplicity of it all or the aesthetics of nicely written
-Lisp. Or maybe it's because I find it easier to read and understand.
+It's simple, *I find it much more enjoyable to work in*. There's something about s-expressions that just connects with my mind in a way that my day job languages can't. Maybe it's the simplicity of it all or the aesthetics of nicely written Lisp. Or maybe it's because I find it easier to read and understand.
 
-But, I think this comes down to the individual. Everyone is different, for me
-Lisp languages are easier to read and understand and I love the aesthetics of
-nicely formatted Lisp.
+But, I think this comes down to the individual. Everyone is different, for me Lisp languages are easier to read and understand and I love the aesthetics of nicely formatted Lisp.
 
 ** Guile Scheme
 
-I started off with Guile Scheme and learned about the different scheme standards
-such as =R5RS=, =R6RS= and =R7RS=. Which is basically the same concept as C
-standards, where each standard introduces a new set of core language features.
-Another interesting thing about Scheme is [[https://srfi.schemers.org/][SRFIs]], which is community driven
-language features. During my time with Guile Scheme I developed this simple
-[[https://github.com/VernonGrant/guile-markup][markup generator]] as a learning exercise.
+I started off with Guile Scheme and learned about the different scheme standards such as =R5RS=, =R6RS= and =R7RS=. Which is basically the same concept as C standards, where each standard introduces a new set of core language features. Another interesting thing about Scheme is [[https://srfi.schemers.org/][SRFIs]], which is community driven language features. During my time with Guile Scheme I developed this simple [[https://github.com/VernonGrant/guile-markup][markup generator]] as a learning exercise.
 
-I like Scheme and think **its simplicity is its greatest strength**. I also think
-Guile Scheme has the correct philosophy, to use Scheme as an extension language,
-that's a very good use case in my opinion. You can build large systems in Scheme,
-but I'm not sure I would.
+I like Scheme and think *its simplicity is its greatest strength*. I also think Guile Scheme has the correct philosophy, to use Scheme as an extension language, that's a very good use case in my opinion. You can build large systems in Scheme, but I'm not sure I would.
 
 ** Clojure
 
-After Scheme, I took a second look at Clojure. Clojure was the first functional
-language I used and at the time I found it challenging to learn. Grasping the
-concept of transformations over modifications was the shift I needed to enter
-the functional world. But after getting a bit more comfortable with the language
-its beauty became evident. **I've never used a language that made it so easy to
-write elegant code that you can't help but feel good about**. And the code I wrote
-left me with confidence. Clojure in this sense, is still unmatched.
+After Scheme, I took a second look at Clojure. Clojure was the first functional language I used and at the time I found it challenging to learn. Grasping the concept of transformations over modifications was the shift I needed to enter the functional world. But after getting a bit more comfortable with the language its beauty became evident. *I've never used a language that made it so easy to write elegant code that you can't help but feel good about*. And the code I wrote left me with confidence. Clojure in this sense, is still unmatched.
 
-But for me **there's one issue**, Clojure in built on top of Java. I personally find
-this difficult to accept. First, I have no Java experience so when I started
-learning Clojure I struggled to understand the error messages. And when I wanted
-to understand the inner workings of certain language concepts I was greeted with
-Java interfaces.
+But for me *there's one issue*, Clojure in built on top of Java. I personally find this difficult to accept. First, I have no Java experience so when I started learning Clojure I struggled to understand the error messages. And when I wanted to understand the inner workings of certain language concepts I was greeted with Java interfaces.
 
-In a sense, if I wanted to go full Clojure I would also need to learn some Java.
-And to fully utilize Clojure during development, I would need a good grasp on
-the Java standard library. And so in reality I would need to live in the Java
-ecosystem. At the moment it's not something I'm willing to do.
+In a sense, if I wanted to go full Clojure I would also need to learn some Java. And to fully utilize Clojure during development, I would need a good grasp on the Java standard library. And so in reality I would need to live in the Java ecosystem. At the moment it's not something I'm willing to do.
 
 ** Common Lisp
 
-The entire reason I've been exploring so many different languages the past year
-was to find that one language I could invest my efforts into for the long run.
-And so Common Lisp is basically the language I was looking for.
+The entire reason I've been exploring so many different languages the past year was to find that one language I could invest my efforts into for the long run. And so Common Lisp is basically the language I was looking for.
 
-Its is not perfect, some might say its bloated and difficult to learn. Others
-critique it for not being strictly functional. Some say its old and outdated.
-And I wished the development tooling was better in editors outside of Emacs.
+Its is not perfect, some might say its bloated and difficult to learn. Others critique it for not being strictly functional. Some say its old and outdated. And I wished the development tooling was better in editors outside of Emacs.
 
 This might all be true, but after using it, I don't care.
 
-**Its an absolute powerhouse of a language**. Its **stable**, you can write a
-piece of code today and run it 10 years later without issue. Its **fast**, like
-basically C level fast. It has **arbitrary precision arithmetic**, so no overflows.
-It has **zero churn**. And the language is packed with great utilities and a
-wonderful package ecosystem.
+*Its an absolute powerhouse of a language*. Its *stable*, you can write a piece of code today and run it 10 years later without issue. Its *fast*, like basically C level fast. It has *arbitrary precision arithmetic*, so no overflows. It has *zero churn*. And the language is packed with great utilities and a wonderful package ecosystem.
 
-It's true, there is a lot to learn and a great deal of effort is required to
-master it. But after using it for a few personal projects I believe its not only
-one of the best Lisp options available, but also one of the best general
-programming languages there is today.
+It's true, there is a lot to learn and a great deal of effort is required to master it. But after using it for a few personal projects I believe its not only one of the best Lisp options available, but also one of the best general programming languages there is today.
 
-And so I've landed on Common Lisp as the lisp language I will be investing in
-for the rest of my career. I will be writing a lot more about Common Lisp and
-how I'm using it to build my first SAAS product in the near future.
+And so I've landed on Common Lisp as the lisp language I will be investing in for the rest of my career. I will be writing a lot more about Common Lisp and how I'm using it to build my first SAAS product in the near future.
 
-Before concluding, here's an example of generating the first 1000 Fibonacci
-numbers in Common Lisp, **look at that arbitrary precision arithmetic at play**:
+Before concluding, here's an example of generating the first 1000 Fibonacci numbers in Common Lisp, *look at that arbitrary precision arithmetic at play*:
 
 #+BEGIN_SRC lisp :results output
 (defun fibonacci-seq-limit (lim &optional (ls '()) (cnt 1))
