@@ -1,5 +1,5 @@
 #+TITLE: Searching for the one true Lisp
-#+SUBTITLE: A few months ago I went on a little excursion through the world of lisp languages
+#+SUBTITLE: For the past few months I went on a little excursion through the world of lisp languages
 #+DESCRIPTION: For the past few months I went on a little excursion through the world of lisp languages. My intention is to find that one language that I could invest my efforts into for the long run.
 #+KEYWORDS: Common Lisp, Guile, Clojure
 #+SETUPFILE: ./../setup.org
