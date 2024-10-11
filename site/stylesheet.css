@@ -234,6 +234,7 @@ div.rightColumn {
     background-color: #ffffff;
     border-bottom: 1px solid var(--color-border);
     padding: 5px 0;
+    font-weight: 0.8rem;
 }
 
 .header-buttons .btn {
