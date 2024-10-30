@@ -1,7 +1,7 @@
 [
   {
-    "label": "Gozer: Pre-Repease",
-    "command": "rm -R ./docs && cp -R ./build ./docs",
+    "label": "Pre-release",
+    "command": "cp -R ~/Notes/Blog/ ./content/ && gozer build && rm -R ./docs && cp -R ./build ./docs",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
     "reveal": "always",
