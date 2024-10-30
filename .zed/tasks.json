@@ -1,0 +1,29 @@
+[
+  {
+    "label": "Gozer: Serve",
+    "command": "gozer serve",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never",
+    "shell": "system"
+  },
+  {
+    "label": "Gozer: Build",
+    "command": "gozer build",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never",
+    "shell": "system"
+  },
+  {
+    "label": "Install Gozer",
+    "command": "go install git.sr.ht/~dvko/gozer@latest",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never",
+    "shell": "system"
+  }
+]
