@@ -1,5 +1,14 @@
 [
   {
+    "label": "Gozer: Pre-Repease",
+    "command": "rm -R ./docs && cp -R ./build ./docs",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never",
+    "shell": "system"
+  },
+  {
     "label": "Gozer: Serve",
     "command": "gozer serve",
     "use_new_terminal": false,
