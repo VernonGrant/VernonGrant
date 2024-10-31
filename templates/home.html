@@ -14,11 +14,13 @@
 
         <div class="container spaced">
             {{ .Content }}
-            <h2>Index:</h2>
+            <h4>Latest articles:</h4>
 
             {{ range .Posts }}
-                <small>{{ .DatePublished.Format "Jan 02, 2006" }}</small><br />
-                <a class="h3" href="{{ .Permalink }}">{{ .Title }}</a>
+                <div class="my-xl">
+                    <small>{{ .DatePublished.Format "Jan 02, 2006" }}</small><br />
+                    <a class="h2" href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
             {{ end }}
         </div>
 

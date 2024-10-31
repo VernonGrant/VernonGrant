@@ -11,8 +11,8 @@
     --layout-grid-gap: 40px;
 
     --typography-font: sans-serif, arial;
-    --typography-height: 1.5;
-    --typography-color: #6e6e6e;
+    --typography-height: 1.65;
+    --typography-color: #333;
     --typography-heading-color: #000000;
     --typography-small: 0.85rem;
 
@@ -39,6 +39,7 @@ body {
     padding-right: var(--layout-spacing-xl);
     background-color: white;
     min-height: 100vh;
+    font-size: 1.25rem;
 }
 
 img {
@@ -81,7 +82,7 @@ body {
 }
 
 a {
-    color: var(--typography-color);
+    color: var(--color-primary);
 }
 
 p {
