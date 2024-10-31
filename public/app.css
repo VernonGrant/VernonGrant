@@ -39,7 +39,7 @@ body {
     padding-right: var(--layout-spacing-xl);
     background-color: white;
     min-height: 100vh;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
 }
 
 img {
@@ -92,6 +92,10 @@ p {
 
 strong {
     color: var(--typography-heading-color);
+}
+
+.small {
+    font-size: var(--typography-small);
 }
 
 /* Alignment */
