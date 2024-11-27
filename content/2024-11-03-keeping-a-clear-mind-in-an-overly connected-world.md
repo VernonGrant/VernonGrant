@@ -15,6 +15,6 @@ This is something that has effected me too and that I'm now desperately trying f
 - I no longer use any platforms that spoon-feeds me information without me curating the source. This is basically most platforms.
 - I've completely stopped using social media for the most part. I did however make list of YouTube channels that I think are good sources of information. I'll check these channels for updates once or twice a week.
 - I started using RSS again to subscribe to blogs. I read an articles or two every other day.
-- I also started reading more books. This is also something I curate heavily as some modern books are nothing more the advertisements.
+- I also started reading more books. This is also something I curate heavily as some modern books are nothing more then advertisements.
 
 > Any fool can know. The point is to understand. — Albert Einstein
