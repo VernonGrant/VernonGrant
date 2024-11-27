@@ -1,4 +1,3 @@
-
 +++
 title = "Enhanced productivity through prioritization"
 +++
