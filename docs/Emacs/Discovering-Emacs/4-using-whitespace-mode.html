@@ -8,7 +8,7 @@
 <meta name="description" content="Today, we're taking a look at Emacs's whitespace mode and discussing how we can simplify its configuration to make it more applicable for most use cases." />
 <meta name="keywords" content="Emacs, Whitespace Mode" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -225,13 +225,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4215f85">Introduction</a></li>
-<li><a href="#org1b4c855">Specifying a whitespace style</a></li>
-<li><a href="#orgb2a6a90">Dealing with whitespace coloring issues</a></li>
-<li><a href="#org2b15d02">Specifying what symbols should represent whitespace</a></li>
-<li><a href="#orgdb64c85">Enabling whitespace mode globally</a></li>
-<li><a href="#org0c858e1">Making use of cleanup actions</a></li>
-<li><a href="#org58682c7">Conclusion</a></li>
+<li><a href="#org577b3b9">Introduction</a></li>
+<li><a href="#org2a02abd">Specifying a whitespace style</a></li>
+<li><a href="#org9249bc5">Dealing with whitespace coloring issues</a></li>
+<li><a href="#org2fe5fbd">Specifying what symbols should represent whitespace</a></li>
+<li><a href="#orgc78da62">Enabling whitespace mode globally</a></li>
+<li><a href="#org5e6b0bf">Making use of cleanup actions</a></li>
+<li><a href="#org8dfd88c">Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -244,10 +244,9 @@ Today, we're taking a look at Emacs's <code>whitespace-mode</code> and discussin
 how we can simplify its configuration to make it more applicable for
 most use cases.
 </p>
-
-<div id="outline-container-org4215f85" class="outline-2">
-<h2 id="org4215f85">Introduction</h2>
-<div class="outline-text-2" id="text-org4215f85">
+<div id="outline-container-org577b3b9" class="outline-2">
+<h2 id="org577b3b9">Introduction</h2>
+<div class="outline-text-2" id="text-org577b3b9">
 <p>
 Emacs has by far the most comprehensive whitespace rendering
 capabilities, that I've come across in any text editor. It has the
@@ -275,10 +274,9 @@ applicable to new Emacs users and for general use cases.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org1b4c855" class="outline-2">
-<h2 id="org1b4c855">Specifying a whitespace style</h2>
-<div class="outline-text-2" id="text-org1b4c855">
+<div id="outline-container-org2a02abd" class="outline-2">
+<h2 id="org2a02abd">Specifying a whitespace style</h2>
+<div class="outline-text-2" id="text-org2a02abd">
 <p>
 We can define what types of whitespace should be shown, by specifying
 the whitespace style. We do this by modifying the configuration option
@@ -308,10 +306,9 @@ editors visualize whitespace.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgb2a6a90" class="outline-2">
-<h2 id="orgb2a6a90">Dealing with whitespace coloring issues</h2>
-<div class="outline-text-2" id="text-orgb2a6a90">
+<div id="outline-container-org9249bc5" class="outline-2">
+<h2 id="org9249bc5">Dealing with whitespace coloring issues</h2>
+<div class="outline-text-2" id="text-org9249bc5">
 <p>
 Seeing as whitespace mode is so seldomly used, most themes don't define
 proper whitespace coloring. Generally speaking, you want whitespace to
@@ -338,10 +335,9 @@ the whitespace color by certain percentage.
 </div>
 </div>
 </div>
-
-<div id="outline-container-org2b15d02" class="outline-2">
-<h2 id="org2b15d02">Specifying what symbols should represent whitespace</h2>
-<div class="outline-text-2" id="text-org2b15d02">
+<div id="outline-container-org2fe5fbd" class="outline-2">
+<h2 id="org2fe5fbd">Specifying what symbols should represent whitespace</h2>
+<div class="outline-text-2" id="text-org2fe5fbd">
 <p>
 There's a configuration option named <code>whitespace-display-mappings</code>, that
 you can use to specify what Unicode character should be use to visualize
@@ -373,10 +369,9 @@ I'll share my configuration as an example in show notes.
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgdb64c85" class="outline-2">
-<h2 id="orgdb64c85">Enabling whitespace mode globally</h2>
-<div class="outline-text-2" id="text-orgdb64c85">
+<div id="outline-container-orgc78da62" class="outline-2">
+<h2 id="orgc78da62">Enabling whitespace mode globally</h2>
+<div class="outline-text-2" id="text-orgc78da62">
 <p>
 We can enable whitespace mode globally by calling
 <code>global-whitespace-mode</code>. The downside of this is that whitespace will
@@ -409,10 +404,9 @@ that's the way I configure it myself.
 </div>
 </div>
 </div>
-
-<div id="outline-container-org0c858e1" class="outline-2">
-<h2 id="org0c858e1">Making use of cleanup actions</h2>
-<div class="outline-text-2" id="text-org0c858e1">
+<div id="outline-container-org5e6b0bf" class="outline-2">
+<h2 id="org5e6b0bf">Making use of cleanup actions</h2>
+<div class="outline-text-2" id="text-org5e6b0bf">
 <p>
 One benefit of having whitespace mode enabled globally, is that we can
 take advantage of the whitespace actions feature. This features allows
@@ -445,10 +439,9 @@ different <code>whitespace-style</code> options. You can press <code>C-h f</code
 </p>
 </div>
 </div>
-
-<div id="outline-container-org58682c7" class="outline-2">
-<h2 id="org58682c7">Conclusion</h2>
-<div class="outline-text-2" id="text-org58682c7">
+<div id="outline-container-org8dfd88c" class="outline-2">
+<h2 id="org8dfd88c">Conclusion</h2>
+<div class="outline-text-2" id="text-org8dfd88c">
 <p>
 Emacs's whitespace mode has a great degree of flexibility and power. If
 gives you control over what types whitespace should be given attention,
@@ -473,7 +466,7 @@ Thanks for listing and stay tuned for the next episode of
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant (<a href="mailto:info@vernon-grant.com">info@vernon-grant.com</a>)</p>
-<p class="updated">Updated on: 2023-09-09 Sat 07:28</p>
+<p class="updated">Updated on: 2025-05-06 Tue 11:57</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6)</p>
 <p class="validation"></p>
 </div>

@@ -8,7 +8,7 @@
 <meta name="description" content="Today I'm going to share some of the ways I utilize Emacs's incremental search, during my workflow. In addition I'll be sharing some configuration recommendations that you might also find useful." />
 <meta name="keywords" content="Emacs, Incremental Search" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -225,13 +225,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb83b50c">Displaying the number of matches in the Minibuffer</a></li>
-<li><a href="#orged55f66">Making use of the search rings</a></li>
-<li><a href="#org0a42186">Using its yanking capabilities</a></li>
-<li><a href="#org0bf2917">Performing quick query replacements</a></li>
-<li><a href="#org2570d67">Jumping to first and last match</a></li>
-<li><a href="#org96b6f69">Triggering occur form incremental search</a></li>
-<li><a href="#orgf2fec68">Conclusion</a></li>
+<li><a href="#orgf045797">Displaying the number of matches in the Minibuffer</a></li>
+<li><a href="#org7cdc8d8">Making use of the search rings</a></li>
+<li><a href="#orgdc84217">Using its yanking capabilities</a></li>
+<li><a href="#orgea6dc0f">Performing quick query replacements</a></li>
+<li><a href="#orge5a758d">Jumping to first and last match</a></li>
+<li><a href="#org3759859">Triggering occur form incremental search</a></li>
+<li><a href="#orge15fc7f">Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -244,10 +244,9 @@ Today I'm going to share some of the ways I utilize Emacs's incremental
 search, during my workflow. In addition I'll be sharing some
 configuration recommendations that you might also find useful.
 </p>
-
-<div id="outline-container-orgb83b50c" class="outline-2">
-<h2 id="orgb83b50c">Displaying the number of matches in the Minibuffer</h2>
-<div class="outline-text-2" id="text-orgb83b50c">
+<div id="outline-container-orgf045797" class="outline-2">
+<h2 id="orgf045797">Displaying the number of matches in the Minibuffer</h2>
+<div class="outline-text-2" id="text-orgf045797">
 <p>
 By default incremental search does not provide any indication of the
 total number of matches that where found for current search term. It
@@ -275,10 +274,9 @@ intuition when navigating through a file's source code.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orged55f66" class="outline-2">
-<h2 id="orged55f66">Making use of the search rings</h2>
-<div class="outline-text-2" id="text-orged55f66">
+<div id="outline-container-org7cdc8d8" class="outline-2">
+<h2 id="org7cdc8d8">Making use of the search rings</h2>
+<div class="outline-text-2" id="text-org7cdc8d8">
 <p>
 Incremental search does also have a search ring. The search ring is
 basically just a list that contains your previous search terms. Having
@@ -309,10 +307,9 @@ configuration options:
 </div>
 </div>
 </div>
-
-<div id="outline-container-org0a42186" class="outline-2">
-<h2 id="org0a42186">Using its yanking capabilities</h2>
-<div class="outline-text-2" id="text-org0a42186">
+<div id="outline-container-orgdc84217" class="outline-2">
+<h2 id="orgdc84217">Using its yanking capabilities</h2>
+<div class="outline-text-2" id="text-orgdc84217">
 <p>
 Incremental search has the ability to yank things into the current
 search string. This is by far one of the features I use the most, and
@@ -371,10 +368,9 @@ You can also use <code>M-y</code> to cycle through earlier kill ring entries.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org0bf2917" class="outline-2">
-<h2 id="org0bf2917">Performing quick query replacements</h2>
-<div class="outline-text-2" id="text-org0bf2917">
+<div id="outline-container-orgea6dc0f" class="outline-2">
+<h2 id="orgea6dc0f">Performing quick query replacements</h2>
+<div class="outline-text-2" id="text-orgea6dc0f">
 <p>
 This might be common knowledge but I think it's still worth mentioning
 that you can transition from incremental search to query replacement by
@@ -383,10 +379,9 @@ use incremental search as a convenient precursor to query replacement.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org2570d67" class="outline-2">
-<h2 id="org2570d67">Jumping to first and last match</h2>
-<div class="outline-text-2" id="text-org2570d67">
+<div id="outline-container-orge5a758d" class="outline-2">
+<h2 id="orge5a758d">Jumping to first and last match</h2>
+<div class="outline-text-2" id="text-orge5a758d">
 <p>
 Sometimes after starting a search you might want to navigate to the very
 first or last match. You can do this by pressing <code>M-s M-&lt;</code> to jump to
@@ -401,10 +396,9 @@ standard vertical motion key bindings of <code>M-&lt;</code> (beginning-of-buffe
 </p>
 </div>
 </div>
-
-<div id="outline-container-org96b6f69" class="outline-2">
-<h2 id="org96b6f69">Triggering occur form incremental search</h2>
-<div class="outline-text-2" id="text-org96b6f69">
+<div id="outline-container-org3759859" class="outline-2">
+<h2 id="org3759859">Triggering occur form incremental search</h2>
+<div class="outline-text-2" id="text-org3759859">
 <p>
 Another great way to make use of incremental search is by using it as a
 precursor to Occur. You can use the current search term as an regular
@@ -414,10 +408,9 @@ Occur.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgf2fec68" class="outline-2">
-<h2 id="orgf2fec68">Conclusion</h2>
-<div class="outline-text-2" id="text-orgf2fec68">
+<div id="outline-container-orge15fc7f" class="outline-2">
+<h2 id="orge15fc7f">Conclusion</h2>
+<div class="outline-text-2" id="text-orge15fc7f">
 <p>
 Incremental search can be used for much more than just searching. It can
 be utilized to become a convenient little helper, and once mastered, it
@@ -441,7 +434,7 @@ Thanks for listing and stay tuned for the next episode of
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant (<a href="mailto:info@vernon-grant.com">info@vernon-grant.com</a>)</p>
-<p class="updated">Updated on: 2023-09-09 Sat 07:26</p>
+<p class="updated">Updated on: 2025-05-06 Tue 11:57</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6)</p>
 <p class="validation"></p>
 </div>

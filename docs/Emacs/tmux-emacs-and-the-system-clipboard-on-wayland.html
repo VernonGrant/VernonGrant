@@ -8,7 +8,7 @@
 <meta name="description" content="Getting the system clipboard to work between Tmux, Emacs and Wayland." />
 <meta name="keywords" content="Tmux, Emacs, Wayland, Clipboard" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -225,18 +225,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc7263ae">Install WL-Clipboard</a></li>
-<li><a href="#orgb3e0e9c">Add the following to your Emacs configuration file</a></li>
+<li><a href="#org376046d">Install WL-Clipboard</a></li>
+<li><a href="#org73f0b9d">Add the following to your Emacs configuration file</a></li>
 </ul>
 </div>
 </div>
 <p>
 It took me some time to copy and past between my Tmux sessions and the operating system, running a terminal Emacs instance on Wayland. I tried a few different Emacs packages such as Clipetty and Xclip but couldn't get either working. Luckily I found a solution.
 </p>
-
-<div id="outline-container-orgc7263ae" class="outline-2">
-<h2 id="orgc7263ae">Install WL-Clipboard</h2>
-<div class="outline-text-2" id="text-orgc7263ae">
+<div id="outline-container-org376046d" class="outline-2">
+<h2 id="org376046d">Install WL-Clipboard</h2>
+<div class="outline-text-2" id="text-org376046d">
 <p>
 <a href="https://github.com/bugaevc/wl-clipboard">WL-Clipboard</a> (Wayland Clipboard) project implements two command-line Wayland clipboard utilities, wl-copy and wl-paste, that lets you easily copy data between the clipboard and Unix pipes, sockets, files and so on. We will bind these command-line utilities to Emacs's cut and past functions.
 </p>
@@ -251,10 +250,9 @@ sudo apt-get -y install wl-clipboard
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb3e0e9c" class="outline-2">
-<h2 id="orgb3e0e9c">Add the following to your Emacs configuration file</h2>
-<div class="outline-text-2" id="text-orgb3e0e9c">
+<div id="outline-container-org73f0b9d" class="outline-2">
+<h2 id="org73f0b9d">Add the following to your Emacs configuration file</h2>
+<div class="outline-text-2" id="text-org73f0b9d">
 <p>
 After adding the following to your Emacs initialization file, restart your terminal and Tmux sessions. Now yanking and killing things in Emacs will automatically use the system clipboard across all Tmux sessions.
 </p>
@@ -286,7 +284,7 @@ After adding the following to your Emacs initialization file, restart your termi
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant (<a href="mailto:info@vernon-grant.com">info@vernon-grant.com</a>)</p>
-<p class="updated">Updated on: 2023-09-08 Fri 18:39</p>
+<p class="updated">Updated on: 2025-05-06 Tue 11:57</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6)</p>
 <p class="validation"></p>
 </div>

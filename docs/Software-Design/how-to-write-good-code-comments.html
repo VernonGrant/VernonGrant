@@ -8,7 +8,7 @@
 <meta name="description" content="Today we will be taking a look into the comprehensive subject of code comments. Specifically uncovering the characteristics of what is considered, good or bad comments. In addition, we will discuss the two main types and the general rules that applies to each." />
 <meta name="keywords" content="Software Design, Comments" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -225,27 +225,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbedb4ad">The overall idea behind comments</a></li>
-<li><a href="#org447bd14">The two main types of comments</a></li>
-<li><a href="#orge26af75">Interface comments</a></li>
-<li><a href="#org3cf86ed">Implementation comments</a></li>
-<li><a href="#org570cc14">The two main characteristics of bad comments</a>
+<li><a href="#org45e44f2">The overall idea behind comments</a></li>
+<li><a href="#orgeb5f3da">The two main types of comments</a></li>
+<li><a href="#orgdeee642">Interface comments</a></li>
+<li><a href="#org73eb2c6">Implementation comments</a></li>
+<li><a href="#org5d3c31e">The two main characteristics of bad comments</a>
 <ul>
-<li><a href="#org6ffe7a0">They repeat the code</a></li>
-<li><a href="#org866b975">They leave us with questions</a></li>
+<li><a href="#org21a8a3b">They repeat the code</a></li>
+<li><a href="#org81083e7">They leave us with questions</a></li>
 </ul>
 </li>
-<li><a href="#orga561235">Conclusion</a></li>
+<li><a href="#orge25aae4">Conclusion</a></li>
 </ul>
 </div>
 </div>
 <p>
 Today we will be taking a look into the comprehensive subject of code comments. Specifically uncovering the characteristics of what is considered, good or bad comments. In addition, we will discuss the two main types and the general rules that applies to each.
 </p>
-
-<div id="outline-container-orgbedb4ad" class="outline-2">
-<h2 id="orgbedb4ad">The overall idea behind comments</h2>
-<div class="outline-text-2" id="text-orgbedb4ad">
+<div id="outline-container-org45e44f2" class="outline-2">
+<h2 id="org45e44f2">The overall idea behind comments</h2>
+<div class="outline-text-2" id="text-org45e44f2">
 <p>
 Code comments should be considered an important tool that brings clarity to otherwise un-clear or abstract information. Comments gives the designer a chance to capture the thoughts and ideas that leaded to their decisions. They provide the users of a system with the information they need, to make use of a given interface.
 </p>
@@ -262,19 +261,17 @@ The overall idea behind comments is to capture information that was in the mind 
 </blockquote>
 </div>
 </div>
-
-<div id="outline-container-org447bd14" class="outline-2">
-<h2 id="org447bd14">The two main types of comments</h2>
-<div class="outline-text-2" id="text-org447bd14">
+<div id="outline-container-orgeb5f3da" class="outline-2">
+<h2 id="orgeb5f3da">The two main types of comments</h2>
+<div class="outline-text-2" id="text-orgeb5f3da">
 <p>
 There’s different types of comments, but for our purposes we’ll just be looking at interface and implementation comments. Each of these requires a slightly altered perspective to write properly. Depending on the type, our intentions needs to change as the essence of the information we need to reveal differs. Let’s take a look at them in more detail.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orge26af75" class="outline-2">
-<h2 id="orge26af75">Interface comments</h2>
-<div class="outline-text-2" id="text-orge26af75">
+<div id="outline-container-orgdeee642" class="outline-2">
+<h2 id="orgdeee642">Interface comments</h2>
+<div class="outline-text-2" id="text-orgdeee642">
 <p>
 By interface comments, we are not referring to the same interfaces that are used in the world of object oriented programming. Instead, function declarations such as the name and parameters, is an interface that will be used by some client. The comments associated with these declarations, are considered interface comments.
 </p>
@@ -284,10 +281,9 @@ These types of comments should provide enough information to the client, so that
 </p>
 </div>
 </div>
-
-<div id="outline-container-org3cf86ed" class="outline-2">
-<h2 id="org3cf86ed">Implementation comments</h2>
-<div class="outline-text-2" id="text-org3cf86ed">
+<div id="outline-container-org73eb2c6" class="outline-2">
+<h2 id="org73eb2c6">Implementation comments</h2>
+<div class="outline-text-2" id="text-org73eb2c6">
 <p>
 Comments found in the body of a function, class or script is considered implementation comments. Generally, the goal of these comments is to explain at a higher level, what the code is trying to do or what the designers intentions where. This gives us a nice overview of the inner workings of code block and allows us to critique it’s actions.
 </p>
@@ -297,14 +293,13 @@ They can help point out bug workarounds, potential issues, or cryptic pieces of 
 </p>
 </div>
 </div>
-
-<div id="outline-container-org570cc14" class="outline-2">
-<h2 id="org570cc14">The two main characteristics of bad comments</h2>
-<div class="outline-text-2" id="text-org570cc14">
+<div id="outline-container-org5d3c31e" class="outline-2">
+<h2 id="org5d3c31e">The two main characteristics of bad comments</h2>
+<div class="outline-text-2" id="text-org5d3c31e">
 </div>
-<div id="outline-container-org6ffe7a0" class="outline-3">
-<h3 id="org6ffe7a0">They repeat the code</h3>
-<div class="outline-text-3" id="text-org6ffe7a0">
+<div id="outline-container-org21a8a3b" class="outline-3">
+<h3 id="org21a8a3b">They repeat the code</h3>
+<div class="outline-text-3" id="text-org21a8a3b">
 <p>
 Comments that closely represents their related interface or implementation, for the most part, provides no real value. These types of comments basically just repeats the code itself, and does not give any additional information about the related interface or implementation.
 </p>
@@ -337,10 +332,9 @@ class Currency
 </div>
 </div>
 </div>
-
-<div id="outline-container-org866b975" class="outline-3">
-<h3 id="org866b975">They leave us with questions</h3>
-<div class="outline-text-3" id="text-org866b975">
+<div id="outline-container-org81083e7" class="outline-3">
+<h3 id="org81083e7">They leave us with questions</h3>
+<div class="outline-text-3" id="text-org81083e7">
 <p>
 Comments can leave us with a lot questions. Forcing us to spend time exploring code bases or online forums looking for examples. The designer of the related code, never took the time to clarify things or believed these details to be obvious.
 </p>
@@ -379,10 +373,9 @@ This comment leaves us with a lot of questions, such as:
 </div>
 </div>
 </div>
-
-<div id="outline-container-orga561235" class="outline-2">
-<h2 id="orga561235">Conclusion</h2>
-<div class="outline-text-2" id="text-orga561235">
+<div id="outline-container-orge25aae4" class="outline-2">
+<h2 id="orge25aae4">Conclusion</h2>
+<div class="outline-text-2" id="text-orge25aae4">
 <p>
 Interface comments provides clients with the information they need to make use of an interface. Implementation comments should try to explain what the code is doing, not how it’s doing it. But generally, all comments should attempt to make the things that are not obvious, clear.
 </p>
@@ -395,7 +388,7 @@ We as developers must recognize and appreciate the power of code comments and sh
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant (<a href="mailto:info@vernon-grant.com">info@vernon-grant.com</a>)</p>
-<p class="updated">Updated on: 2023-09-09 Sat 18:04</p>
+<p class="updated">Updated on: 2025-05-06 Tue 11:57</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6)</p>
 <p class="validation"></p>
 </div>

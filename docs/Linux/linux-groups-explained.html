@@ -8,7 +8,7 @@
 <meta name="description" content="Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work." />
 <meta name="keywords" content="Linux, system admin, users, groups" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -225,24 +225,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org97ab82a">The purpose of groups</a></li>
-<li><a href="#orgbfc967b">How we manage groups in Linux</a></li>
-<li><a href="#orgafd6e9e">Creating and removing groups</a></li>
-<li><a href="#org5a84c2a">Adding, removing or moving a user between groups</a></li>
-<li><a href="#orge4e111f">Listing a users groups</a></li>
-<li><a href="#org02b6c26">The relationship between groups and file permissions</a></li>
-<li><a href="#orgc524ab8">Setting up a directory for user collaboration</a></li>
-<li><a href="#orgdde1eec">Conclusion</a></li>
+<li><a href="#org1f476ea">The purpose of groups</a></li>
+<li><a href="#org6739c5e">How we manage groups in Linux</a></li>
+<li><a href="#orgc1c835c">Creating and removing groups</a></li>
+<li><a href="#orgf403c27">Adding, removing or moving a user between groups</a></li>
+<li><a href="#orgb505489">Listing a users groups</a></li>
+<li><a href="#org64f44de">The relationship between groups and file permissions</a></li>
+<li><a href="#orgd49dbc1">Setting up a directory for user collaboration</a></li>
+<li><a href="#org11b82fb">Conclusion</a></li>
 </ul>
 </div>
 </div>
 <p>
 Today we'll be expanding on the subject of groups in Linux. The aim is to provide you with better intuition on how they work, and how we can use them in particular situations. We'll also briefly discuss the relationship between groups and file permissions and how we might limit their privileges. In addition we'll be covering some of the technicalities, such as creating new groups and adding users to them. But, we'll mainly focus on improving our understanding of groups in general.
 </p>
-
-<div id="outline-container-org97ab82a" class="outline-2">
-<h2 id="org97ab82a">The purpose of groups</h2>
-<div class="outline-text-2" id="text-org97ab82a">
+<div id="outline-container-org1f476ea" class="outline-2">
+<h2 id="org1f476ea">The purpose of groups</h2>
+<div class="outline-text-2" id="text-org1f476ea">
 <p>
 Linux was designed to handle concurrent users. If multiple users can make use of a single system, then there must be a way for users to collaborate, and this is where groups come in to play. Groups gives us the power to determine what privileges a set of users has over specific resources. Allowing multiple users to securely operate on the same files based on clearly defined boundaries and limitations.
 </p>
@@ -252,19 +251,17 @@ A Linux system has different types of users such as, super/root users, normal us
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgbfc967b" class="outline-2">
-<h2 id="orgbfc967b">How we manage groups in Linux</h2>
-<div class="outline-text-2" id="text-orgbfc967b">
+<div id="outline-container-org6739c5e" class="outline-2">
+<h2 id="org6739c5e">How we manage groups in Linux</h2>
+<div class="outline-text-2" id="text-org6739c5e">
 <p>
 In Linux each group is uniquely identified by a <code>GID</code>, just as the users are identified by a <code>UID</code>. When a user is created they are automatically given a primary group, usually this group is named the same as their login/username. A Linux user can have only one primary group and zero or more secondary groups. When we discuss the management of groups in the next few sections, we are talking about secondary groups.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgafd6e9e" class="outline-2">
-<h2 id="orgafd6e9e">Creating and removing groups</h2>
-<div class="outline-text-2" id="text-orgafd6e9e">
+<div id="outline-container-orgc1c835c" class="outline-2">
+<h2 id="orgc1c835c">Creating and removing groups</h2>
+<div class="outline-text-2" id="text-orgc1c835c">
 <p>
 In order to create a new group we must have superuser privileges, we can of course use sudo to achieve this on most Linux distributions. The command we need to use is called <code>groupadd</code>. We can add a new group by running the following:
 </p>
@@ -298,10 +295,9 @@ cat /etc/group | grep developers
 </div>
 </div>
 </div>
-
-<div id="outline-container-org5a84c2a" class="outline-2">
-<h2 id="org5a84c2a">Adding, removing or moving a user between groups</h2>
-<div class="outline-text-2" id="text-org5a84c2a">
+<div id="outline-container-orgf403c27" class="outline-2">
+<h2 id="orgf403c27">Adding, removing or moving a user between groups</h2>
+<div class="outline-text-2" id="text-orgf403c27">
 <p>
 To add a users to a group we'll need root privileges, we can add a user to a group by using the usermod command.
 </p>
@@ -327,10 +323,9 @@ This might seem strange at first, but when you think of things from a administra
 </div>
 </div>
 </div>
-
-<div id="outline-container-orge4e111f" class="outline-2">
-<h2 id="orge4e111f">Listing a users groups</h2>
-<div class="outline-text-2" id="text-orge4e111f">
+<div id="outline-container-orgb505489" class="outline-2">
+<h2 id="orgb505489">Listing a users groups</h2>
+<div class="outline-text-2" id="text-orgb505489">
 <p>
 When managing user groups it's useful to check what groups a specific user belongs to. We can achieve this in a verity of ways, but I recommend using the id command. This command prints the user and group IDs for a particular user. We can use the command as follows:
 </p>
@@ -345,10 +340,9 @@ uid=1000(vernon) gid=1000(vernon) groups=1000(vernon),10(wheel),1002(kings)
 </div>
 </div>
 </div>
-
-<div id="outline-container-org02b6c26" class="outline-2">
-<h2 id="org02b6c26">The relationship between groups and file permissions</h2>
-<div class="outline-text-2" id="text-org02b6c26">
+<div id="outline-container-org64f44de" class="outline-2">
+<h2 id="org64f44de">The relationship between groups and file permissions</h2>
+<div class="outline-text-2" id="text-org64f44de">
 <p>
 Before heading into a practical example of using groups. It's important to briefly mention file permissions. Without a good understanding of file permissions it would be very difficult for anyone to make any meaningful use of groups. Groups are one of the 3 main aspects of a file's permissions.
 </p>
@@ -382,10 +376,9 @@ Here's a brief comparison between file and directory permissions.
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgc524ab8" class="outline-2">
-<h2 id="orgc524ab8">Setting up a directory for user collaboration</h2>
-<div class="outline-text-2" id="text-orgc524ab8">
+<div id="outline-container-orgd49dbc1" class="outline-2">
+<h2 id="orgd49dbc1">Setting up a directory for user collaboration</h2>
+<div class="outline-text-2" id="text-orgd49dbc1">
 <p>
 Let's imagine that on our Linux system there's 3 developers Jhon, Erric and Dan. Jhon want's to create a folder named Projects in his home directory, that both Erric and Dan can also access and work in. Jhon will setup the folder and it's permissions like so:
 </p>
@@ -448,10 +441,9 @@ Everything is now done and Erric and Dan can now freely read, write and execute 
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgdde1eec" class="outline-2">
-<h2 id="orgdde1eec">Conclusion</h2>
-<div class="outline-text-2" id="text-orgdde1eec">
+<div id="outline-container-org11b82fb" class="outline-2">
+<h2 id="org11b82fb">Conclusion</h2>
+<div class="outline-text-2" id="text-org11b82fb">
 <p>
 I hope that the following helped you better understand the idea behind groups and how to make use of them in Linux. I'll also like to encourage people new to the world of Linux to take a look at related topics, such as special file permissions or groups used by background processes.
 </p>
@@ -460,7 +452,7 @@ I hope that the following helped you better understand the idea behind groups an
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Vernon Grant (<a href="mailto:info@vernon-grant.com">info@vernon-grant.com</a>)</p>
-<p class="updated">Updated on: 2023-09-09 Sat 07:35</p>
+<p class="updated">Updated on: 2025-05-06 Tue 11:57</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.1 (<a href="https://orgmode.org">Org</a> mode 9.6.6)</p>
 <p class="validation"></p>
 </div>
