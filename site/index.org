@@ -16,6 +16,8 @@
     - [[file:Emacs/Discovering-Emacs/3-making-incremental-search-work-for-you.org][3 - Making Incremental Search Work for You]]
     - [[file:Emacs/Discovering-Emacs/4-using-whitespace-mode.org][4 - Using Whitespace Mode]]
     - [[file:Emacs/Discovering-Emacs/5-essential-movement-and-editing-shortcuts.org][5 - Essential Movement and Editing Shortcuts]]
+- General
+  - [[file:General/keeping-a-clear-mind-in-an-overly-connected-world.org][Keeping a clear mind in an overly connected world]]
 - Linux
   - [[file:Linux/linux-groups-explained.org][Linux Groups Explained]]
 - Software-Design
